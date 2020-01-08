@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7142fd24-15be-45e7-ac54-46d07776881a" name="Default Changelist" comment=""/>
-    <option name="SHOW_DIALOG" value="false"/>
-    <option name="HIGHLIGHT_CONFLICTS" value="true"/>
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false"/>
-    <option name="LAST_RESOLUTION" value="IGNORE"/>
+    <list default="true" id="7142fd24-15be-45e7-ac54-46d07776881a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value=""/>
-    <option name="REVERSE_PATCH" value="false"/>
+    <option name="PATCH_PATH" value="" />
+    <option name="REVERSE_PATCH" value="false" />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any converted="true">
       <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true"/>
-        <option name="NOTIFY_UNCAUGHT" value="true"/>
-        <option name="ENABLED" value="false"/>
-        <option name="LOG_ENABLED" value="false"/>
-        <option name="LOG_EXPRESSION_ENABLED" value="false"/>
-        <option name="SUSPEND_POLICY" value="SuspendAll"/>
-        <option name="COUNT_FILTER_ENABLED" value="false"/>
-        <option name="COUNT_FILTER" value="0"/>
-        <option name="CONDITION_ENABLED" value="false"/>
-        <option name="CLASS_FILTERS_ENABLED" value="false"/>
-        <option name="INSTANCE_FILTERS_ENABLED" value="false"/>
-        <option name="CONDITION" value=""/>
-        <option name="LOG_MESSAGE" value=""/>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true"/>
-        <option name="NOTIFY_UNCAUGHT" value="true"/>
-        <option name="ENABLED" value="false"/>
-        <option name="LOG_ENABLED" value="false"/>
-        <option name="LOG_EXPRESSION_ENABLED" value="false"/>
-        <option name="SUSPEND_POLICY" value="SuspendAll"/>
-        <option name="COUNT_FILTER_ENABLED" value="false"/>
-        <option name="COUNT_FILTER" value="0"/>
-        <option name="CONDITION_ENABLED" value="false"/>
-        <option name="CLASS_FILTERS_ENABLED" value="false"/>
-        <option name="INSTANCE_FILTERS_ENABLED" value="false"/>
-        <option name="CONDITION" value=""/>
-        <option name="LOG_MESSAGE" value=""/>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true"/>
-    <ui_properties converted="true"/>
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
-      <ProjectState/>
+      <ProjectState />
     </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
         <task path="$PROJECT_DIR$">
-          <activation/>
+          <activation />
         </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode"/>
-                <item name="2019bunnybots" type="f1a62948:ProjectNode"/>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="2019bunnybots" type="f1a62948:ProjectNode" />
               </path>
             </expand>
-            <select/>
+            <select />
           </tree_state>
         </projects_view>
       </state>
@@ -76,77 +76,77 @@
     <session id="1979123000">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7"/>
-          <entry key="project.open.time.12" value="1"/>
-          <entry key="project.open.time.15" value="1"/>
-          <entry key="project.open.time.16" value="1"/>
-          <entry key="project.open.time.17" value="1"/>
-          <entry key="project.open.time.18" value="2"/>
-          <entry key="project.open.time.19" value="2"/>
-          <entry key="project.open.time.2" value="1"/>
-          <entry key="project.open.time.20" value="1"/>
-          <entry key="project.open.time.25" value="1"/>
-          <entry key="project.opened" value="11"/>
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.18" value="2" />
+          <entry key="project.open.time.19" value="2" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.25" value="1" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gitignore" value="1"/>
-          <entry key="gradle" value="2"/>
-          <entry key="java" value="65"/>
-          <entry key="json" value="2"/>
+          <entry key="gitignore" value="1" />
+          <entry key="gradle" value="2" />
+          <entry key="java" value="65" />
+          <entry key="json" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="2"/>
-          <entry key="JAVA" value="65"/>
-          <entry key="JSON" value="2"/>
-          <entry key="PLAIN_TEXT" value="1"/>
+          <entry key="Groovy" value="2" />
+          <entry key="JAVA" value="65" />
+          <entry key="JSON" value="2" />
+          <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="5"/>
-          <entry key="gradle" value="14"/>
-          <entry key="java" value="4655"/>
-          <entry key="txt" value="13"/>
+          <entry key="dummy" value="5" />
+          <entry key="gradle" value="14" />
+          <entry key="java" value="4655" />
+          <entry key="txt" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="14"/>
-          <entry key="JAVA" value="4655"/>
-          <entry key="PLAIN_TEXT" value="18"/>
+          <entry key="Groovy" value="14" />
+          <entry key="JAVA" value="4655" />
+          <entry key="PLAIN_TEXT" value="18" />
         </counts>
       </usages-collector>
     </session>
     <session id="-1700717876">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1"/>
-          <entry key="project.open.time.1" value="1"/>
-          <entry key="project.opened" value="1"/>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="473"/>
+          <entry key="java" value="473" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="473"/>
+          <entry key="JAVA" value="473" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="1"/>
+          <entry key="java" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="1"/>
+          <entry key="JAVA" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -154,7 +154,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class"/>
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -164,77 +164,77 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$"/>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ModuleEditorState">
-    <option name="LAST_EDITED_MODULE_NAME"/>
-    <option name="LAST_EDITED_TAB_NAME"/>
+    <option name="LAST_EDITED_MODULE_NAME" />
+    <option name="LAST_EDITED_TAB_NAME" />
   </component>
-  <component name="ProjectId" id="1W2P5o7JS45P8kEFmykErk6scRE"/>
+  <component name="ProjectId" id="1W2P5o7JS45P8kEFmykErk6scRE" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
-      <profile-state/>
+      <profile-state />
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add"/>
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0"/>
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true"/>
-    <option name="showExcludedFiles" value="true"/>
-    <option name="showLibraryContents" value="true"/>
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToClass.includeLibraries" value="false"/>
-    <property name="GoToClass.toSaveIncludeLibraries" value="false"/>
-    <property name="GoToFile.includeJavaFiles" value="false"/>
-    <property name="MemberChooser.copyJavadoc" value="false"/>
-    <property name="MemberChooser.showClasses" value="true"/>
-    <property name="MemberChooser.sorted" value="false"/>
-    <property name="SearchEverywhereHistoryKey" value="gradle	ACTION	ActivateGradleToolWindow"/>
-    <property name="project.structure.last.edited" value="Project"/>
-    <property name="project.structure.proportion" value="0.15"/>
-    <property name="project.structure.side.proportion" value="0.2"/>
-    <property name="settings.editor.selected.configurable" value="preferences.keymap"/>
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="gradle ACTION ActivateGradleToolWindow" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Olivia\Desktop\2019bunnybots"/>
-      <recent name="C:\Users\Olivia\Desktop\2019bunnybots\src\main\java\frc\robot\Subsystems"/>
+      <recent name="C:\Users\Olivia\Desktop\2019bunnybots" />
+      <recent name="C:\Users\Olivia\Desktop\2019bunnybots\src\main\java\frc\robot\Subsystems" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.deploy">
     <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy"/>
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
-        <option name="BuildArtifacts" enabled="false"/>
-        <option name="Make" enabled="true"/>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false"/>
-      <module name=""/>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false"/>
-      <option name="ALTERNATIVE_JRE_PATH"/>
-      <option name="PACKAGE_NAME"/>
-      <option name="MAIN_CLASS_NAME"/>
-      <option name="METHOD_NAME"/>
-      <option name="TEST_OBJECT" value="class"/>
-      <option name="VM_PARAMETERS"/>
-      <option name="PARAMETERS"/>
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$"/>
-      <option name="ENV_VARIABLES"/>
-      <option name="PASS_PARENT_ENVS" value="true"/>
+      <extension name="coverage" enabled="false" merge="false" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies"/>
+        <value defaultName="moduleWithDependencies" />
       </option>
-      <envs/>
+      <envs />
       <method>
-        <option name="BuildArtifacts" enabled="false"/>
-        <option name="Make" enabled="true"/>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -242,65 +242,65 @@
       <Port>5050</Port>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$"/>
-      <extension name="coverage" enabled="false" merge="false"/>
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage" enabled="false" merge="false" />
       <method v="2">
-        <option name="BuildArtifacts" enabled="false"/>
-        <option name="Make" enabled="true"/>
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
-        <option name="executionName"/>
-        <option name="externalProjectPath" value="$PROJECT_DIR$"/>
-        <option name="externalSystemIdString" value="GRADLE"/>
-        <option name="scriptParameters" value=""/>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
-          <list/>
+          <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="build"/>
+            <option value="build" />
           </list>
         </option>
-        <option name="vmOptions" value=""/>
+        <option name="vmOptions" value="" />
       </ExternalSystemSettings>
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2"/>
+      <method v="2" />
     </configuration>
     <configuration name="deploy" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
-        <option name="executionName"/>
-        <option name="externalProjectPath" value="$PROJECT_DIR$"/>
-        <option name="externalSystemIdString" value="GRADLE"/>
-        <option name="scriptParameters" value=""/>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
-          <list/>
+          <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="deploy"/>
+            <option value="deploy" />
           </list>
         </option>
-        <option name="vmOptions" value=""/>
+        <option name="vmOptions" value="" />
       </ExternalSystemSettings>
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2"/>
+      <method v="2" />
     </configuration>
     <configuration default="true" type="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true"/>
-      <option name="SERVER_MODE" value="false"/>
-      <option name="SHMEM_ADDRESS" value="javadebug"/>
-      <option name="HOST" value="localhost"/>
-      <option name="PORT" value="5005"/>
-      <option name="AUTO_RESTART" value="false"/>
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <option name="AUTO_RESTART" value="false" />
       <method v="2">
-        <option name="BuildArtifacts" enabled="false"/>
+        <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.deploy"/>
-      <item itemvalue="Gradle.build"/>
+      <item itemvalue="Gradle.deploy" />
+      <item itemvalue="Gradle.build" />
     </list>
   </component>
   <component name="ServiceViewManager">
@@ -308,39 +308,39 @@
       <list>
         <serviceView>
           <treeState>
-            <expand/>
-            <select/>
+            <expand />
+            <select />
           </treeState>
         </serviceView>
       </list>
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration/>
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7142fd24-15be-45e7-ac54-46d07776881a" name="Default Changelist" comment=""/>
+      <changelist id="7142fd24-15be-45e7-ac54-46d07776881a" name="Default Changelist" comment="" />
       <created>1573675273592</created>
-      <option name="number" value="Default"/>
-      <option name="presentableId" value="Default"/>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1573675273592</updated>
     </task>
-    <servers/>
+    <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true"/>
-    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true"/>
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor/>
+          <artifact-editor />
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -352,7 +352,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -363,7 +363,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -375,7 +375,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -387,7 +387,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -399,7 +399,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -410,7 +410,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2"/>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
