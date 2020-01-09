@@ -1,4 +1,4 @@
-package frc.team5115.autotools;
+package frc.team5115.Auto;
 
 public class Loc2D {
     double x;

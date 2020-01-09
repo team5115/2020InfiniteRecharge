@@ -3,6 +3,7 @@ package frc.team5115.Auto.AutoCommands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.team5115.Auto.Loc2D;
 import frc.team5115.Robot.RobotContainer;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
@@ -11,7 +12,7 @@ import frc.team5115.Subsystems.Shooter;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
-import frc.team5115.autotools.Loc2D;
+
 
 public class ShootHighGoal extends SequentialCommandGroup {
 
