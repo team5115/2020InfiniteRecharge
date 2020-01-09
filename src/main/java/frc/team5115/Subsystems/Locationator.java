@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.team5115.Auto.DriveBase;
 import frc.team5115.Auto.StartingConfiguration;
 import frc.team5115.Robot.RobotContainer;
-import frc.team5115.autotools.DriveBase;
 import frc.team5115.Auto.Loc2D;
 
 
@@ -21,7 +21,7 @@ public class Locationator implements Subsystem {
     private final double startAngle;
     private Loc2D currentLocation;
 
-    public Locationator(Drivetrain x, Loc2D startingLocation, double startAngle) {
+    public Locationator(DriveBase x, Loc2D startingLocation, double startAngle) {
         navx = new AHRS(SPI.Port.kMXP);
         navx.reset(); //reset to the start orientation
         driveBase = x;
@@ -30,7 +30,7 @@ public class Locationator implements Subsystem {
         this.setDefaultCommand(new runTickCommand(this));
     }
 
-    public Locationator(Drivetrain x, StartingConfiguration startingConfiguration, double startAngle) {
+    public Locationator(DriveBase x, StartingConfiguration startingConfiguration, double startAngle) {
 
         this(x,
                 new Loc2D(StartingConfiguration.getX(startingConfiguration), RobotContainer.startY),

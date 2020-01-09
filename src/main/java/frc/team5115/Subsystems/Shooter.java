@@ -6,9 +6,10 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 
 public class Shooter implements Subsystem {
     void shoot() {
+        //Don't know how its gonna work yet
     }
     void stopShooting() {
-
+        //Don't know how its gonna work yet
     }
 
     public static class Shoot extends CommandBase {
