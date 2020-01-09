@@ -1,5 +1,6 @@
 package frc.team5115.Subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -9,8 +10,17 @@ import static frc.team5115.Robot.RobotContainer.*;
 
 public class Limelight {
 
-    NetworkTableEntry pipeline = NetworkTableInstance.getDefault().getEntry("pipeline");
 
+
+    private NetworkTableEntry tx; // Measure of X offset angle
+    private NetworkTableEntry ty; // Measure of Y offset angle
+    private NetworkTableEntry tv;
+    private NetworkTableEntry pipeline;
+
+    public Limelight() {
+        NetworkTableInstance networkTable = NetworkTableInstance.getDefault();
+        tx = networkTable.getEntry("tx");
+    }
     int currentPipeline;
 
     public double getXAngle() {

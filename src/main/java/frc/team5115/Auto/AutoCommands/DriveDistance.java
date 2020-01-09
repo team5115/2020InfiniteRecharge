@@ -1,20 +1,42 @@
 package frc.team5115.Auto.AutoCommands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.team5115.Auto.Loc2D;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Locationator;
-import frc.team5115.autotools.Loc2D;
 
 public class DriveDistance extends CommandBase {
 
-    Loc2D loc2D;
+    Loc2D targetLocation;
     Drivetrain drivetrain;
     Locationator locationator;
 
-    public DriveDistance(Loc2D loc2D, Drivetrain drivetrain, Locationator locationator) {
-        this.loc2D = loc2D;
+    public DriveDistance(Loc2D targetLocation, Drivetrain drivetrain, Locationator locationator) {
+        this.targetLocation = targetLocation;
         this.drivetrain = drivetrain;
         this.locationator = locationator;
+    }
+
+    @Override
+    public void initialize() {
+        System.out.println("Starting Drive Distance Command");
+
+    }
+
+    @Override
+    public void execute() {
+        double angle = locationator.getCurrentLocation().angleFrom(targetLocation);
+        double throttle = Math.min(locationator.getCurrentLocation().distanceFrom(targetLocation), 200);
+        drivetrain.angleHold(angle,throttle);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        drivetrain.stop();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return locationator.getCurrentLocation().distanceFrom(targetLocation) < 5;
     }
 }
