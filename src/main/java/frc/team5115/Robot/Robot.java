@@ -1,14 +1,19 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.team5115.Subsystems.*;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-
+public class Robot extends TimedRobot {
+ 
 public class Robot extends TimedRobot {
   private Command autoCommand;
-
   private RobotContainer robotContainer;
+  public static Intake intake;
+  public static Shooter shooter;
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -16,9 +21,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    intake = new Intake();
+    shooter = new Shooter();
+    
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
+
   }
 
   /**

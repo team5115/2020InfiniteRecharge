@@ -6,19 +6,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import static frc.team5115.Constants.*;
 
-public class Shooter extends Subsystem {
-    TalonSRX shooter;
+public class Intake extends Subsystem {
+    TalonSRX frontIntake;
     double intakeSpeed = 0.5;
 
     public void initDefaultCommand() {
     }
 
-    public Shooter(){
-        shooter = new TalonSRX(SHOOTER_MOTOR_ID);
+    public Intake(){
+        frontIntake = new TalonSRX(INTAKE_MOTOR_ID);
     }
 
     public void Inhale(){
-        shooter.set(ControlMode.PercentOutput, intakeSpeed);
+        frontIntake.set(ControlMode.PercentOutput, intakeSpeed);
     }
 
 }
