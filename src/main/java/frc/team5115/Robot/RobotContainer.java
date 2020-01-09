@@ -13,6 +13,11 @@ public class RobotContainer {
     public static final double startY = 20;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
     public static final double MAX_AUTO_THROTTLE = 0.5;
+    public static final double CAMERA_HEIGHT = 10; //units: inches. todome update
+    public static final double CAMERA_ANGLE = 10; //units: degrees. todome update
+    public static final double SHOOTING_DISTANCE = 120; //units: inches. todome update
+    public static final double HIGH_GOAL_HEIGHT = 98.25; //units: inches. todome update
+
 
     // The robot's subsystems and commands are defined here...
     //Subsystems

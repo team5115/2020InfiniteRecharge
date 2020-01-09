@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7142fd24-15be-45e7-ac54-46d07776881a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoCommands/ShootHighGoal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Limelight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.iws" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoSeries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoSeries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/DriveBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/DriveBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/DriveDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoCommands/DriveDistance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/Loc2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/Loc2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoCommands/ShootHighGoal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoCommands/ShootHighGoal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/RobotContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/RobotContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Drivetrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Drivetrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Locationator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Locationator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Limelight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Limelight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,12 +246,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="frc.team5115.Auto" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Olivia\Desktop\2019bunnybots" />
       <recent name="C:\Users\Olivia\Desktop\2019bunnybots\src\main\java\frc\robot\Subsystems" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="frc.team5115.Auto" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.deploy">
@@ -376,10 +370,10 @@
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1578581823070">
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1578586326266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1578581823070" />
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1578586326266" />
     <state x="808" y="410" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1578532073358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

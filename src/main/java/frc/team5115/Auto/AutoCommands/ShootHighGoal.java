@@ -36,7 +36,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
 
         timer = new Timer();
         addCommands(new Aim(),
-                new Shoot()
+                new Shooter.Shoot(5, shooter)
         );
     }
 
@@ -58,8 +58,14 @@ public class ShootHighGoal extends SequentialCommandGroup {
                         angleFrom(goalLocation);
             }
 
-            double throttle = min(throttle, RobotContainer.maxForwardSpeed); //max speed 0.5. Also add a minimum speed of 0.1.
+            double throttle = RobotContainer.SHOOTING_DISTANCE - limelight.calculateDistanceFromBase();
+            throttle = min(throttle, RobotContainer.MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
             drivetrain.angleHold(angle, throttle);
+        }
+
+        @Override
+        public void end(boolean interrupted) {
+            drivetrain.stop();
         }
     }
 
