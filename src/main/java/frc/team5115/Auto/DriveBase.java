@@ -22,7 +22,6 @@ public interface DriveBase {
     void resetTargetAngle();
 
     /**
-     * @param currentAngle the angle reported from the navx, given.
      * @param targetAngle the angle the robot wants to be at, given.
      * @param y the forward speed to pass through to drive.
      */

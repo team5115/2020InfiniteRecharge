@@ -44,4 +44,11 @@ public class Loc2D {
     public double angleFrom(Loc2D other) {
         return Math.atan2(other.getY() - this.getY(), other.getX() - this.getX());
     }
+
+    public double distanceFrom(Loc2D other) {
+        return Math.sqrt(
+                Math.pow(other.getY() - this.getY(), 2) +
+                Math.pow(other.getX() - this.getX(), 2)
+        );
+    }
 }

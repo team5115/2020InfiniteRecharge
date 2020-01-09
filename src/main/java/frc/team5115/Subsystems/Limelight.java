@@ -1,5 +1,6 @@
 package frc.team5115.Subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -13,6 +14,7 @@ public class Limelight {
     private NetworkTableEntry tx;
     private NetworkTableEntry ty;
     private NetworkTableEntry tv;
+
     int currentPipeline;
     public Limelight() {
         NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
