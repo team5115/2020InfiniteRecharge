@@ -69,11 +69,11 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     @Override
-    public void angleHold(double currentAngle, double targetAngle, double y) {
+    public void angleHold(double targetAngle, double y) {
         this.targetAngle = targetAngle;
         double kP = 0.02;
         //double kD = 0.01; Hey if you are implementing a d part, use the navx.getRate
-
+        double currentAngle = locationator.getAngle();
         double P = kP*(targetAngle - currentAngle);
         //double D = kD*((currentAngle - lastAngle)/0.02); //finds the difference in the last tick.
         P = Math.max(-0.5, Math.min(0.5, P));
@@ -81,9 +81,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     public void driveByWire(double x, double y) { //rotate by wire
-        double currentAngle = locationator.getAngle();
         targetAngle += x*2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
-        angleHold(currentAngle, targetAngle, y);
+        angleHold(targetAngle, y);
     }
 
     @Override

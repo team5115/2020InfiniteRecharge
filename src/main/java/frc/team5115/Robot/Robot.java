@@ -89,6 +89,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
+    robotContainer.locationator.runTick();
     CommandScheduler.getInstance().cancelAll();
   }
 

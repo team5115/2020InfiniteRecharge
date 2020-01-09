@@ -13,6 +13,7 @@ import frc.team5115.autotools.Loc2D;
 
 
 public class Locationator implements Subsystem {
+
     private AHRS navx; //turn baby.
     private double angle; //angle is total accumulated.
     private double yaw; //relative to start, from -180 to 180.

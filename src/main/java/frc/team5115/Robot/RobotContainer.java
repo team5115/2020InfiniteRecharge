@@ -12,13 +12,16 @@ public class RobotContainer {
     final StartingConfiguration startingConfiguration = StartingConfiguration.Left;
     public static final double startY = 20;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
+    public static final double MAX_AUTO_THROTTLE = 0.5;
 
     // The robot's subsystems and commands are defined here...
     //Subsystems
     private final Drivetrain drivetrain = new Drivetrain(this);
     public final Locationator locationator = new Locationator(drivetrain, startingConfiguration, startingAngle);
+    public final Limelight limelight = new Limelight();
+    public final Shooter shooter = new Shooter();
     //commands
-    private final AutoSeries autoSeries = new AutoSeries(drivetrain, locationator);
+    private final AutoSeries autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
 
 
     /**

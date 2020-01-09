@@ -40,4 +40,8 @@ public class Loc2D {
         this.y+=y;
         return this.y;
     }
+
+    public double angleFrom(Loc2D other) {
+        return Math.atan2(other.getY() - this.getY(), other.getX() - this.getX());
+    }
 }

@@ -2,6 +2,8 @@
 package frc.team5115.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.team5115.Auto.AutoCommands.DriveDistance;
+import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Subsystems.*;
 import frc.team5115.autotools.Loc2D;
 
@@ -11,24 +13,33 @@ public class AutoSeries extends SequentialCommandGroup {
 
 
 
-    public AutoSeries(Drivetrain drivetrain, Locationator locationator) {
+    public AutoSeries(Drivetrain drivetrain, Locationator locationator, Shooter shooter, Limelight limelight) {
         this.drivetrain = drivetrain;
         this.locationator = locationator;
 
 
-        final Loc2D overLine = new Loc2D(, 100);
+        final Loc2D overLineLocation = new Loc2D(
+                locationator.getCurrentLocation().getX(),  //goes strait forward.
+                100);
+
+        final Loc2D afterShootLocation = null;
 
         addCommands(
                 // Drive to the new distance.
-                new DriveDistance(new Loc2D(),
-                                drivetrain,
-                                locationator);
-//todome fix the auto series.
+                new DriveDistance(overLineLocation,
+                        drivetrain,
+                        locationator),
+
                 // Release the hatch
-                new ShootBalls(hatch),
+                new ShootHighGoal(drivetrain,
+                        locationator,
+                        shooter,
+                        limelight),
 
                 // Drive backward the specified distance
-                new DriveDistance(AutoConstants.kAutoBackupDistanceInches, -AutoConstants.kAutoDriveSpeed,
-                        drive));
+                new DriveDistance(afterShootLocation,
+                        drivetrain,
+                        locationator)
+        );
     }
 }

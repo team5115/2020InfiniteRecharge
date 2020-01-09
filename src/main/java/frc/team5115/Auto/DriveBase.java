@@ -26,15 +26,8 @@ public interface DriveBase {
      * @param targetAngle the angle the robot wants to be at, given.
      * @param y the forward speed to pass through to drive.
      */
-    void angleHold(double currentAngle, double targetAngle, double y);
+    void angleHold(double targetAngle, double y);
 
-
-    /**
-     * @param targetAngle trys to lower this angle to 0.
-     */
-    default void angleHold(double targetAngle) {
-        this.angleHold(0, targetAngle, 0); //this should work.
-    }
 
     void driveByWire(double x, double y);
 
