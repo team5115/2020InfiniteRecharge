@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import static frc.team5115.Constants.*;
+
 
 public class Shooter extends Subsystem {
     TalonSRX shooter;

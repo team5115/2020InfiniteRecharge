@@ -2,8 +2,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
-import frc.team5115.autotools.DriveBase;
 
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private final Locationator locationator;

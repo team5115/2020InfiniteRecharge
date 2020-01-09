@@ -9,20 +9,29 @@ import static frc.team5115.Robot.RobotContainer.*;
 
 public class Limelight {
 
-    NetworkTableEntry pipeline = NetworkTableInstance.getDefault().getEntry("pipeline");
-
+    NetworkTableEntry pipeline;
+    private NetworkTableEntry tx;
+    private NetworkTableEntry ty;
+    private NetworkTableEntry tv;
     int currentPipeline;
+    public Limelight() {
+        NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
+        tx = networkTableInstance.getEntry("tx");
+        ty = networkTableInstance.getEntry("ty");
+        tv = networkTableInstance.getEntry("tv");
+        pipeline = networkTableInstance.getEntry("pipeline");
+    }
 
     public double getXAngle() {
-        return 0;
+        return tx.getDouble(0);
     }
 
     public double getYAngle() {
-        return 0;
+        return ty.getDouble(0);
     }
 
     public boolean hasTarget() {
-        return false;
+        return tv.getDouble(0) > 0.5;
     }
 
     public void setPipeline(int pipe) {
