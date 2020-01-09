@@ -12,8 +12,11 @@ import static frc.team5115.Constants.*;
 public class OI {
     public static Joystick joy = new Joystick(0);
     Button intake = new JoystickButton(joy, INTAKE_BUTTON_ID);
+    Button shot = new JoystickButton(joy, SHOOTER_BUTTON_ID);
 
     public void OI(){
         intake.whenPressed(new IntakeBalls());
+        shot.whenPressed(new Shoot());
+
     }
 }

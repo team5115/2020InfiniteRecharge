@@ -1,17 +1,19 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.team5115.Subsystems.Intake;
+import frc.team5115.Subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 
 public class Robot extends TimedRobot {
   public static Intake intake;
+  public static Shooter shooter;
 
 
   @Override
   public void robotInit() {
     intake = new Intake();
+    shooter = new Shooter();
 
   }
 
