@@ -4,8 +4,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Locationator;
-import frc.team5115.autotools.Loc2D;
-
+import frc.team5115.Auto.Loc2D;
 public class DriveDistance extends CommandBase {
 
     Loc2D loc2D;
