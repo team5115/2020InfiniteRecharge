@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.team5115.Auto.DriveBase;
-import frc.team5115.Auto.Loc2D;
+
 import frc.team5115.Auto.StartingConfiguration;
 import frc.team5115.Robot.RobotContainer;
-
+import frc.team5115.Auto.Loc2D;
 
 public class Locationator implements Subsystem {
 

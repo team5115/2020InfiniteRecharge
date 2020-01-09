@@ -13,6 +13,7 @@ import frc.team5115.Subsystems.Shooter;
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
+
 public class ShootHighGoal extends SequentialCommandGroup {
 
     Drivetrain drivetrain;

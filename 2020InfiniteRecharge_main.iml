@@ -8,6 +8,25 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Gradle: edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2019.4.1">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/jbr/bin/Could not find edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2019.4.1.&#13;&#10;Searched in the following locations:&#13;&#10;  - https:/repo.maven.apache.org/maven2/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.pom&#13;&#10;  - https:/repo.maven.apache.org/maven2/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.jar&#13;&#10;  - file:/C:/Users/Public/frc2019/maven/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.pom&#13;&#10;  - file:/C:/Users/Public/frc2019/maven/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.jar&#13;&#10;  - http:/first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.pom&#13;&#10;  - http:/first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.jar&#13;&#10;  - http:/devsite.ctr-electronics.com/maven/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.pom&#13;&#10;  - http:/devsite.ctr-electronics.com/maven/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.jar&#13;&#10;  - https:/repo1.maven.org/maven2/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.pom&#13;&#10;  - https:/repo1.maven.org/maven2/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.jar&#13;&#10;  - http:/wpimirror.imjac.in/m2/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.pom&#13;&#10;  - http:/wpimirror.imjac.in/m2/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2019.4.1/wpilibNewCommands-java-2019.4.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: edu.wpi.first.cscore:cscore-java:2019.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: edu.wpi.first.wpilibj:wpilibj-java:2019.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: edu.wpi.first.hal:hal-java:2019.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: edu.wpi.first.thirdparty.frc2019.opencv:opencv-java:3.4.4-4" level="project" />
+    <orderEntry type="library" name="Gradle: com.ctre.phoenix:api-java:5.17.3" level="project" />
+    <orderEntry type="library" name="Gradle: edu.wpi.first.cameraserver:cameraserver-java:2019.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: edu.wpi.first.ntcore:ntcore-java:2019.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: edu.wpi.first.wpiutil:wpiutil-java:2019.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.kauailabs.navx.frc:navx-java:3.1.400" level="project" />
+    <orderEntry type="library" name="Gradle: com.ctre.phoenix:wpiapi-java:5.17.3" level="project" />
     <orderEntry type="library" name="Gradle: edu.wpi.first.wpilibj:wpilibj-java:2020.1.2" level="project" />
     <orderEntry type="library" name="Gradle: edu.wpi.first.ntcore:ntcore-java:2020.1.2" level="project" />
     <orderEntry type="library" name="Gradle: edu.wpi.first.wpiutil:wpiutil-java:2020.1.2" level="project" />
