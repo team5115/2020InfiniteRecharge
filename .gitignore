@@ -162,3 +162,5 @@ bin/
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
 2020InfiniteRecharge.iws
+*.iws
+2020InfiniteRecharge.ipr

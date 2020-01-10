@@ -1,23 +1,26 @@
 package frc.team5115.Commands;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.team5115.Subsystems.Intake;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.team5115.Robot.Robot;
-
-public class IntakeBalls extends Command {
-    public IntakeBalls() {
-        requires(Robot.intake);
-        setTimeout(.9);
+public class IntakeBalls extends CommandBase {
+    Intake intake;
+    public IntakeBalls(Intake intake) {
+        this.intake = intake;
+        addRequirements(intake);
     }
 
-    protected void initialize() {
-        Robot.intake.Inhale();
+    @Override
+    public void initialize() {
+        intake.Inhale();
     }
 
-    protected void execute() {
+    @Override
+    public void execute() {
     }
 
-    protected boolean isFinished() {
+    @Override
+    public boolean isFinished() {
         return true;
     }
 }

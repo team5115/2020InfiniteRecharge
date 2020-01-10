@@ -1,14 +1,15 @@
 package frc.team5115.Auto.AutoCommands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.*;
 import frc.team5115.Auto.Loc2D;
 import frc.team5115.Robot.RobotContainer;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
 import frc.team5115.Subsystems.Locationator;
 import frc.team5115.Subsystems.Shooter;
+
+import java.util.Set;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
@@ -36,9 +37,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.limelight = limelight;
 
         timer = new Timer();
-        addCommands(new Aim(),
-                new Shooter.Shoot(5, shooter)
-        );
+        addCommands(new Aim(), new Shooter.ShootForTime(shooter));
     }
 
     class Aim extends CommandBase {
