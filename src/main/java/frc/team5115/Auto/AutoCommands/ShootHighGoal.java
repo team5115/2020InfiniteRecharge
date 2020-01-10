@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.team5115.Auto.Loc2D;
+import frc.team5115.Commands.Shoot;
 import frc.team5115.Robot.RobotContainer;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
@@ -37,7 +38,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
 
         timer = new Timer();
         addCommands(new Aim(),
-                new Shooter.Shoot(5, shooter)
+                new Shoot()
         );
     }
 

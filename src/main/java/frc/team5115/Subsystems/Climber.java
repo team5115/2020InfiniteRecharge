@@ -1,5 +1,7 @@
 package frc.team5115.Subsystems;
 
-public class Climber {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class Climber extends SubsystemBase {
 
 }
