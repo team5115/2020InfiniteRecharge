@@ -12,6 +12,10 @@ public class DriveDistance extends CommandBase {
     Locationator locationator;
 
     public DriveDistance(Loc2D targetLocation, Drivetrain drivetrain, Locationator locationator) {
+        if (targetLocation == null) {
+            System.out.println("Error: target location is null.");
+            return;
+        }
         this.targetLocation = targetLocation;
         this.drivetrain = drivetrain;
         this.locationator = locationator;
@@ -20,7 +24,6 @@ public class DriveDistance extends CommandBase {
     @Override
     public void initialize() {
         System.out.println("Starting Drive Distance Command");
-
     }
 
     @Override
@@ -32,11 +35,15 @@ public class DriveDistance extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
+        if(interrupted) System.out.println("Error: Interrupted");
         drivetrain.stop();
     }
 
     @Override
     public boolean isFinished() {
+        if (targetLocation == null) {
+            return true;
+        }
         return locationator.getCurrentLocation().distanceFrom(targetLocation) < 5;
     }
 }

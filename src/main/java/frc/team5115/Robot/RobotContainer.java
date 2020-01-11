@@ -3,34 +3,22 @@ package frc.team5115.Robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Auto.StartingConfiguration;
 import frc.team5115.Commands.IntakeBalls;
+import frc.team5115.Constants;
 import frc.team5115.Subsystems.*;
-import frc.team5115.Subsystems.Locationator;
 
-import static frc.team5115.Constants.INTAKE_BUTTON_ID;
-import static frc.team5115.Constants.SHOOTER_BUTTON_ID;
+import static frc.team5115.Constants.*;
 
 public class RobotContainer {
-
-    //Remember to update. todome update this everytime
-    final StartingConfiguration startingConfiguration = StartingConfiguration.Left;
-    public static final double startY = 20;
-    public static final int startingAngle = 90; //90 is looking away from the driver stations.
-    public static final double MAX_AUTO_THROTTLE = 0.5;
-    public static final double CAMERA_HEIGHT = 10; //units: inches. todome update
-    public static final double CAMERA_ANGLE = 10; //units: degrees. todome update
-    public static final double SHOOTING_DISTANCE = 120; //units: inches. todome update
-    public static final double HIGH_GOAL_HEIGHT = 98.25; //units: inches. todome update
-
 
     // The robot's subsystems and commands are defined here...
     //Subsystems
     private final Drivetrain drivetrain = new Drivetrain(this);
-    public final Locationator locationator = new Locationator(drivetrain, startingConfiguration, startingAngle);
+    public final Locationator locationator = new Locationator(drivetrain, startingConfiguration, Constants.startingAngle);
     public final Limelight limelight = new Limelight();
     public final Shooter shooter = new Shooter();
     public final Intake intake = new Intake();
@@ -54,6 +42,16 @@ public class RobotContainer {
     private void configureButtonBindings() {
             intake_Button.whenPressed(new IntakeBalls(intake));
             shooter_Button.whenPressed(new InstantCommand(shooter::shoot));
+    }
+
+    private void startTeleop() {
+        //bind the wheels.
+        new RunCommand(() -> {
+            drivetrain.drive(
+                    joy.getRawAxis(X_AXIS_ID),
+                    joy.getRawAxis(Y_AXIS_ID),
+                    joy.getRawAxis(THROTTLE_AXIS_ID));
+        });
     }
 
 
