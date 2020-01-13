@@ -1,23 +1,26 @@
 package frc.team5115.Commands;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.team5115.Robot.*;
 
+/**
+ * An example command that uses an example subsystem.
+ */
+public class Shoot extends CommandBase {
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.team5115.Robot.Robot;
-
-public class Shoot extends Command {
     public Shoot() {
-        requires(Robot.shooter);
-        setTimeout(.9);
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(Robot.shooter);
+
     }
 
-    protected void initialize() {
-        Robot.intake.Inhale();
+    @Override
+    public void initialize() {
+        Robot.shooter.Inhale();
     }
 
-    protected void execute() {
-    }
-
-    protected boolean isFinished() {
+    @Override
+    public boolean isFinished() {
         return true;
     }
 }

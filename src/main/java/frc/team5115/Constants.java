@@ -14,9 +14,12 @@ public class Constants{
 
     public static final int SHOOTER_MOTOR_ID = 6;
 
+    public static final int CLIMBER_MOTOR_ID = 7;
+
     public static final int INTAKE_BUTTON_ID = 1;
 
     public static final int SHOOTER_BUTTON_ID = 2;
+
 
 
 
