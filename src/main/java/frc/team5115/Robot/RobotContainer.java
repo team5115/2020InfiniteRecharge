@@ -3,7 +3,6 @@ package frc.team5115.Robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoSeries;
@@ -17,7 +16,6 @@ import static frc.team5115.Constants.SHOOTER_BUTTON_ID;
 
 public class RobotContainer {
 
-    //Remember to update. todome update this every time.
     final StartingConfiguration startingConfiguration = StartingConfiguration.Left;
     public static final double startY = 20;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
@@ -53,15 +51,9 @@ public class RobotContainer {
     private Button shooter_Button = new JoystickButton(joy, SHOOTER_BUTTON_ID);
 
     private void configureButtonBindings() {
-            intake_Button.whenPressed(new IntakeBalls(intake));
-            shooter_Button.whenPressed(new InstantCommand(shooter::shoot));
-
-            new RunCommand(() -> drivetrain.drive(
-                joy.getRawAxis()
-                driverController.getX(GenericHID.Hand.kRight)),
-                m_robotDrive).schedule();
+        intake_Button.whenPressed(new IntakeBalls(intake));
+        shooter_Button.whenPressed(new InstantCommand(shooter::shoot));
     }
-
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.

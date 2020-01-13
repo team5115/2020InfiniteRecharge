@@ -1,13 +1,16 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.team5115.Subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 
+ 
 public class Robot extends TimedRobot {
   private Command autoCommand;
   private RobotContainer robotContainer;
+  public static Intake intake;
+  public static Shooter shooter;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -79,10 +82,6 @@ public class Robot extends TimedRobot {
       autoCommand.cancel();
     }
 
-    new RunCommand(() -> .arcadeDrive(
-            driverController.getY(GenericHID.Hand.kLeft),
-            driverController.getX(GenericHID.Hand.kRight)),
-            m_robotDrive).schedule();
   }
 
 
