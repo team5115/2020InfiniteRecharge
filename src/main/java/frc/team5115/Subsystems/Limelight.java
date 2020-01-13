@@ -1,11 +1,12 @@
 package frc.team5115.Subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-import static frc.team5115.Constants.*;
 import static java.lang.Math.tan;
 import static java.lang.Math.toRadians;
+import static frc.team5115.Robot.RobotContainer.*;
 
 public class Limelight {
 

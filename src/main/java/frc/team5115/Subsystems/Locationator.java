@@ -2,11 +2,13 @@ package frc.team5115.Subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.team5115.Auto.DriveBase;
-import frc.team5115.Auto.Loc2D;
+
 import frc.team5115.Auto.StartingConfiguration;
-import frc.team5115.Constants;
+import frc.team5115.Robot.RobotContainer;
+import frc.team5115.Auto.Loc2D;
 
 public class Locationator implements Subsystem {
 
@@ -23,12 +25,13 @@ public class Locationator implements Subsystem {
         driveBase = x;
         currentLocation = startingLocation.clone();
         this.startAngle = startAngle;
+        this.setDefaultCommand(new runTickCommand(this));
     }
 
     public Locationator(DriveBase x, StartingConfiguration startingConfiguration, double startAngle) {
 
         this(x,
-                new Loc2D(StartingConfiguration.getX(startingConfiguration), Constants.startY),
+                new Loc2D(StartingConfiguration.getX(startingConfiguration), RobotContainer.startY),
                 startAngle);
     }
 
@@ -45,14 +48,14 @@ public class Locationator implements Subsystem {
      * @return totalAccumulated Angle -gazillion to a gazillion
      */
     public double getAngle() {
-        return angle+startAngle;
+        return angle;
     }
 
     /**
      * @return angle -180 to 180
      */
     public double getYaw() {
-        return (yaw+startAngle) % 360;
+        return yaw;
     }
 
 
@@ -71,5 +74,30 @@ public class Locationator implements Subsystem {
 
     public Loc2D getCurrentLocation() {
         return currentLocation;
+    }
+
+    static class runTickCommand extends CommandBase {
+
+        Locationator locationator;
+
+        runTickCommand(Locationator locationator) {
+            this.locationator = locationator;
+        }
+
+        @Override
+        public void initialize() {
+            System.out.println("Starting IMU calculations");
+        }
+
+        @Override
+        public void execute() {
+            System.out.println("Running IMU Calc");
+            locationator.runTick();
+        }
+
+        @Override
+        public void end(boolean interrupted) {
+            System.out.println("IMU Stopped. Auto will not work.");
+        }
     }
 }

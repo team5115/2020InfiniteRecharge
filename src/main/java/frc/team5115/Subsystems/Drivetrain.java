@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
 
-import static frc.team5115.Constants.*;
-
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private final Locationator locationator;
     //instances of the speed controllers
@@ -19,13 +17,16 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
 
+    private double rightSpd;
+    private double leftSpd;
+
     public Drivetrain(RobotContainer x) {
         this.locationator = x.locationator;
 
-        frontLeft = new TalonSRX(FRONT_LEFT_MOTOR_ID);
-        frontRight = new TalonSRX(FRONT_RIGHT_MOTOR_ID);
-        backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
-        backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
+        frontLeft = new TalonSRX(1);
+        frontRight = new TalonSRX(2);
+        backLeft = new TalonSRX(3);
+        backRight = new TalonSRX(4);
 
         frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
         frontRight.set(ControlMode.Follower, backRight.getDeviceID());
@@ -49,8 +50,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //todome test this.
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
-        double leftSpd = Math.min((x + y) * throttle, 1);
-        double rightSpd = Math.min((x - y) * throttle, 1);
+        leftSpd = Math.min((x + y) * throttle, 1);
+        rightSpd = Math.min((x - y) * throttle, 1);
 
         leftSpd = Math.max(leftSpd, -1);
         rightSpd = Math.max(rightSpd, -1);

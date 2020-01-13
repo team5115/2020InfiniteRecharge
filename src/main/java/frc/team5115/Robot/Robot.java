@@ -4,12 +4,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import frc.team5115.Auto.AutoSeries;
 
 public class Robot extends TimedRobot {
   private Command autoCommand;
   private RobotContainer robotContainer;
-
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -17,9 +15,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
+
   }
 
   /**
@@ -55,11 +55,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autoCommand = robotContainer.getAutonomousCommand();
-    //runs the run tick on the locationator forever.
+
     // schedule the autonomous command (example)
     if (autoCommand != null) {
       autoCommand.schedule();
-      new RunCommand(((AutoSeries) autoCommand).getLocationator()::runTick);
     } else System.out.println("Boy you better fix this bitch-ass problem your auto code done broke you a little shit cuz you code sum dumb shit you dumbass it caint find no code.");
   }
 
@@ -79,6 +78,11 @@ public class Robot extends TimedRobot {
     if (autoCommand != null) {
       autoCommand.cancel();
     }
+
+    new RunCommand(() -> .arcadeDrive(
+            driverController.getY(GenericHID.Hand.kLeft),
+            driverController.getX(GenericHID.Hand.kRight)),
+            m_robotDrive).schedule();
   }
 
 
@@ -92,6 +96,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
+    robotContainer.locationator.runTick();
     CommandScheduler.getInstance().cancelAll();
   }
 
