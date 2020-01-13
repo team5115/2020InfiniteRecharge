@@ -1,11 +1,12 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.team5115.Subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.team5115.Subsystems.Intake;
+import frc.team5115.Subsystems.Shooter;
 
-
+ 
 public class Robot extends TimedRobot {
   private Command autoCommand;
   private RobotContainer robotContainer;
@@ -18,6 +19,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
     
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
