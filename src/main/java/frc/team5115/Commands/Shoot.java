@@ -10,13 +10,13 @@ public class Shoot extends CommandBase {
 
     public Shoot() {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(Robot.shooter);
+        addRequirements(RobotContainer.shooter);
 
     }
 
     @Override
     public void initialize() {
-        Robot.shooter.Inhale();
+        RobotContainer.shooter.exhale();
     }
 
     @Override
