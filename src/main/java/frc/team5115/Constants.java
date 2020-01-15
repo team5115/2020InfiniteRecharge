@@ -6,11 +6,11 @@ public class Constants{
 
     public static final byte FRONT_LEFT_MOTOR_ID = 1;
 
-    public static final byte FRONT_RIGHT_MOTOR_ID = 3;
+    public static final byte FRONT_RIGHT_MOTOR_ID = 2;
 
-    public static final byte BACK_LEFT_MOTOR_ID = 4;
+    public static final byte BACK_LEFT_MOTOR_ID = 3;
 
-    public static final byte BACK_RIGHT_MOTOR_ID = 2;
+    public static final byte BACK_RIGHT_MOTOR_ID = 4;
 
     public static final byte INTAKE_MOTOR_ID = 5;
 
@@ -34,7 +34,7 @@ public class Constants{
 
     public static byte X_AXIS_ID = 0;
     public static byte Y_AXIS_ID = 1;
-    public static byte THROTTLE_AXIS_ID = 2;
+    public static byte THROTTLE_AXIS_ID = 3;
 
 }
 

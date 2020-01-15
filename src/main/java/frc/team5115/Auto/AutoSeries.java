@@ -17,7 +17,7 @@ public class AutoSeries extends SequentialCommandGroup {
         final Loc2D overLineLocation = new Loc2D(
                 locationator.getCurrentLocation().getX(),  //goes strait forward.
                 100);
-
+        //addCommands(new RunCommand(limelight::debug));
         final Loc2D afterShootLocation = null;
 
         addCommands(
@@ -37,5 +37,6 @@ public class AutoSeries extends SequentialCommandGroup {
                         drivetrain,
                         locationator)
         );
+
     }
 }

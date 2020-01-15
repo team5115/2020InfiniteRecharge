@@ -19,6 +19,10 @@ public class Locationator implements Subsystem {
     private final double startAngle;
     private Loc2D currentLocation;
 
+    public Locationator() {
+        startAngle = 0;
+    }
+
     public Locationator(DriveBase x, Loc2D startingLocation, double startAngle) {
         navx = new AHRS(SPI.Port.kMXP);
         navx.reset(); //reset to the start orientation

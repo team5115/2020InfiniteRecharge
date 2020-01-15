@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
 
+import static frc.team5115.Constants.*;
+
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private final Locationator locationator;
     //instances of the speed controllers
@@ -22,11 +24,13 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     public Drivetrain(RobotContainer x) {
         this.locationator = x.locationator;
-
-        frontLeft = new TalonSRX(1);
-        frontRight = new TalonSRX(2);
-        backLeft = new TalonSRX(3);
-        backRight = new TalonSRX(4);
+        if (locationator == null) {
+            System.out.println("Is null.");
+        }
+        frontLeft = new TalonSRX(FRONT_LEFT_MOTOR_ID);
+        frontRight = new TalonSRX(FRONT_RIGHT_MOTOR_ID);
+        backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
+        backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
 
         frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
         frontRight.set(ControlMode.Follower, backRight.getDeviceID());
@@ -43,24 +47,25 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     @Override
-    public void drive(double y, double x, double throttle) { //Change the drive output
+    public void drive(double x, double y, double throttle) { //Change the drive output
         //called lots of times per seconds.
-        y *= -1;
-        System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
+        //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //todome test this.
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
-        leftSpd = Math.min((x + y) * throttle, 1);
-        rightSpd = Math.min((x - y) * throttle, 1);
-
-        leftSpd = Math.max(leftSpd, -1);
-        rightSpd = Math.max(rightSpd, -1);
+        leftSpd = (x + y) * throttle;
+        rightSpd = (x - y) * throttle;
 
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
         backLeft.set(ControlMode.PercentOutput, leftSpd);
         backRight.set(ControlMode.PercentOutput, rightSpd);
+    }
+
+    private double clamp(double d, double max, double min) {
+        d = Math.min(max, d);
+        return Math.max(min, d);
     }
 
     @Override
@@ -88,6 +93,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     @Override
     public double getSpeedInchesPerSecond() {
+        //easily debug sensors: System.out.println("fr:" + frontRight.getSelectedSensorVelocity() + "  fl:" + frontLeft.getSelectedSensorVelocity() + "  br:" + backLeft.getSelectedSensorVelocity() + "  bl:" + backLeft.getSelectedSensorVelocity());
         double rightSpd = frontRight.getSelectedSensorVelocity();
         double leftSpd = -backLeft.getSelectedSensorVelocity();
 

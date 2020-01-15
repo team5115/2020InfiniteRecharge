@@ -55,11 +55,13 @@ public class RobotContainer {
 
     public void startTeleop() {
         //bind the wheels.
+        System.out.println("Starting teleop");
         new RunCommand(() -> {
+
             drivetrain.drive(
                     joy.getRawAxis(X_AXIS_ID),
-                    joy.getRawAxis(Y_AXIS_ID),
-                    joy.getRawAxis(THROTTLE_AXIS_ID));
-        });
+                    -joy.getRawAxis(Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
+                    0.3);//joy.getRawAxis(THROTTLE_AXIS_ID));
+        }).schedule();
     }
 }
