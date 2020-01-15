@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import static frc.team5115.Constants.*;
 
 public class Intake implements Subsystem {
+
     TalonSRX frontIntake;
     double intakeSpeed = 0.5;
 
