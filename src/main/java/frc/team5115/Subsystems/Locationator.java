@@ -8,7 +8,7 @@ import frc.team5115.Auto.DriveBase;
 import frc.team5115.Auto.Loc2D;
 import frc.team5115.Auto.StartingConfiguration;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Constants.startY;
 
 public class Locationator implements Subsystem {
 
@@ -25,7 +25,7 @@ public class Locationator implements Subsystem {
         driveBase = x;
         currentLocation = startingLocation.clone();
         this.startAngle = startAngle;
-        this.setDefaultCommand(new RunCommand(this::runTick));
+        this.setDefaultCommand(new cmd(this::runTick, this));
     }
 
     public Locationator(DriveBase x, StartingConfiguration startingConfiguration, double startAngle) {
@@ -74,5 +74,23 @@ public class Locationator implements Subsystem {
 
     public Loc2D getCurrentLocation() {
         return currentLocation;
+    }
+
+    public class cmd extends RunCommand {
+
+        /**
+         * Creates a new RunCommand.  The Runnable will be run continuously until the command
+         * ends.  Does not run when disabled.
+         *
+         * @param toRun        the Runnable to run
+         * @param requirements the subsystems to require
+         */
+        public cmd(Runnable toRun, Subsystem... requirements) {
+            super(toRun, requirements);
+        }
+
+        public void execute() {
+            runTick();
+        }
     }
 }

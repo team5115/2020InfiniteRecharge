@@ -46,7 +46,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     public void drive(double y, double x, double throttle) { //Change the drive output
         //called lots of times per seconds.
         y *= -1;
-
+        System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //todome test this.
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
@@ -92,7 +92,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         double leftSpd = -backLeft.getSelectedSensorVelocity();
 
         final double wheelSpd = ((rightSpd + leftSpd) / 2) * 30.7692 * Math.PI / 4090;
-        System.out.println("Wheel Speeds = " + wheelSpd);
+        //System.out.println("Wheel Speeds = " + wheelSpd);
         return wheelSpd;
     }
 

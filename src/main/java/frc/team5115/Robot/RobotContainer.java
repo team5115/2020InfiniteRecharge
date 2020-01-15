@@ -53,7 +53,7 @@ public class RobotContainer {
         return autoSeries;
     }
 
-    private void startTeleop() {
+    public void startTeleop() {
         //bind the wheels.
         new RunCommand(() -> {
             drivetrain.drive(
