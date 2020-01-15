@@ -4,8 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.team5115.Auto.Loc2D;
-import frc.team5115.Commands.Shoot;
-import frc.team5115.Robot.RobotContainer;
+import frc.team5115.Constants;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
 import frc.team5115.Subsystems.Locationator;
@@ -37,9 +36,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.limelight = limelight;
 
         timer = new Timer();
-        addCommands(new Aim(),
-                new Shoot()
-        );
+        addCommands(new Aim(), new Shooter.ShootForTime(shooter));
     }
 
     class Aim extends CommandBase {
@@ -60,13 +57,14 @@ public class ShootHighGoal extends SequentialCommandGroup {
                         angleFrom(goalLocation);
             }
 
-            double throttle = RobotContainer.SHOOTING_DISTANCE - limelight.calculateDistanceFromBase();
-            throttle = min(throttle, RobotContainer.MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
+            double throttle = Constants.SHOOTING_DISTANCE - limelight.calculateDistanceFromBase();
+            throttle = min(throttle, Constants.MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
             drivetrain.angleHold(angle, throttle);
         }
 
         @Override
         public void end(boolean interrupted) {
+            if(interrupted) System.out.println("Error: Interrupted");
             drivetrain.stop();
         }
     }

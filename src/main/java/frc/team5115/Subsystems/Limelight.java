@@ -4,9 +4,9 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
+import static frc.team5115.Constants.*;
 import static java.lang.Math.tan;
 import static java.lang.Math.toRadians;
-import static frc.team5115.Robot.RobotContainer.*;
 
 public class Limelight {
 
@@ -15,13 +15,14 @@ public class Limelight {
     private NetworkTableEntry ty;
     private NetworkTableEntry tv;
 
-    int currentPipeline;
+    int currentPipeline = 0;
     public Limelight() {
-        NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
+        NetworkTable networkTableInstance = NetworkTableInstance.getDefault().getTable("limelight");
         tx = networkTableInstance.getEntry("tx");
         ty = networkTableInstance.getEntry("ty");
         tv = networkTableInstance.getEntry("tv");
         pipeline = networkTableInstance.getEntry("pipeline");
+        setPipeline(2);
     }
 
     public double getXAngle() {
@@ -46,5 +47,11 @@ public class Limelight {
 
     public double calculateDistanceFromBase() {
         return (HIGH_GOAL_HEIGHT - CAMERA_HEIGHT) / tan(toRadians(getYAngle() + CAMERA_ANGLE)); //
+    }
+
+    public void debug() {
+        System.out.println("tx:" + getXAngle());
+        System.out.println("ty:" + getYAngle());
+        System.out.println("tv:" + hasTarget());
     }
 }

@@ -2,13 +2,13 @@ package frc.team5115.Subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.team5115.Auto.DriveBase;
-
-import frc.team5115.Auto.StartingConfiguration;
-import frc.team5115.Robot.RobotContainer;
 import frc.team5115.Auto.Loc2D;
+import frc.team5115.Auto.StartingConfiguration;
+
+import static frc.team5115.Constants.startY;
 
 public class Locationator implements Subsystem {
 
@@ -19,19 +19,23 @@ public class Locationator implements Subsystem {
     private final double startAngle;
     private Loc2D currentLocation;
 
+    public Locationator() {
+        startAngle = 0;
+    }
+
     public Locationator(DriveBase x, Loc2D startingLocation, double startAngle) {
         navx = new AHRS(SPI.Port.kMXP);
         navx.reset(); //reset to the start orientation
         driveBase = x;
         currentLocation = startingLocation.clone();
         this.startAngle = startAngle;
-        this.setDefaultCommand(new runTickCommand(this));
+        this.setDefaultCommand(new cmd(this::runTick, this));
     }
 
     public Locationator(DriveBase x, StartingConfiguration startingConfiguration, double startAngle) {
 
         this(x,
-                new Loc2D(StartingConfiguration.getX(startingConfiguration), RobotContainer.startY),
+                new Loc2D(StartingConfiguration.getX(startingConfiguration), startY),
                 startAngle);
     }
 
@@ -48,14 +52,14 @@ public class Locationator implements Subsystem {
      * @return totalAccumulated Angle -gazillion to a gazillion
      */
     public double getAngle() {
-        return angle;
+        return angle + startAngle;
     }
 
     /**
      * @return angle -180 to 180
      */
     public double getYaw() {
-        return yaw;
+        return (yaw + startAngle) % 360;
     }
 
 
@@ -76,28 +80,21 @@ public class Locationator implements Subsystem {
         return currentLocation;
     }
 
-    static class runTickCommand extends CommandBase {
+    public class cmd extends RunCommand {
 
-        Locationator locationator;
-
-        runTickCommand(Locationator locationator) {
-            this.locationator = locationator;
+        /**
+         * Creates a new RunCommand.  The Runnable will be run continuously until the command
+         * ends.  Does not run when disabled.
+         *
+         * @param toRun        the Runnable to run
+         * @param requirements the subsystems to require
+         */
+        public cmd(Runnable toRun, Subsystem... requirements) {
+            super(toRun, requirements);
         }
 
-        @Override
-        public void initialize() {
-            System.out.println("Starting IMU calculations");
-        }
-
-        @Override
         public void execute() {
-            System.out.println("Running IMU Calc");
-            locationator.runTick();
-        }
-
-        @Override
-        public void end(boolean interrupted) {
-            System.out.println("IMU Stopped. Auto will not work.");
+            runTick();
         }
     }
 }
