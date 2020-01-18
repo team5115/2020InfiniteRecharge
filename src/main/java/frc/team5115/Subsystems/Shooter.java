@@ -19,5 +19,4 @@ public class Shooter extends SubsystemBase {
     public void Inhale(){
         shooter.set(ControlMode.PercentOutput, intakeSpeed);
     }
-
 }

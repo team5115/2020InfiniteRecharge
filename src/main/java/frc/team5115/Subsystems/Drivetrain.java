@@ -10,7 +10,7 @@ import frc.team5115.Robot.RobotContainer;
 import static frc.team5115.Constants.*;
 
 public class Drivetrain extends SubsystemBase implements DriveBase {
-    private final Locationator locationator;
+    private Locationator locationator;
     //instances of the speed controllers
     private TalonSRX frontLeft;
     private TalonSRX frontRight;
@@ -22,11 +22,14 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     private double rightSpd;
     private double leftSpd;
 
+    double lastAngle = 0;
+
     public Drivetrain(RobotContainer x) {
-        this.locationator = x.locationator;
-        if (locationator == null) {
-            System.out.println("Is null.");
-        }
+        //this.locationator = x.locationator;
+
+        System.out.println("Locationator is null. Getting from main robot class.");
+        locationator = x.locationator;
+
         frontLeft = new TalonSRX(FRONT_LEFT_MOTOR_ID);
         frontRight = new TalonSRX(FRONT_RIGHT_MOTOR_ID);
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
@@ -39,11 +42,12 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         frontRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        lastAngle = locationator.getAngle();
     }
 
     @Override
     public void stop() {
-        drive(0,0,0);
+        drive(0, 0, 0);
     }
 
     @Override
@@ -63,9 +67,13 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         backRight.set(ControlMode.PercentOutput, rightSpd);
     }
 
-    private double clamp(double d, double max, double min) {
+    public static double clamp(double d, double min, double max) {
         d = Math.min(max, d);
         return Math.max(min, d);
+    }
+
+    public static double clamp(double d, double max) {
+        return clamp(d, -max, max);
     }
 
     @Override
@@ -74,20 +82,32 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         System.out.println("RESET RBW: Target Angle: " + targetAngle + " Current Angle: " + locationator.getAngle());
     }
 
+    double I = 0;
     @Override
     public void angleHold(double targetAngle, double y) {
+        System.out.println("lastAngle = " + lastAngle);
         this.targetAngle = targetAngle;
         double kP = 0.02;
-        //double kD = 0.01; Hey if you are implementing a d part, use the navx.getRate
+        double kI = 0;
+        double kD = 0;// Hey if you are implementing a d part, use the navx.getRate
         double currentAngle = locationator.getAngle();
-        double P = kP*(targetAngle - currentAngle);
-        //double D = kD*((currentAngle - lastAngle)/0.02); //finds the difference in the last tick.
-        P = Math.max(-0.5, Math.min(0.5, P));
-        this.drive(y,P,1);
+        System.out.println("currentAngle = " + currentAngle);
+        double P = kP * (targetAngle - currentAngle);
+        I = I + P * kI;
+        double D = kD * (currentAngle - lastAngle); //finds the difference in the last tick.
+        double output = P + I + D;
+        output = clamp(output, 0.5);
+        System.out.println("P = " + P);
+        System.out.println("I = " + I);
+        System.out.println("D = " + D);
+        System.out.println("output = " + output);
+        this.drive(output, y, 1);
+        lastAngle = currentAngle;
+        System.out.println("lastAngle = " + lastAngle);
     }
 
     public void driveByWire(double x, double y) { //rotate by wire
-        targetAngle += x*2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
+        targetAngle += x * 2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
         angleHold(targetAngle, y);
     }
 

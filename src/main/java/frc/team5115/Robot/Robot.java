@@ -60,7 +60,9 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (autoCommand != null) {
       autoCommand.schedule();
+      System.out.println("Scheduling auto command");
     } else System.out.println("Boy you better fix this bitch-ass problem your auto code done broke you a little shit cuz you code sum dumb shit you dumbass it caint find no code.");
+    //CommandScheduler.getInstance().enable();
   }
 
   /**
@@ -68,6 +70,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
   }
 
   @Override

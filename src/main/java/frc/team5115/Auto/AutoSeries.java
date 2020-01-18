@@ -13,19 +13,20 @@ public class AutoSeries extends SequentialCommandGroup {
 
     public AutoSeries(Drivetrain drivetrain, Locationator locationator, Shooter shooter, Limelight limelight) {
 
-
+        System.out.println("Creating auto series.");
         final Loc2D overLineLocation = new Loc2D(
                 locationator.getCurrentLocation().getX(),  //goes strait forward.
                 100);
         //addCommands(new RunCommand(limelight::debug));
+
         final Loc2D afterShootLocation = null;
 
         addCommands(
-                // Drive to the new distance.
+                /*/ Drive to the new distance.
                 new DriveDistance(overLineLocation,
                         drivetrain,
                         locationator),
-
+                */
                 // Release the hatch
                 new ShootHighGoal(drivetrain,
                         locationator,
@@ -37,6 +38,5 @@ public class AutoSeries extends SequentialCommandGroup {
                         drivetrain,
                         locationator)
         );
-
     }
 }

@@ -16,14 +16,14 @@ public class RobotContainer {
 
     // The robot's subsystems and commands are defined here...
     //Subsystems
-    private final Drivetrain drivetrain = new Drivetrain(this);
-    public final Locationator locationator = new Locationator(drivetrain, startingConfiguration, startingAngle);
+    public Drivetrain drivetrain;
+    public Locationator locationator;
     public final Limelight limelight = new Limelight();
     public final Shooter shooter = new Shooter();
     public final Intake intake = new Intake();
     public static Joystick joy = new Joystick(0);
     //commands
-    private final AutoSeries autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
+    private final AutoSeries autoSeries;
 
 
     /**
@@ -33,6 +33,10 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
         //sets the navx to work.
+        System.out.println("Starting creation of autoseries");
+        locationator = new Locationator(this, startingConfiguration, startingAngle);
+        drivetrain = new Drivetrain(this);
+        autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
     }
 
     private Button intake_Button = new JoystickButton(joy, INTAKE_BUTTON_ID);
@@ -40,7 +44,7 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         intake_Button.whenPressed(new IntakeBalls(intake));
-        shooter_Button.whenPressed(new InstantCommand(shooter::shoot));
+        shooter_Button.whenPressed(new InstantCommand(shooter::Inhale));
     }
 
     /**

@@ -4,9 +4,9 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.team5115.Auto.DriveBase;
 import frc.team5115.Auto.Loc2D;
 import frc.team5115.Auto.StartingConfiguration;
+import frc.team5115.Robot.RobotContainer;
 
 import static frc.team5115.Constants.startY;
 
@@ -15,24 +15,25 @@ public class Locationator implements Subsystem {
     private AHRS navx; //turn baby.
     private double angle; //angle is total accumulated.
     private double yaw; //relative to start, from -180 to 180.
-    private DriveBase driveBase;
-    private final double startAngle;
+    RobotContainer x;
+    private double startAngle;
     private Loc2D currentLocation;
+
 
     public Locationator() {
         startAngle = 0;
     }
 
-    public Locationator(DriveBase x, Loc2D startingLocation, double startAngle) {
+    public Locationator(RobotContainer x, Loc2D startingLocation, double startAngle) {
         navx = new AHRS(SPI.Port.kMXP);
         navx.reset(); //reset to the start orientation
-        driveBase = x;
+        this.x = x;
         currentLocation = startingLocation.clone();
         this.startAngle = startAngle;
         this.setDefaultCommand(new cmd(this::runTick, this));
     }
 
-    public Locationator(DriveBase x, StartingConfiguration startingConfiguration, double startAngle) {
+    public Locationator(RobotContainer x, StartingConfiguration startingConfiguration, double startAngle) {
 
         this(x,
                 new Loc2D(StartingConfiguration.getX(startingConfiguration), startY),
@@ -52,6 +53,7 @@ public class Locationator implements Subsystem {
      * @return totalAccumulated Angle -gazillion to a gazillion
      */
     public double getAngle() {
+        angle = navx.getAngle();
         return angle + startAngle;
     }
 
@@ -65,7 +67,7 @@ public class Locationator implements Subsystem {
 
     public void runTick() {
 
-        double forwardSpeed = driveBase.getSpeedInchesPerSecond()/20;
+        double forwardSpeed = x.drivetrain.getSpeedInchesPerSecond()/20;
         double deltaY = Math.sin(Math.toRadians(getAngle())) * forwardSpeed; //converts from M/s to inches/sec then * 0.02 seconds to get deltaInches.
         double deltaX = Math.cos(Math.toRadians(getAngle())) * forwardSpeed;
         currentLocation.deltaX(deltaX);
