@@ -4,11 +4,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.team5115.Auto.Loc2D;
-import frc.team5115.Constants;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
 import frc.team5115.Subsystems.Locationator;
 import frc.team5115.Subsystems.Shooter;
+
+import static frc.team5115.Constants.*;
 
 
 public class ShootHighGoal extends SequentialCommandGroup {
@@ -19,7 +20,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
     Limelight limelight;
     Timer timer;
 
-    final Loc2D goalLocation = null;
+    final Loc2D goalLocation = new Loc2D(StartingConfiguration.Middle.getX(), 0);
 
     /*
     1. Aim at the thing using the limelight
@@ -31,6 +32,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.locationator = locationator;
         this.shooter = shooter;
         this.limelight = limelight;
+        limelight.setPipeline(Pipeline.GreenLedMode);
         System.out.println("constructed ShootHighGoal command");
         timer = new Timer();
         addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootForTime(shooter)); todome test and add shooter part
@@ -47,20 +49,18 @@ public class ShootHighGoal extends SequentialCommandGroup {
 
         @Override
         public void execute() {
-            limelight.setPipeline(2); //this ensures that we are looking at the right pipeline for the object.
             double angle = 127;
             if (limelight.hasTarget()) { // if we don't have a target
                 angle = limelight.getXAngle() + locationator.getAngle();
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
-            } /*else { //todome reimplemt crap below
+            } else { //todome reimplemt crap below
                 angle = locationator.
                         getCurrentLocation().
                         angleFrom(goalLocation);
-            }*/
-            //else return;
+            }
 
-            throttle = -(Constants.SHOOTING_DISTANCE - limelight.calculateDistanceFromBase())/100;
-            throttle = Drivetrain.clamp(throttle, Constants.MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
+            throttle = -(SHOOTING_DISTANCE - limelight.calculateDistanceFromBase())/100;
+            throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
             //System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
             //System.out.println("throttle = " + throttle);
             //throttle = 0; //todome eliminate to return forward backward handling.

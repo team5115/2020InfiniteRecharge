@@ -31,7 +31,7 @@ public class PickupBall extends CommandBase {
 
     @Override
     public void initialize() {
-        limelight.setPipeline(3);
+        limelight.setPipeline(Constants.Pipeline.CustomGripPipeline);
     }
     /*on loop:
     Point at any ball in sight. After like 5 consecutive ticks of seeing a ball, move toward the ball.

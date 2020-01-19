@@ -3,6 +3,7 @@ package frc.team5115.Subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.team5115.Constants;
 
 import static frc.team5115.Constants.*;
 import static java.lang.Math.tan;
@@ -22,7 +23,7 @@ public class Limelight {
         ty = networkTableInstance.getEntry("ty");
         tv = networkTableInstance.getEntry("tv");
         pipeline = networkTableInstance.getEntry("pipeline");
-        setPipeline(2);
+        setPipeline(Pipeline.GreenLedMode);
     }
 
     public double getXAngle() {
@@ -37,12 +38,15 @@ public class Limelight {
         return tv.getDouble(0) > 0.5;
     }
 
-    public void setPipeline(int pipe) {
-        if (pipe != currentPipeline) { //if the new value is different than the past values, change it up.
-            pipeline.setNumber(pipe);
-            currentPipeline = pipe;
-            System.out.println("Changed Pipeline to " + pipe);
+    public void setPipeline(int newPipe) {
+        if (newPipe != currentPipeline) { //if the new value is different than the past values, change it up.
+            pipeline.setNumber(newPipe);
+            currentPipeline = newPipe;
+            System.out.println("Changed Pipeline to " + newPipe);
         }
+    }
+    public void setPipeline(Constants.Pipeline pipeline) {
+        setPipeline(pipeline.getPipelineNumber());
     }
 
     public double calculateDistanceFromBase() {

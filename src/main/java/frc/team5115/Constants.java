@@ -1,9 +1,9 @@
 package frc.team5115;
 
-import frc.team5115.Auto.StartingConfiguration;
-
 public class Constants{
 
+
+    /* this is for the test bed if nothing was changed.
     public static final byte FRONT_LEFT_MOTOR_ID = 1;
 
     public static final byte FRONT_RIGHT_MOTOR_ID = 2;
@@ -11,6 +11,18 @@ public class Constants{
     public static final byte BACK_LEFT_MOTOR_ID = 3;
 
     public static final byte BACK_RIGHT_MOTOR_ID = 4;
+*/
+
+    public static final byte FRONT_LEFT_MOTOR_ID = 3;
+
+    public static final byte FRONT_RIGHT_MOTOR_ID = 4;
+
+    public static final byte BACK_LEFT_MOTOR_ID = 1;
+
+    public static final byte BACK_RIGHT_MOTOR_ID = 2;
+
+
+
 
     public static final byte INTAKE_MOTOR_ID = 5;
 
@@ -36,5 +48,34 @@ public class Constants{
     public static byte Y_AXIS_ID = 1;
     public static byte THROTTLE_AXIS_ID = 3;
 
+    public enum StartingConfiguration {
+        Right, Middle, Left;
+        public double getX() {
+            switch (this) {
+                case Right:
+                    return 200;
+                case Middle:
+                    return 100;
+                case Left:
+                    return 50;
+            }
+            return 0;
+        }
+    }
+
+    public enum Pipeline {
+        DriveCamera, CustomGripPipeline, GreenLedMode;
+        public int getPipelineNumber() {
+            switch(this) {
+                case DriveCamera:
+                    return 0;
+                case CustomGripPipeline:
+                    return 1;
+                case GreenLedMode:
+                    return 2;
+            }
+            return -1;
+        }
+    }
 }
 

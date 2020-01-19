@@ -2,6 +2,7 @@ package frc.team5115.Auto.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Auto.Loc2D;
+import frc.team5115.Constants;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Locationator;
 
@@ -24,13 +25,12 @@ public class DriveDistance extends CommandBase {
     @Override
     public void initialize() {
         System.out.println("Starting Drive Distance Command");
-
     }
 
     @Override
     public void execute() {
         double angle = locationator.getCurrentLocation().angleFrom(targetLocation);
-        double throttle = Math.min(locationator.getCurrentLocation().distanceFrom(targetLocation), 200);
+        double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/20, Constants.MAX_AUTO_THROTTLE);
         drivetrain.angleHold(angle,throttle);
     }
 
@@ -42,9 +42,6 @@ public class DriveDistance extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if (targetLocation == null) {
-            return true;
-        }
         return locationator.getCurrentLocation().distanceFrom(targetLocation) < 5;
     }
 }

@@ -34,9 +34,10 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         frontRight = new TalonSRX(FRONT_RIGHT_MOTOR_ID);
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
-
         frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
         frontRight.set(ControlMode.Follower, backRight.getDeviceID());
+
+        //back motors are master
 
         frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         frontRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
@@ -57,8 +58,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //todome test this.
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
-        leftSpd = (x + y) * throttle;
-        rightSpd = (x - y) * throttle;
+            leftSpd = (x + y) * throttle;
+            rightSpd = (x - y) * throttle;
 
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
@@ -85,15 +86,16 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     double I = 0;
     @Override
     public void angleHold(double targetAngle, double y) {
-        System.out.println("lastAngle = " + lastAngle);
         this.targetAngle = targetAngle;
         double kP = 0.02;
-        double kI = 0;
-        double kD = 0;// Hey if you are implementing a d part, use the navx.getRate
+        double kI = 0.08;
+        double kD = 0.05;// Hey if you are implementing a d part, use the navx.getRate
         double currentAngle = locationator.getAngle();
         System.out.println("currentAngle = " + currentAngle);
         double P = kP * (targetAngle - currentAngle);
-        I = I + P * kI;
+        if(P < 0.2 && P > -0.2) {
+            I = I + (P * kI);
+        }
         double D = kD * (currentAngle - lastAngle); //finds the difference in the last tick.
         double output = P + I + D;
         output = clamp(output, 0.5);
@@ -103,7 +105,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         System.out.println("output = " + output);
         this.drive(output, y, 1);
         lastAngle = currentAngle;
-        System.out.println("lastAngle = " + lastAngle);
     }
 
     public void driveByWire(double x, double y) { //rotate by wire

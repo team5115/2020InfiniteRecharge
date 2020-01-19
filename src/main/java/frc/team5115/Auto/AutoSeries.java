@@ -17,16 +17,15 @@ public class AutoSeries extends SequentialCommandGroup {
         final Loc2D overLineLocation = new Loc2D(
                 locationator.getCurrentLocation().getX(),  //goes strait forward.
                 100);
-        //addCommands(new RunCommand(limelight::debug));
+        final Loc2D afterShootLocation = locationator.getCurrentLocation();
+        //addCommands((new RunCommand(limelight::debug).alongWith( //note this removes the other commands from ever being added. Make sure to format the 'along with' to make them run concurrently.
 
-        final Loc2D afterShootLocation = null;
 
         addCommands(
-                /*/ Drive to the new distance.
+                // Drive to the new distance.
                 new DriveDistance(overLineLocation,
                         drivetrain,
                         locationator),
-                */
                 // Release the hatch
                 new ShootHighGoal(drivetrain,
                         locationator,

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.team5115.Auto.Loc2D;
-import frc.team5115.Auto.StartingConfiguration;
+import frc.team5115.Constants.StartingConfiguration;
 import frc.team5115.Robot.RobotContainer;
 
 import static frc.team5115.Constants.startY;
@@ -36,7 +36,7 @@ public class Locationator implements Subsystem {
     public Locationator(RobotContainer x, StartingConfiguration startingConfiguration, double startAngle) {
 
         this(x,
-                new Loc2D(StartingConfiguration.getX(startingConfiguration), startY),
+                new Loc2D(startingConfiguration.getX(), startY),
                 startAngle);
     }
 
