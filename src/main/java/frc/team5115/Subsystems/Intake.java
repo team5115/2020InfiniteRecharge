@@ -7,12 +7,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Robot.RobotContainer;
 
 import static frc.team5115.Constants.*;
+import static frc.team5115.Robot.RobotContainer.joy;
 
 public class Intake extends SubsystemBase {
     TalonSRX frontIntake;
     double intakeSpeed = 0.5;
 
+    int sum;
+
     public Intake() {
+        int sum = 0;
         frontIntake = new TalonSRX(INTAKE_MOTOR_ID);
     }
 

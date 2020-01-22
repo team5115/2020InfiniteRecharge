@@ -75,7 +75,7 @@
       <module fileurl="file://$PROJECT_DIR$/2020InfiniteRecharge.test.iml" filepath="$PROJECT_DIR$/2020InfiniteRecharge.test.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="RemoteRepositoriesConfiguration">
@@ -113,6 +113,11 @@
       <option name="id" value="WPILocal" />
       <option name="name" value="WPILocal" />
       <option name="url" value="file:/$PROJECT_DIR$/../../../Public/wpilib/2020/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://jitpack.io" />
     </remote-repository>
   </component>
   <component name="SvnBranchConfigurationManager">
@@ -165,6 +170,15 @@
       <JAVADOC />
       <SOURCES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.10.0/465988edbcc098cebd769e2ef110ce57661a27a4/jackson-databind-2.10.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Gradle: com.github.Oblarg.Oblog:lib:3.1.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Oblarg.Oblog/lib/3.1.0/9bd15f29f3978d38979b00696b60e1a02c30d40b/lib-3.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Oblarg.Oblog/lib/3.1.0/57fce2e37f00a91eb179fbd4bfaed9c59ffabb1e/lib-3.1.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Gradle: com.google.code.findbugs:jsr305:3.0.2">
