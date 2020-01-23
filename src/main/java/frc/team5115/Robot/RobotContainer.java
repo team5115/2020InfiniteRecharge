@@ -37,6 +37,7 @@ public class RobotContainer {
         locationator = new Locationator(this, startingConfiguration, startingAngle);
         drivetrain = new Drivetrain(this);
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
+
     }
 
     private Button intake_Button = new JoystickButton(joy, INTAKE_BUTTON_ID);
@@ -45,6 +46,10 @@ public class RobotContainer {
     private void configureButtonBindings() {
         intake_Button.whenPressed(new IntakeBalls(intake));
         shooter_Button.whenPressed(new InstantCommand(shooter::Inhale));
+        new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(()-> {
+            locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
+//            System.out.println("Button Pressed");
+        }));
     }
 
     /**
@@ -54,6 +59,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
+        locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
         return autoSeries;
     }
 
@@ -61,11 +67,10 @@ public class RobotContainer {
         //bind the wheels.
         System.out.println("Starting teleop");
         new RunCommand(() -> {
-
             drivetrain.drive(
-                    joy.getRawAxis(X_AXIS_ID),
+                    joy.getRawAxis(X_AXIS_ID)/2,
                     -joy.getRawAxis(Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
-                    0.3);//joy.getRawAxis(THROTTLE_AXIS_ID));
+                    0.6);//joy.getRawAxis(THROTTLE_AXIS_ID));
         }).schedule();
     }
 }

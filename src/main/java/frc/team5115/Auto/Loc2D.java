@@ -42,7 +42,9 @@ public class Loc2D {
     }
 
     public double angleFrom(Loc2D other) {
-        return Math.atan2(other.getY() - this.getY(), other.getX() - this.getX());
+//        System.out.println("Delta x" + (other.getX() - this.getX()));
+//        System.out.println("Delta y = " + (other.getY() - this.getY()));
+        return Math.toDegrees(Math.atan2(other.getY() - this.getY(), other.getX() - this.getX()));
     }
 
     public double distanceFrom(Loc2D other) {
@@ -51,4 +53,9 @@ public class Loc2D {
                 Math.pow(other.getX() - this.getX(), 2)
         );
     }
+
+    public String toString() {
+        return "X:" + getX() + " Y:" + getY();
+    }
+
 }

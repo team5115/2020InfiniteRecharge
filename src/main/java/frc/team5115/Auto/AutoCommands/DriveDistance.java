@@ -29,19 +29,22 @@ public class DriveDistance extends CommandBase {
 
     @Override
     public void execute() {
+        System.out.println("targetLocation = " + targetLocation);
         double angle = locationator.getCurrentLocation().angleFrom(targetLocation);
-        double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/20, Constants.MAX_AUTO_THROTTLE);
+        double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/50, Constants.MAX_AUTO_THROTTLE);
+        System.out.println("Angle hold: " + angle + "  Throttle: " + throttle);
         drivetrain.angleHold(angle,throttle);
     }
 
     @Override
     public void end(boolean interrupted) {
         if(interrupted) System.out.println("Error: Interrupted");
+        System.out.println("Done with Drive distance command");
         drivetrain.stop();
     }
 
     @Override
     public boolean isFinished() {
-        return locationator.getCurrentLocation().distanceFrom(targetLocation) < 5;
+        return locationator.getCurrentLocation().distanceFrom(targetLocation) < 25;
     }
 }

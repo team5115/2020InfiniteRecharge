@@ -27,6 +27,7 @@ public class AutoSeries extends SequentialCommandGroup {
                         drivetrain,
                         locationator),
                 // Release the hatch
+
                 new ShootHighGoal(drivetrain,
                         locationator,
                         shooter,

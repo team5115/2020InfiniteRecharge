@@ -57,14 +57,6 @@ public class Locationator implements Subsystem {
         return angle + startAngle;
     }
 
-    /**
-     * @return angle -180 to 180
-     */
-    public double getYaw() {
-        return (yaw + startAngle) % 360;
-    }
-
-
     public void runTick() {
 
         double forwardSpeed = x.drivetrain.getSpeedInchesPerSecond()/20;
@@ -73,9 +65,9 @@ public class Locationator implements Subsystem {
         currentLocation.deltaX(deltaX);
         currentLocation.deltaY(deltaY);
 
-//        System.out.println("IMUCalC: CurrentAngle: " + (int) currentAngle + "|yLoc: " + (int) yLoc + "|xLoc: " + (int) xLoc);
-//        System.out.println("Delta X: " + deltaX + "|Delta Y: " + deltaY);
-//        System.out.println("YVelocity: " + forwardSpeed);
+        System.out.println("IMUCalC: CurrentAngle: " + (int) getAngle() + "|yLoc: " + (int) currentLocation.getY() + "|xLoc: " + (int) currentLocation.getX());
+        //System.out.println("Delta X: " + deltaX + "|Delta Y: " + deltaY);
+        //System.out.println("YVelocity: " + forwardSpeed);
     }
 
     public Loc2D getCurrentLocation() {
@@ -98,5 +90,13 @@ public class Locationator implements Subsystem {
         public void execute() {
             runTick();
         }
+    }
+
+    public void setAngleAndLocation(double angle, double x, double y) {
+        navx.reset();
+        startAngle = angle;
+        this.angle = navx.getAngle() + startAngle;
+        System.out.println("angle = " + angle);
+        currentLocation = new Loc2D(x, y);
     }
 }

@@ -2,17 +2,6 @@ package frc.team5115;
 
 public class Constants{
 
-
-    /* this is for the test bed if nothing was changed.
-    public static final byte FRONT_LEFT_MOTOR_ID = 1;
-
-    public static final byte FRONT_RIGHT_MOTOR_ID = 2;
-
-    public static final byte BACK_LEFT_MOTOR_ID = 3;
-
-    public static final byte BACK_RIGHT_MOTOR_ID = 4;
-*/
-
     public static final byte FRONT_LEFT_MOTOR_ID = 3;
 
     public static final byte FRONT_RIGHT_MOTOR_ID = 4;
@@ -31,16 +20,17 @@ public class Constants{
     public static final byte INTAKE_BUTTON_ID = 1;
 
     public static final byte SHOOTER_BUTTON_ID = 2;
+    public static final byte RESET_BUTTON = 3;
 
 
 
-    public static final StartingConfiguration startingConfiguration = StartingConfiguration.Left;
+    public static final StartingConfiguration startingConfiguration = StartingConfiguration.Right;
     public static final double startY = 20;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
-    public static final double MAX_AUTO_THROTTLE = 0.5;
+    public static final double MAX_AUTO_THROTTLE = 0.4;
     public static final double CAMERA_HEIGHT = 10; //units: inches. todome update
     public static final double CAMERA_ANGLE = 3; //units: degrees. todome update
-    public static final double SHOOTING_DISTANCE = 200; //units: inches. todome update
+    public static final double SHOOTING_DISTANCE = 250; //units: inches. todome update
     public static final double HIGH_GOAL_HEIGHT = 98.25; //units: inches. todome update
     public static final int LINE_TARGET_Y = 100;
 
@@ -53,11 +43,11 @@ public class Constants{
         public double getX() {
             switch (this) {
                 case Right:
-                    return 200;
+                    return 50;
                 case Middle:
                     return 100;
                 case Left:
-                    return 50;
+                    return 200;
             }
             return 0;
         }
