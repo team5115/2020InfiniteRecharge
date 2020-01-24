@@ -48,8 +48,17 @@ public class Constants{
                     return 100;
                 case Left:
                     return 200;
+                default:
+                    return 0;
             }
-            return 0;
+        }
+
+        public double getY(){
+            //todo this
+            switch(this){
+                default:
+                    return 0;
+            }
         }
     }
 

@@ -1,12 +1,12 @@
-package frc.team5115.Subsystems;
+package frc.team5115.Auto;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.team5115.Auto.Loc2D;
 import frc.team5115.Constants.StartingConfiguration;
 import frc.team5115.Robot.RobotContainer;
+import frc.team5115.Subsystems.Drivetrain;
 
 
 public class Locationator implements Subsystem {

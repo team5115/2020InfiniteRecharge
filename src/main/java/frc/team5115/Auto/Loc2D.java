@@ -14,36 +14,19 @@ public class Loc2D {
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public double getY() {
         return y;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    public double deltaX(double newX) {
+        return x += newX;
     }
 
-    @Override
-    public Loc2D clone() {
-        return new Loc2D(getX(), getY());
-    }
-
-    public double deltaX(double x) {
-        this.x+=x;
-        return this.x;
-    }
-
-    public double deltaY(double y) {
-        this.y+=y;
-        return this.y;
+    public double deltaY(double newY) {
+        return y += newY;
     }
 
     public double angleFrom(Loc2D other) {
-//        System.out.println("Delta x" + (other.getX() - this.getX()));
-//        System.out.println("Delta y = " + (other.getY() - this.getY()));
         return Math.toDegrees(Math.atan2(other.getY() - this.getY(), other.getX() - this.getX()));
     }
 
