@@ -22,16 +22,19 @@ public class Constants{
     public static final byte SHOOTER_BUTTON_ID = 2;
     public static final byte RESET_BUTTON = 3;
 
-
+    public static final boolean KID_MODE = false;
+    public static final double KID_MODE_MAX_SPEED = 0.4;
+    public static final double NORMAL_MODE_MAX_SPEED = 0.6;
 
     public static final StartingConfiguration startingConfiguration = StartingConfiguration.Right;
-    public static final double startY = 20;
+    public static final double startY = 0;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
     public static final double MAX_AUTO_THROTTLE = 0.4;
     public static final double CAMERA_HEIGHT = 10; //units: inches. todome update
-    public static final double CAMERA_ANGLE = 3; //units: degrees. todome update
-    public static final double SHOOTING_DISTANCE = 250; //units: inches. todome update
-    public static final double HIGH_GOAL_HEIGHT = 98.25; //units: inches. todome update
+    public static final double CAMERA_ANGLE = 15; //units: degrees. todome update
+    public static final double SHOOTIN_DISTANCE = 120; //units: inches. todome update
+    public static final double HIGH_GOAL_HEIGHT = 90; //units: inches. todome update
+    public static final double BALL_TARGET_AREA = 5;
     public static final int LINE_TARGET_Y = 100;
 
     public static byte X_AXIS_ID = 0;

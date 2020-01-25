@@ -15,6 +15,7 @@ public class Limelight {
     private NetworkTableEntry tx;
     private NetworkTableEntry ty;
     private NetworkTableEntry tv;
+    private NetworkTableEntry ta;
 
     int currentPipeline = 0;
     public Limelight() {
@@ -22,7 +23,9 @@ public class Limelight {
         tx = networkTableInstance.getEntry("tx");
         ty = networkTableInstance.getEntry("ty");
         tv = networkTableInstance.getEntry("tv");
+        ta = networkTableInstance.getEntry("ta");
         pipeline = networkTableInstance.getEntry("pipeline");
+        pipeline.setValue(2);
         setPipeline(Pipeline.GreenLedMode);
     }
 
@@ -38,6 +41,10 @@ public class Limelight {
         return tv.getDouble(0) > 0.5;
     }
 
+    public double getArea() {
+        return ta.getDouble(0);
+    }
+
     public void setPipeline(int newPipe) {
         if (newPipe != currentPipeline) { //if the new value is different than the past values, change it up.
             pipeline.setNumber(newPipe);
@@ -50,6 +57,8 @@ public class Limelight {
     }
 
     public double calculateDistanceFromBase() {
+        System.out.println("Height difference: " + (HIGH_GOAL_HEIGHT - CAMERA_HEIGHT));
+        System.out.println("Total angle: " + (getYAngle() + CAMERA_ANGLE));
         return (HIGH_GOAL_HEIGHT - CAMERA_HEIGHT) / tan(toRadians(getYAngle() + CAMERA_ANGLE)); //
     }
 

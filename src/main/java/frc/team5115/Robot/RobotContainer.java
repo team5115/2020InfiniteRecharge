@@ -50,6 +50,7 @@ public class RobotContainer {
             locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
 //            System.out.println("Button Pressed");
         }));
+        new JoystickButton(joy, AUTO_LINEUP_BUTTON)
     }
 
     /**
@@ -70,7 +71,8 @@ public class RobotContainer {
             drivetrain.drive(
                     joy.getRawAxis(X_AXIS_ID)/2,
                     -joy.getRawAxis(Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
-                    0.6);//joy.getRawAxis(THROTTLE_AXIS_ID));
+                    KID_MODE? KID_MODE_MAX_SPEED : NORMAL_MODE_MAX_SPEED);//joy.getRawAxis(THROTTLE_AXIS_ID));
+            //locationator.printValues();
         }).schedule();
     }
 }
