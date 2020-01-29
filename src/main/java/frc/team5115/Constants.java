@@ -18,8 +18,9 @@ public class Constants{
     public static final byte SHOOTER_MOTOR_ID = 6;
 
     public static final byte INTAKE_BUTTON_ID = 1;
-
     public static final byte SHOOTER_BUTTON_ID = 2;
+    public static final byte AUTO_LINEUP_BUTTON_ID = 9;
+    public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 10;
     public static final byte RESET_BUTTON = 3;
 
     public static final boolean KID_MODE = false;

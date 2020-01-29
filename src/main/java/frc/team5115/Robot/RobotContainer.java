@@ -1,12 +1,12 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
+import frc.team5115.Commands.AssistedShootHighGoal;
 import frc.team5115.Commands.IntakeBalls;
 import frc.team5115.Subsystems.*;
 
@@ -31,13 +31,11 @@ public class RobotContainer {
      */
     public RobotContainer() {
         // Configure the button bindings
-        configureButtonBindings();
         //sets the navx to work.
-        System.out.println("Starting creation of autoseries");
         locationator = new Locationator(this, startingConfiguration, startingAngle);
         drivetrain = new Drivetrain(this);
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
-
+        configureButtonBindings();
     }
 
     private Button intake_Button = new JoystickButton(joy, INTAKE_BUTTON_ID);
@@ -46,11 +44,37 @@ public class RobotContainer {
     private void configureButtonBindings() {
         intake_Button.whenPressed(new IntakeBalls(intake));
         shooter_Button.whenPressed(new InstantCommand(shooter::Inhale));
-        new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(()-> {
+        new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(() -> {
             locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
 //            System.out.println("Button Pressed");
         }));
-        new JoystickButton(joy, AUTO_LINEUP_BUTTON)
+
+        new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
+        new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
+
+        drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
+
+    }
+
+    static class driveDefaultCommand extends CommandBase {
+
+        Drivetrain drivetrain;
+        Joystick joystick;
+
+        public driveDefaultCommand(Drivetrain drivetrain, Joystick joystick) {
+            addRequirements(drivetrain);
+            this.drivetrain = drivetrain;
+            this.joystick = joystick;
+        }
+
+        @Override
+        public void execute() {
+            drivetrain.drive(
+                    joy.getRawAxis(X_AXIS_ID) / 2,
+                    -joy.getRawAxis(Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
+                    KID_MODE ? KID_MODE_MAX_SPEED : NORMAL_MODE_MAX_SPEED);//joy.getRawAxis(THROTTLE_AXIS_ID));
+            //locationator.printValues();
+        }
     }
 
     /**
@@ -67,12 +91,5 @@ public class RobotContainer {
     public void startTeleop() {
         //bind the wheels.
         System.out.println("Starting teleop");
-        new RunCommand(() -> {
-            drivetrain.drive(
-                    joy.getRawAxis(X_AXIS_ID)/2,
-                    -joy.getRawAxis(Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
-                    KID_MODE? KID_MODE_MAX_SPEED : NORMAL_MODE_MAX_SPEED);//joy.getRawAxis(THROTTLE_AXIS_ID));
-            //locationator.printValues();
-        }).schedule();
     }
 }

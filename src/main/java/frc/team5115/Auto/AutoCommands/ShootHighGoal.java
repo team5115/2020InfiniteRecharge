@@ -1,6 +1,5 @@
 package frc.team5115.Auto.AutoCommands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.team5115.Auto.Loc2D;
@@ -18,7 +17,6 @@ public class ShootHighGoal extends SequentialCommandGroup {
     Locationator locationator;
     Shooter shooter;
     Limelight limelight;
-    Timer timer;
 
     final Loc2D goalLocation = new Loc2D(StartingConfiguration.Middle.getX(), 0);
 
@@ -32,10 +30,11 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.locationator = locationator;
         this.shooter = shooter;
         this.limelight = limelight;
+        addRequirements(drivetrain, shooter);
         limelight.setPipeline(Pipeline.GreenLedMode);
         System.out.println("constructed ShootHighGoal command");
-        timer = new Timer();
-        addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootForTime(shooter)); todome test and add shooter part
+
+        addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootTillEmpty(shooter)); todome test and add shooter part
         //todome make it target dis
     }
 
@@ -49,20 +48,15 @@ public class ShootHighGoal extends SequentialCommandGroup {
 
         @Override
         public void execute() {
-            double angle = 127;
+            double angle;
             if (limelight.hasTarget() && limelight.getYAngle() > 0) { // if we don't have a target
                 angle = limelight.getXAngle() + locationator.getAngle();
 
-                if(limelight.getXAngle() == Drivetrain.clamp(limelight.getXAngle(), 5)) {
-                    throttle = -(SHOOTIN_DISTANCE -
-                            (limelight.calculateDistanceFromBase() + locationator.getUltrasonicDistanceInches()) / 2)
-                            / 200;
-                    System.out.println("limelight = " + limelight.calculateDistanceFromBase());
-                    System.out.println("locationator = " + locationator.getUltrasonicDistanceInches());
-                } else {
-                    throttle = -(SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
-                            / 200;
-                }
+//                System.out.println("limelight = " + limelight.calculateDistanceFromBase());
+//                System.out.println("locationator = " + locationator.getUltrasonicDistanceInches());
+
+                throttle = -(SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
+                        / 50;
                 throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
                 System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
@@ -80,7 +74,6 @@ public class ShootHighGoal extends SequentialCommandGroup {
         @Override
         public void end(boolean interrupted) {
             if (interrupted) System.out.println("Error: Interrupted");
-            System.out.println("we done with that linin up shit bro.");
             drivetrain.stop();
         }
 

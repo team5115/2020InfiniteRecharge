@@ -84,6 +84,30 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     double I = 0;
     double lastAngle = 0;
+
+    public void relativeAngleHold(double targetAngle, double y) {
+        this.targetAngle = targetAngle;
+        double kP = 0.025;
+        double kI = 0.0;
+        double kD = 0.1;// Hey if you are implementing a d part, use the navx.getRate
+        double currentAngle = 0;
+//        System.out.println("currentAngle = " + currentAngle);
+//        System.out.println("lastAngle = " + lastAngle);
+        double P = kP * (currentAngle - targetAngle);
+        if(P < 0.2 && P > -0.2) {
+            I = I + (P * kI);
+        }
+        double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
+        double output = P + I + D;
+        output = clamp(output, 0.5);
+//        System.out.println("P = " + P);
+//        System.out.println("I = " + I);
+//        System.out.println("D = " + D);
+//        System.out.println("output = " + output);
+        this.drive(-output, y, 1);
+        lastAngle = currentAngle;
+    }
+
     @Override
     public void angleHold(double targetAngle, double y) {
         this.targetAngle = targetAngle;

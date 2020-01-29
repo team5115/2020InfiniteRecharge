@@ -31,7 +31,8 @@ public class DriveDistance extends CommandBase {
     public void execute() {
         System.out.println("targetLocation = " + targetLocation);
         double angle = locationator.getCurrentLocation().angleFrom(targetLocation);
-        double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/50, Constants.MAX_AUTO_THROTTLE);
+        double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/50 * Drivetrain.clamp(Math.abs((25/(angle - locationator.getAngle()))),1),
+                Constants.MAX_AUTO_THROTTLE);
         System.out.println("Angle hold: " + angle + "  Throttle: " + throttle);
         drivetrain.angleHold(angle,throttle);
     }
