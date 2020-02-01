@@ -28,7 +28,7 @@ public interface DriveBase {
     void angleHold(double targetAngle, double y);
 
 
-    void driveByWire(double x, double y);
+    void driveByWire(double x, double y, double throttle);
 
 
     /**

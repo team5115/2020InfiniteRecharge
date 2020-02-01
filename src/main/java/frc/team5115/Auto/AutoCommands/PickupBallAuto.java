@@ -12,7 +12,7 @@ import static java.lang.Math.min;
 
 //todome this
 @Experimental
-public class PickupBall extends CommandBase {
+public class PickupBallAuto extends CommandBase {
 
     Drivetrain drivetrain;
     Locationator locationator;
@@ -20,7 +20,7 @@ public class PickupBall extends CommandBase {
     MedianFilter filter = new MedianFilter(20);
 
 
-    public PickupBall(Drivetrain drivetrain, Locationator locationator, Limelight limelight) {
+    public PickupBallAuto(Drivetrain drivetrain, Locationator locationator, Limelight limelight) {
         this.drivetrain = drivetrain;
         this.locationator = locationator;
         this.limelight = limelight;

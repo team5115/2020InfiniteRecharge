@@ -1,7 +1,9 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.*;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
@@ -52,28 +54,31 @@ public class RobotContainer {
         new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
         new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
 
-        drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
+        drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain).perpetually());
 
     }
 
     static class driveDefaultCommand extends CommandBase {
 
         Drivetrain drivetrain;
-        Joystick joystick;
 
-        public driveDefaultCommand(Drivetrain drivetrain, Joystick joystick) {
+        public driveDefaultCommand(Drivetrain drivetrain) {
             addRequirements(drivetrain);
             this.drivetrain = drivetrain;
-            this.joystick = joystick;
         }
 
         @Override
         public void execute() {
-            drivetrain.drive(
-                    joy.getRawAxis(X_AXIS_ID) / 2,
-                    -joy.getRawAxis(Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
-                    KID_MODE ? KID_MODE_MAX_SPEED : NORMAL_MODE_MAX_SPEED);//joy.getRawAxis(THROTTLE_AXIS_ID));
-            //locationator.printValues();
+            if(USING_XBOX) {
+                drivetrain.XBoxDrive(joy);
+            } else {
+                drivetrain.drive(
+                        joy.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
+                        -joy.getRawAxis(JOYSTICK_Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
+                        KID_MODE ? KID_MODE_MAX_SPEED : NORMAL_MODE_MAX_SPEED);//joy.getRawAxis(THROTTLE_AXIS_ID));
+                //locationator.printValues();
+                //drivetrain.printAllEncoders();
+            }
         }
     }
 

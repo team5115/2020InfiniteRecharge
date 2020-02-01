@@ -32,7 +32,6 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.limelight = limelight;
         addRequirements(drivetrain, shooter);
         limelight.setPipeline(Pipeline.GreenLedMode);
-        System.out.println("constructed ShootHighGoal command");
 
         addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootTillEmpty(shooter)); todome test and add shooter part
         //todome make it target dis

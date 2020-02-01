@@ -3,6 +3,7 @@ package frc.team5115.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
@@ -25,8 +26,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
-
-        System.out.println("Locationator is null. Getting from main robot class.");
         locationator = x.locationator;
 
         frontLeft = new TalonSRX(FRONT_LEFT_MOTOR_ID);
@@ -67,6 +66,26 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         backRight.set(ControlMode.PercentOutput, rightSpd);
     }
 
+    public void XBoxDrive(Joystick joy) {
+        double x = joy.getRawAxis(XBOX_X_AXIS_ID);
+        double y = -joy.getRawAxis(XBOX_Y_AXIS_ID);
+        double throttle1 = joy.getRawAxis(XBOX_THROTTLE_1_ID);
+        double throttle2 = joy.getRawAxis(XBOX_THROTTLE_2_ID);
+
+        //throttle is between 0.5 and 1
+        double throttle = (1-throttle1) + (1-throttle2);
+        throttle /= 2;
+        //throttle is between 0 (dont move) and 1, (full move)
+        throttle = ((1-MIN_XBOX_THROTTLE) * throttle) + MIN_XBOX_THROTTLE;
+        //new Throttle is now max 1 and min 0.2
+        //System.out.println("throttle = " + throttle);
+        x*=0.5;
+        //drive(x,y,throttle);
+
+        System.out.println("Remove me if working!");
+        driveByWire(x, y, throttle);
+    }
+
     public static double clamp(double d, double min, double max) {
         d = Math.min(max, d);
         return Math.max(min, d);
@@ -89,7 +108,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         this.targetAngle = targetAngle;
         double kP = 0.025;
         double kI = 0.0;
-        double kD = 0.1;// Hey if you are implementing a d part, use the navx.getRate
+        double kD = 0.1;
         double currentAngle = 0;
 //        System.out.println("currentAngle = " + currentAngle);
 //        System.out.println("lastAngle = " + lastAngle);
@@ -100,6 +119,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
         double output = P + I + D;
         output = clamp(output, 0.5);
+
 //        System.out.println("P = " + P);
 //        System.out.println("I = " + I);
 //        System.out.println("D = " + D);
@@ -108,8 +128,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         lastAngle = currentAngle;
     }
 
-    @Override
-    public void angleHold(double targetAngle, double y) {
+
+    public void angleHold(double targetAngle, double y, double throttle) {
         this.targetAngle = targetAngle;
         double kP = 0.025;
         double kI = 0.0;
@@ -128,13 +148,28 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 //        System.out.println("I = " + I);
 //        System.out.println("D = " + D);
 //        System.out.println("output = " + output);
-        this.drive(-output, y, 1);
+        this.drive(-output, y, throttle);
         lastAngle = currentAngle;
     }
 
-    public void driveByWire(double x, double y) { //rotate by wire
+    public void angleHold(double targetAngle, double y) {
+        this.angleHold(targetAngle, y, 1);
+    }
+
+    public void driveByWire(double x, double y, double throttle) { //rotate by wire
         targetAngle += x * 2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
-        angleHold(targetAngle, y);
+        if(Math.abs(targetAngle - locationator.getAngle()) > 30) {
+            targetAngle = locationator.getAngle();
+        }
+        angleHold(targetAngle, y, throttle);
+    }
+
+    public void printAllEncoders() {
+        System.out.println("frontLeft: " + frontLeft.getSelectedSensorPosition());
+        System.out.println("frontRight: " + frontRight.getSelectedSensorPosition());
+        System.out.println("backLeft: " + backLeft.getSelectedSensorPosition());
+        System.out.println("backRight: " + backRight.getSelectedSensorPosition());
+
     }
 
     @Override
@@ -143,9 +178,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         double rightSpd = frontRight.getSelectedSensorVelocity();
         double leftSpd = -backLeft.getSelectedSensorVelocity();
 
-        final double wheelSpd = ((rightSpd + leftSpd) / 2) * 30.7692 * Math.PI / 4090;
         //System.out.println("Wheel Speeds = " + wheelSpd);
-        return wheelSpd;
+        return ((rightSpd + leftSpd) / 2) * 30.7692 * Math.PI / 4090;
     }
 
 }

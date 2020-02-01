@@ -3,7 +3,7 @@ package frc.team5115.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.team5115.Auto.AutoCommands.DriveDistance;
-import frc.team5115.Auto.AutoCommands.PickupBall;
+import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
@@ -45,7 +45,7 @@ public class AutoSeries extends SequentialCommandGroup {
         );
         } else {
             addCommands(
-                    new PickupBall(drivetrain, locationator, limelight)
+                    new PickupBallAuto(drivetrain, locationator, limelight)
             );
         }
     }

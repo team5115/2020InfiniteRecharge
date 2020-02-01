@@ -1,5 +1,6 @@
 package frc.team5115.Commands;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Auto.Loc2D;
@@ -49,12 +50,13 @@ public class AssistedShootHighGoal extends CommandBase {
             angle = limelight.getXAngle();
         } else {
             System.out.println("Error No Target Found"); //todome set to shuffleboard.
-            drivetrain.drive(joystick.getRawAxis(X_AXIS_ID)/3, -joystick.getRawAxis(Y_AXIS_ID), 1);
+            drivetrain.XBoxDrive(joystick);
+            joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
             return;
         }
         //System.out.println("angle = " + (angle - locationator.getAngle()));
-
-        drivetrain.relativeAngleHold(angle, -joystick.getRawAxis(Y_AXIS_ID));
+        joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+        drivetrain.relativeAngleHold(angle, -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID));
     }
 
     @Override
