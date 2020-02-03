@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.team5115.Commands.*;
 import frc.team5115.Subsystems.*;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
@@ -19,16 +20,19 @@ public class RobotContainer implements Loggable {
 
     public final static Shooter shooter = new Shooter();
     public final static Intake intake = new Intake();
+    public final static Feeder feeder = new Feeder();
+    public final static Winch winch = new Winch();
+    public final static Climber climber = new Climber();
 
     public RobotContainer() {
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
-        intakeButton.whenPressed(new InstantCommand(intake::inhale));
-        shotButton.whenPressed(new InstantCommand(shooter::exhale));
+        intakeButton.whenPressed(new DriverIntake());
+        shotButton.whenPressed(new Shoot());
     }
-
+//new InstantCommand(shooter::exhale)
     public Command getAutonomousCommand() {
         return null;
     }

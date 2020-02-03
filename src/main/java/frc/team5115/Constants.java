@@ -1,6 +1,8 @@
 package frc.team5115;
+import io.github.oblarg.oblog.annotations.Log;
+import io.github.oblarg.oblog.Loggable;
 
-public class Constants{
+public class Constants implements Loggable{
 
     public static final int FRONT_LEFT_MOTOR_ID = 1;
 
@@ -16,9 +18,23 @@ public class Constants{
 
     public static final int CLIMBER_MOTOR_ID = 7;
 
-    public static final int INTAKE_BUTTON_ID = 1;
+    public static final int FEEDER_MOTOR_ID = 8;
 
-    public static final int SHOOTER_BUTTON_ID = 2;
+    public static final int ACCERLERATOR_MOTOR_ID = 9;
+
+    public static final int INTAKE_BUTTON_ID = 14;
+
+    public static final int SHOOTER_BUTTON_ID = 15;
+
+    public static final int kSlotIdx = 0;
+    @Log
+    public static final int kPIDLoopIdx = 0;
+
+    public static final int kTimeoutMs = 30;
+
+    @Log
+    public static final Gains kGains_Velocit = new Gains( 0.25, 0.001, 20, 1023.0/7200.0,  300,  1.00);
+
 
 
 

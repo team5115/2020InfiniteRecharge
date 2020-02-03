@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="282ff3f0-24d7-4216-b1ef-5eb5533bf5f5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/DriverIntake.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/FeedtheDemon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/ReverseIntake.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Gains.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Feeder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendordeps/REVColorSensorV3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.iws" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoCommands/DriveDistance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoCommands/ShootHighGoal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/AutoSeries.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/DriveBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/Loc2D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Auto/StartingConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/Drive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/IntakeBalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/IntakeBalls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/Shoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/Shoot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/RobotContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/RobotContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Drivetrain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Climber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Climber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Intake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Intake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Limelight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Locationator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +89,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -96,7 +109,9 @@
       <profile-state />
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -106,18 +121,30 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Public/wpilib/2020/maven/com/revrobotics" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="frc.team5115" />
+    </key>
   </component>
   <component name="RunManager" selected="Gradle.2020InfiniteRecharge [deploy]">
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -171,6 +198,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="2020InfiniteRecharge [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="2020InfiniteRecharge [deploy]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -209,6 +255,25 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="2020InfiniteRecharge [simulateJava]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="simulateJava" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -222,8 +287,15 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.2020InfiniteRecharge [deploy]" />
+      <item itemvalue="Gradle.2020InfiniteRecharge [simulateJava]" />
       <item itemvalue="Gradle.2020InfiniteRecharge [downloadDepsPreemptively]" />
+      <item itemvalue="Gradle.2020InfiniteRecharge [dependencies]" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.2020InfiniteRecharge [dependencies]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -252,44 +324,69 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579639569012">
+    <state x="137" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579810110039">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="137" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1579639569012" />
+    <state x="137" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1579810110039" />
+    <state x="250" y="196" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580414413815">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="250" y="196" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1580414413815" />
     <state x="363" y="125" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1579637410098">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="363" y="125" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768@0.0.1366.768" timestamp="1579637410098" />
-    <state x="413" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579725479955">
+    <state x="413" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580760551752">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="413" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768@0.0.1366.768" timestamp="1579725479955" />
-    <state width="1367" height="199" key="GridCell.Tab.0.bottom" timestamp="1579725473569">
+    <state x="413" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768@0.0.1366.768" timestamp="1580760551752" />
+    <state x="418" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1580414204505">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="199" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1579725473569" />
-    <state width="1367" height="199" key="GridCell.Tab.0.center" timestamp="1579725473569">
+    <state x="418" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.768@0.0.1366.768" timestamp="1580414204505" />
+    <state x="333" y="130" key="FileChooserDialogImpl" timestamp="1580415110881">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="199" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1579725473569" />
-    <state width="1367" height="199" key="GridCell.Tab.0.left" timestamp="1579725473565">
+    <state x="333" y="130" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1580415110881" />
+    <state width="1367" height="198" key="GridCell.Tab.0.bottom" timestamp="1580760328360">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="199" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1579725473565" />
-    <state width="1367" height="199" key="GridCell.Tab.0.right" timestamp="1579725473569">
+    <state width="1367" height="198" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1580760328360" />
+    <state width="1367" height="198" key="GridCell.Tab.0.center" timestamp="1580760328356">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="199" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1579725473569" />
-    <state x="216" y="0" key="SettingsEditor" timestamp="1579638827897">
+    <state width="1367" height="198" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1580760328356" />
+    <state width="1367" height="198" key="GridCell.Tab.0.left" timestamp="1580760328356">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="216" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1579638827897" />
+    <state width="1367" height="198" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1580760328356" />
+    <state width="1367" height="198" key="GridCell.Tab.0.right" timestamp="1580760328360">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1367" height="198" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1580760328360" />
+    <state x="216" y="0" key="SettingsEditor" timestamp="1580415124504">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="216" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1580415124504" />
+    <state x="383" y="288" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1580415031355">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="383" y="288" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.768@0.0.1366.768" timestamp="1580415031355" />
+    <state x="363" y="28" width="704" height="711" key="find.popup" timestamp="1580418733882">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="363" y="28" width="704" height="711" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1580418733882" />
     <state x="339" y="172" width="672" height="677" key="run.anything.popup" timestamp="1579636610583">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="339" y="172" width="672" height="677" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1579636610583" />
+    <state x="339" y="36" width="670" height="676" key="search.everywhere.popup" timestamp="1580246158601">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="339" y="36" width="670" height="676" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1580246158601" />
   </component>
 </project>

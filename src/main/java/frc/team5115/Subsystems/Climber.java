@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.team5115.Constants.*;
 
 public class Climber extends SubsystemBase {
-    TalonSRX leggs;
+    TalonSRX winch;
+    TalonSRX scissor;
 
     public Climber(){
-        leggs = new TalonSRX(CLIMBER_MOTOR_ID);
+        winch = new TalonSRX(CLIMBER_MOTOR_ID);
+        scissor = new TalonSRX(8);
     }
 
-
+    public static StartC
 }
