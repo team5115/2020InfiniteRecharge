@@ -1,40 +1,47 @@
 package frc.team5115;
+import io.github.oblarg.oblog.annotations.Log;
+import io.github.oblarg.oblog.Loggable;
 
-import frc.team5115.Auto.StartingConfiguration;
+public class Constants implements Loggable{
 
-public class Constants{
+    public static final int FRONT_LEFT_MOTOR_ID = 1;
 
-    public static final byte FRONT_LEFT_MOTOR_ID = 1;
+    public static final int FRONT_RIGHT_MOTOR_ID = 3;
 
-    public static final byte FRONT_RIGHT_MOTOR_ID = 2;
+    public static final int BACK_LEFT_MOTOR_ID = 4;
 
-    public static final byte BACK_LEFT_MOTOR_ID = 3;
+    public static final int BACK_RIGHT_MOTOR_ID = 2;
 
-    public static final byte BACK_RIGHT_MOTOR_ID = 4;
+    public static final int INTAKE_MOTOR_ID = 5;
 
-    public static final byte INTAKE_MOTOR_ID = 5;
+    public static final int SHOOTER_MOTOR_ID = 6;
 
-    public static final byte SHOOTER_MOTOR_ID = 6;
+    public static final int CLIMBER_MOTOR_ID = 7;
 
-    public static final byte INTAKE_BUTTON_ID = 1;
+    public static final int FEEDER_MOTOR_ID = 8;
 
-    public static final byte SHOOTER_BUTTON_ID = 2;
+    public static final int ACCERLERATOR_MOTOR_ID = 9;
+
+    public static final int INTAKE_BUTTON_ID = 14;
+
+    public static final int SHOOTER_BUTTON_ID = 15;
+
+    public static final int CLIMB_UP_BUTTON_ID = 16;
+
+    public static final int ClIMB_DOWN_BUTTON_ID = 17;
+
+    public static final int kSlotIdx = 0;
+    @Log
+    public static final int kPIDLoopIdx = 0;
+
+    public static final int kTimeoutMs = 30;
+
+    @Log
+    public static final Gains kGains_Velocit = new Gains( 0.25, 0.001, 20, 1023.0/7200.0,  300,  1.00);
 
 
 
-    public static final StartingConfiguration startingConfiguration = StartingConfiguration.Left;
-    public static final double startY = 20;
-    public static final byte startingAngle = 90; //90 is looking away from the driver stations.
-    public static final double MAX_AUTO_THROTTLE = 0.5;
-    public static final double CAMERA_HEIGHT = 10; //units: inches. todome update
-    public static final double CAMERA_ANGLE = 10; //units: degrees. todome update
-    public static final double SHOOTING_DISTANCE = 120; //units: inches. todome update
-    public static final double HIGH_GOAL_HEIGHT = 98.25; //units: inches. todome update
-    public static final int LINE_TARGET_Y = 100;
 
-    public static byte X_AXIS_ID = 0;
-    public static byte Y_AXIS_ID = 1;
-    public static byte THROTTLE_AXIS_ID = 3;
 
 }
 
