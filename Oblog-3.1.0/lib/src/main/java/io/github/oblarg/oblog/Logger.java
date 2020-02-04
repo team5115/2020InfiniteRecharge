@@ -2,23 +2,17 @@ package io.github.oblarg.oblog;
 
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.networktables.EntryListenerFlags;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.shuffleboard.*;
-
-import io.github.oblarg.oblog.annotations.*;
-
 import edu.wpi.first.networktables.NetworkTableEntry;
-
-import static java.util.Map.entry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import io.github.oblarg.oblog.annotations.Log;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.*;
-import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import static java.util.Map.entry;
 
 @SuppressWarnings("Duplicates")
 public class Logger {

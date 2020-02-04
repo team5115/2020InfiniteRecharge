@@ -2,8 +2,6 @@ package io.github.oblarg.oblog.annotations;
 
 import io.github.oblarg.oblog.Loggable;
 
-import java.lang.annotation.*;
-
 
 /**
  * Binds a setter or interactive object to its default interactive widget on Shuffleboard.  Defaults to a toggle

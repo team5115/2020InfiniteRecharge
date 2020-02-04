@@ -3,10 +3,8 @@ package frc.team5115.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Constants;
-import frc.team5115.Robot.*;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
@@ -38,9 +36,9 @@ public class Shooter extends SubsystemBase implements Loggable {
         shooter_m.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
         /* Config the Velocity closed loop gains in slot0 */
-        shooter_m.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP, Constants.kTimeoutMs);
-        shooter_m.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kI, Constants.kTimeoutMs);
-        shooter_m.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kD, Constants.kTimeoutMs);
+        shooter_m.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocity.kP, Constants.kTimeoutMs);
+        shooter_m.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocity.kI, Constants.kTimeoutMs);
+        shooter_m.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocity.kD, Constants.kTimeoutMs);
         System.out.println("shooting");
         double targetVelocity = 1000; //496 ticks per revelution
 
@@ -57,6 +55,5 @@ public class Shooter extends SubsystemBase implements Loggable {
     public double getError(){
         return shooter_m.getClosedLoopError();
     }
-
 }
 
