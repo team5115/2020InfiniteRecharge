@@ -1,2 +1,3 @@
 # 2020InfiniteRecharge
-good vibes only ~(•o•)~
+good vibes only \~(•o•)\~
+ \- Mr. Adams
