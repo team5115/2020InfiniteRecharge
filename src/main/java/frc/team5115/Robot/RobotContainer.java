@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
@@ -24,14 +23,18 @@ public class RobotContainer {
     public final Limelight limelight = new Limelight();
     public final Shooter shooter = new Shooter();
     public final Intake intake = new Intake();
+    //joystick
     public final Joystick joy = new Joystick(0);
+    //buttons
+    public JoystickButton intakeButton = new JoystickButton(joy, INTAKE_BUTTON_ID);
+    public JoystickButton shotButton = new JoystickButton(joy, SHOOTER_BUTTON_ID);
+    public JoystickButton climbUpButton = new JoystickButton(joy,CLIMB_UP_BUTTON_ID);
+    public JoystickButton climbDownButton = new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID);
+
     //commands
     private final AutoSeries autoSeries;
 
 
-    /**
-     * The container for the robot.  Contains subsystems, OI devices, and commands.
-     */
     public RobotContainer() {
         // Configure the button bindings
         //sets the navx to work.
@@ -41,12 +44,7 @@ public class RobotContainer {
         configureButtonBindings();
     }
 
-    private Button intake_Button = new JoystickButton(joy, INTAKE_BUTTON_ID);
-    private Button shooter_Button = new JoystickButton(joy, SHOOTER_BUTTON_ID);
-
     private void configureButtonBindings() {
-        intake_Button.whenPressed(new IntakeBalls(intake));
-        shooter_Button.whenPressed(new InstantCommand(shooter::Inhale));
         new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(() -> {
             locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
 //            System.out.println("Button Pressed");
@@ -93,7 +91,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
         return autoSeries;
     }
 

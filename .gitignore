@@ -160,6 +160,13 @@ gradle-app.setting
 bin/
 
 
+# Yeab's additions
+2020InfiniteRecharge.iws
+2020InfiniteRecharge.iml
+2020InfiniteRecharge_main.iml
+2020InfiniteRecharge_test.iml
+2020InfiniteRecharge.ipr
+
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
 2020InfiniteRecharge.iws
 
