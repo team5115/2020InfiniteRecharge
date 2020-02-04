@@ -35,8 +35,7 @@ public class FollowGreen extends SequentialCommandGroup {
         limelight.setPipeline(Pipeline.GreenLedMode);
         System.out.println("constructed ShootHighGoal command");
         timer = new Timer();
-        addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootForTime(shooter)); todome test and add shooter part
-        //todome make it target dis
+        addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootForTime(shooter)); follow green has no shooter part.
     }
 
     class AimAndDistanceHighGoal extends CommandBase {
@@ -53,7 +52,7 @@ public class FollowGreen extends SequentialCommandGroup {
             if (limelight.hasTarget()) { // if we don't have a target
                 angle = limelight.getXAngle() + locationator.getAngle();
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
-            } else { //todome reimplemt crap below
+            } else { //This is a simple follow green: no need for anything extra other than stop if it cannot find it
                 drivetrain.stop();
                 return;
             }
@@ -61,7 +60,7 @@ public class FollowGreen extends SequentialCommandGroup {
             throttle = -(SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())/100;
             throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
             //System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
-            throttle = 0; //todome eliminate to return forward backward handling.
+            throttle = 0; //eliminate to return forward backward handling.
             drivetrain.angleHold(angle, throttle);
         }
 

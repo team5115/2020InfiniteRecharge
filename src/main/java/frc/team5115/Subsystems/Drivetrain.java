@@ -53,7 +53,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     public void drive(double x, double y, double throttle) { //Change the drive output
         //called lots of times per seconds.
         //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
-        //todome test this.
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
             leftSpd = (x + y) * throttle;
@@ -69,6 +68,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     public void XBoxDrive(Joystick joy) {
         double x = joy.getRawAxis(XBOX_X_AXIS_ID);
         double y = -joy.getRawAxis(XBOX_Y_AXIS_ID);
+        System.out.println("y = " + y);
         double throttle1 = joy.getRawAxis(XBOX_THROTTLE_1_ID);
         double throttle2 = joy.getRawAxis(XBOX_THROTTLE_2_ID);
 
@@ -80,6 +80,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //new Throttle is now max 1 and min 0.2
         //System.out.println("throttle = " + throttle);
         x*=0.5;
+        y*=0.4;
         //drive(x,y,throttle);
 
         System.out.println("Remove me if working!");
@@ -157,6 +158,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     public void driveByWire(double x, double y, double throttle) { //rotate by wire
+        System.out.println("x = " + x);
+        System.out.println("throttle = " + throttle);
         targetAngle += x * 2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
         if(Math.abs(targetAngle - locationator.getAngle()) > 30) {
             targetAngle = locationator.getAngle();

@@ -33,8 +33,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         addRequirements(drivetrain, shooter);
         limelight.setPipeline(Pipeline.GreenLedMode);
 
-        addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootTillEmpty(shooter)); todome test and add shooter part
-        //todome make it target dis
+        addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootTillEmpty(shooter)); todome when shooter is ready --> test.
     }
 
     class AimAndDistanceHighGoal extends CommandBase {
@@ -59,14 +58,12 @@ public class ShootHighGoal extends SequentialCommandGroup {
                 throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
                 System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
-            } else { //todome reimplemt crap below
+            } else {
                 angle = locationator.
                         getCurrentLocation().
                         angleFrom(goalLocation);
                 throttle = 0;
             }
-            //System.out.println("throttle = " + throttle);
-            //throttle = 0; //todome eliminate to return forward backward handling.
             drivetrain.angleHold(angle, throttle);
         }
 

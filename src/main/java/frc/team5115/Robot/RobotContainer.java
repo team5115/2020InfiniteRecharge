@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Commands.AssistedShootHighGoal;
@@ -23,7 +24,7 @@ public class RobotContainer {
     public final Limelight limelight = new Limelight();
     public final Shooter shooter = new Shooter();
     public final Intake intake = new Intake();
-    public static Joystick joy = new Joystick(0);
+    public final Joystick joy = new Joystick(0);
     //commands
     private final AutoSeries autoSeries;
 
@@ -53,28 +54,31 @@ public class RobotContainer {
 
         new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
         new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
+        new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
 
-        drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain).perpetually());
+        drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
 
     }
 
     static class driveDefaultCommand extends CommandBase {
 
         Drivetrain drivetrain;
+        Joystick joystick;
 
-        public driveDefaultCommand(Drivetrain drivetrain) {
+        public driveDefaultCommand(Drivetrain drivetrain, Joystick joystick) {
             addRequirements(drivetrain);
             this.drivetrain = drivetrain;
+            this.joystick = joystick;
         }
 
         @Override
         public void execute() {
             if(USING_XBOX) {
-                drivetrain.XBoxDrive(joy);
+                drivetrain.XBoxDrive(joystick);
             } else {
                 drivetrain.drive(
-                        joy.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
-                        -joy.getRawAxis(JOYSTICK_Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
+                        joystick.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
+                        -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.
                         KID_MODE ? KID_MODE_MAX_SPEED : NORMAL_MODE_MAX_SPEED);//joy.getRawAxis(THROTTLE_AXIS_ID));
                 //locationator.printValues();
                 //drivetrain.printAllEncoders();

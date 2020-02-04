@@ -19,12 +19,11 @@ public class Constants{
     public static final double startY = 0;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
     public static final double MAX_AUTO_THROTTLE = 0.4;
-    public static final double CAMERA_HEIGHT = 10; //units: inches. todome update
-    public static final double CAMERA_ANGLE = 15; //units: degrees. todome update
+    public static final double CAMERA_HEIGHT = 10; //units: inches.
+    public static final double CAMERA_ANGLE = 15; //units: degrees.
     public static final double SHOOTIN_DISTANCE = 120; //units: inches. todome update
-    public static final double HIGH_GOAL_HEIGHT = 90; //units: inches. todome update
+    public static final double HIGH_GOAL_HEIGHT = 90; //units: inches.
     public static final double BALL_TARGET_AREA = 5;
-    public static final int LINE_TARGET_Y = 100;
 
     public static boolean USING_XBOX = true;
 
@@ -44,6 +43,7 @@ public class Constants{
     public static final byte SHOOTER_BUTTON_ID = 2;
     public static final byte AUTO_LINEUP_BUTTON_ID = 5;
     public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 6;
+    public static final byte AUTO_GET_BALL_BUTTON = 8;
     public static final byte RESET_BUTTON = 3;
 
     public enum StartingConfiguration {

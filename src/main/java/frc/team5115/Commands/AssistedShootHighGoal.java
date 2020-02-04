@@ -3,13 +3,13 @@ package frc.team5115.Commands;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.team5115.Auto.Loc2D;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
 import frc.team5115.Subsystems.Locationator;
 import frc.team5115.Subsystems.Shooter;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Constants.JOYSTICK_Y_AXIS_ID;
+import static frc.team5115.Constants.Pipeline;
 
 
 public class AssistedShootHighGoal extends CommandBase {
@@ -19,8 +19,6 @@ public class AssistedShootHighGoal extends CommandBase {
     Shooter shooter;
     Limelight limelight;
     Joystick joystick;
-
-    final Loc2D goalLocation = new Loc2D(StartingConfiguration.Middle.getX(), 0);
 
     /*
     1. Aim at the thing using the limelight
