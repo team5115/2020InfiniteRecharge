@@ -2,9 +2,6 @@ package io.github.oblarg.oblog.annotations;
 
 import io.github.oblarg.oblog.Loggable;
 
-import java.lang.annotation.*;
-import java.util.List;
-
 /**
  * Displays a value as its default widget type on Shuffleboard.  Provides no configuration options.
  */

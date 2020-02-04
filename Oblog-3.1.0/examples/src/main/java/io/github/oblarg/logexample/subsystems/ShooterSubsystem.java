@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
-
 import io.github.oblarg.logexample.Constants.ShooterConstants;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;

@@ -1,9 +1,8 @@
 package io.github.oblarg.oblog;
 
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
-import io.github.oblarg.oblog.annotations.Log;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.LayoutType;
+import io.github.oblarg.oblog.annotations.Log;
 
 import java.util.HashMap;
 import java.util.Map;
