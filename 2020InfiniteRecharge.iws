@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="282ff3f0-24d7-4216-b1ef-5eb5533bf5f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/DriverIntake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/FeedtheDemon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/ReverseIntake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Gains.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Feeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendordeps/REVColorSensorV3.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.iws" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2020InfiniteRecharge.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/2020InfiniteRecharge.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/IntakeBalls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/IntakeBalls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/Shoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Commands/Shoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/RobotContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Robot/RobotContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Climber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Climber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Intake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Intake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Shooter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Feeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team5115/Subsystems/Feeder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,22 +334,22 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="333" y="130" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1580415110881" />
-    <state width="1367" height="198" key="GridCell.Tab.0.bottom" timestamp="1580760328360">
+    <state width="1367" height="198" key="GridCell.Tab.0.bottom" timestamp="1580769318037">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="198" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1580760328360" />
-    <state width="1367" height="198" key="GridCell.Tab.0.center" timestamp="1580760328356">
+    <state width="1367" height="198" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1580769318037" />
+    <state width="1367" height="198" key="GridCell.Tab.0.center" timestamp="1580769318037">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="198" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1580760328356" />
-    <state width="1367" height="198" key="GridCell.Tab.0.left" timestamp="1580760328356">
+    <state width="1367" height="198" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1580769318037" />
+    <state width="1367" height="198" key="GridCell.Tab.0.left" timestamp="1580769318037">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="198" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1580760328356" />
-    <state width="1367" height="198" key="GridCell.Tab.0.right" timestamp="1580760328360">
+    <state width="1367" height="198" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1580769318037" />
+    <state width="1367" height="198" key="GridCell.Tab.0.right" timestamp="1580769318037">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1367" height="198" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1580760328360" />
+    <state width="1367" height="198" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1580769318037" />
     <state x="216" y="0" key="SettingsEditor" timestamp="1580415124504">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

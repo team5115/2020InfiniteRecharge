@@ -10,10 +10,10 @@ public class Climber extends SubsystemBase {
     TalonSRX winch;
     TalonSRX scissor;
 
-    public Climber(){
+    public Climber{
         winch = new TalonSRX(CLIMBER_MOTOR_ID);
         scissor = new TalonSRX(8);
     }
 
-    public static StartC
+
 }
