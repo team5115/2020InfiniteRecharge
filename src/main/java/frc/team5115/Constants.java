@@ -26,6 +26,10 @@ public class Constants implements Loggable{
 
     public static final int SHOOTER_BUTTON_ID = 15;
 
+    public static final int CLIMB_UP_BUTTON_ID = 16;
+
+    public static final int ClIMB_DOWN_BUTTON_ID = 17;
+
     public static final int kSlotIdx = 0;
     @Log
     public static final int kPIDLoopIdx = 0;

@@ -9,19 +9,18 @@ import frc.team5115.Subsystems.*;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
-
-import static frc.team5115.Constants.INTAKE_BUTTON_ID;
-import static frc.team5115.Constants.SHOOTER_BUTTON_ID;
+import static frc.team5115.Constants.*;
 
 public class RobotContainer implements Loggable {
     public static Joystick joy = new Joystick(0);
     public JoystickButton intakeButton = new JoystickButton(joy, INTAKE_BUTTON_ID);
     public JoystickButton shotButton = new JoystickButton(joy, SHOOTER_BUTTON_ID);
+    public JoystickButton climbUpButton = new JoystickButton(joy,CLIMB_UP_BUTTON_ID);
+    public JoystickButton climbDownButton = new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID);
 
     public final static Shooter shooter = new Shooter();
     public final static Intake intake = new Intake();
     public final static Feeder feeder = new Feeder();
-    public final static Winch winch = new Winch();
     public final static Climber climber = new Climber();
 
     public RobotContainer() {
@@ -31,6 +30,7 @@ public class RobotContainer implements Loggable {
     private void configureButtonBindings() {
         intakeButton.whenPressed(new DriverIntake());
         shotButton.whenPressed(new Shoot());
+        climbUpButton.whenPressed(new ClimbUp());
     }
 //new InstantCommand(shooter::exhale)
     public Command getAutonomousCommand() {
