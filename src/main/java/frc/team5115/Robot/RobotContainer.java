@@ -40,6 +40,7 @@ public class RobotContainer {
         //sets the navx to work.
         locationator = new Locationator(this, startingConfiguration, startingAngle);
         drivetrain = new Drivetrain(this);
+
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
         configureButtonBindings();
     }

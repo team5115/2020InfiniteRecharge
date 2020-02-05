@@ -2,11 +2,15 @@ package frc.team5115.Commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Robot.RobotContainer;
+import frc.team5115.Subsystems.Feeder;
 
 public class FeedtheDemon extends CommandBase {
-    Boolean sensor = true;
-    public FeedtheDemon() {
-        addRequirements(RobotContainer.feeder);
+    boolean sensor = true;
+    Feeder feeder;
+
+    public FeedtheDemon(Feeder feeder) {
+        this.feeder = feeder;
+        addRequirements(feeder);
 
     }
 
@@ -15,10 +19,10 @@ public class FeedtheDemon extends CommandBase {
         //get sensor value
 
         if(sensor){
-            RobotContainer.feeder.moveCells();
+            feeder.moveCells();
         }
         else{
-            RobotContainer.feeder.stopCells();
+            feeder.stopCells();
         }
 
     }
