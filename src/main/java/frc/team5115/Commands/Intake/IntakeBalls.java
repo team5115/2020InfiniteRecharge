@@ -1,4 +1,4 @@
-package frc.team5115.Commands;
+package frc.team5115.Commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Robot.RobotContainer;
@@ -13,6 +13,12 @@ public class IntakeBalls extends CommandBase {
     }
 
     @Override
-    public void execute() {intake.inhale();
+    public void execute() {
+        intake.inhale();
+    }
+
+    @Override
+    public boolean isFinished() {
+        return true;
     }
 }

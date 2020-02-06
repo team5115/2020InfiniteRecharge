@@ -1,8 +1,10 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Constants;
 import io.github.oblarg.oblog.Loggable;
@@ -14,13 +16,23 @@ import static frc.team5115.Constants.*;
 public class Shooter extends SubsystemBase implements Loggable {
     TalonSRX shooter_m;
     TalonSRX accelerator_m;
-    double intakeSpeed = 0.5;
+
+    SimpleMotorFeedforward shooter_s;
+    SimpleMotorFeedforward accelerator_s;
+
+    double ks = 1.02;
+    double kv = 3.44;
+    double ka = 0.452;
+
     @Log
     double targetVelocity = 1000;
 
     public Shooter(){
         shooter_m = new TalonSRX(SHOOTER_MOTOR_ID);
         accelerator_m= new TalonSRX(ACCERLERATOR_MOTOR_ID);
+
+        shooter_s = new SimpleMotorFeedforward(ks, kv, ka);
+        accelerator_s = new SimpleMotorFeedforward(ks, kv, ka);
     }
 
     public void shoot(){
@@ -42,8 +54,8 @@ public class Shooter extends SubsystemBase implements Loggable {
         System.out.println("shooting");
         double targetVelocity = 1000; //496 ticks per revelution
 
-        accelerator_m.set(ControlMode.PercentOutput, 0.5);
-        shooter_m.set(ControlMode.Velocity, targetVelocity);
+        accelerator_m.set(ControlMode.Velocity,(1500), DemandType.ArbitraryFeedForward, accelerator_s.calculate(1.337786)/12);
+        shooter_m.set(ControlMode.Velocity, (1500), DemandType.ArbitraryFeedForward, shooter_s.calculate(-1.33776)/12);
     }
 
     @Log

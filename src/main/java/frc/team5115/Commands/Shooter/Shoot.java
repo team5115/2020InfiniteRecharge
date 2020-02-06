@@ -1,4 +1,4 @@
-package frc.team5115.Commands;
+package frc.team5115.Commands.Shooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Robot.*;
 import frc.team5115.Subsystems.Shooter;
