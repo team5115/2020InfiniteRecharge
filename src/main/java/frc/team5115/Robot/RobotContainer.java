@@ -62,6 +62,7 @@ public class RobotContainer {
         })).whenReleased(new InstantCommand(climber::StopClimb));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
+        intake.setDefaultCommand(new InstantCommand(intake::inhale));
     }
 
     static class driveDefaultCommand extends CommandBase {
