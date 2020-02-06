@@ -61,10 +61,6 @@ public class RobotContainer {
             );
         })).whenReleased(new InstantCommand(climber::StopClimb));
 
-        climbDownButton.whenPressed(new ClimberDown(climber));
-        climbUpButton.whenPressed(new ClimbUp(climber));
-        shootButton.whenPressed(new Shoot(shooter));
-
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }
 
