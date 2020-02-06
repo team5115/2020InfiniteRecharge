@@ -1,9 +1,7 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
@@ -50,7 +48,18 @@ public class RobotContainer {
         new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
         new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
         new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
-
+        new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new Shoot(shooter)).whenReleased(new InstantCommand(shooter::stopShoot));
+        new JoystickButton(joy, CLIMB_UP_BUTTON_ID).whenHeld(new InstantCommand(() -> {
+            climber.WinchUp();
+            climber.ScissorUp();
+        })).whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID).whenHeld(new InstantCommand(() -> {
+            new InstantCommand(climber::ScissorDown).withTimeout(2);
+            new ParallelCommandGroup(
+                    new InstantCommand(climber::ScissorDown),
+                    new InstantCommand(climber::WinchDown)
+            );
+        })).whenReleased(new InstantCommand(climber::StopClimb));
 
         climbDownButton.whenPressed(new ClimberDown(climber));
         climbUpButton.whenPressed(new ClimbUp(climber));

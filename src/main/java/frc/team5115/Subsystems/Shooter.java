@@ -58,6 +58,11 @@ public class Shooter extends SubsystemBase implements Loggable {
         shooter_m.set(ControlMode.Velocity, (1500), DemandType.ArbitraryFeedForward, shooter_s.calculate(-1.33776)/12);
     }
 
+    public void stopShoot() {
+        accelerator_m.set(ControlMode.Velocity, 0);
+        shooter_m.set(ControlMode.Velocity, 0);
+    }
+
     @Log
     public double getCurrentVelocity(){
         return shooter_m.getSelectedSensorVelocity();
