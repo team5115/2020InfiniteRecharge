@@ -49,11 +49,9 @@ public class AssistedShootHighGoal extends CommandBase {
         } else {
             System.out.println("Error No Target Found"); //todome set to shuffleboard.
             drivetrain.XBoxDrive(joystick);
-            joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
             return;
         }
         //System.out.println("angle = " + (angle - locationator.getAngle()));
-        joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
         drivetrain.relativeAngleHold(angle, -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID));
     }
 

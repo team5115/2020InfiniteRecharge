@@ -56,18 +56,12 @@ public class PickupBallAuto extends CommandBase {
             lastAngle = angle;
         } else {
             System.out.println("Can't find a ball.");
-            if(joystick!=null)
-            joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
-
             if(foundBall) //if we have found that shit before, go there.
                 drivetrain.angleHold(lastAngle, MAX_AUTO_THROTTLE);
             else
                 drivetrain.stop();
             return;
         }
-        if(joystick!=null)
-        joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-
         boolean targetForDistance = false;
         //true means it rolls after it. It will stop if it stops. False means it just goes at a constant speed.
         double throttle;

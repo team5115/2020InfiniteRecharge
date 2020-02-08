@@ -10,24 +10,20 @@ import static frc.team5115.Constants.*;
 public class Climber extends SubsystemBase {
     TalonSRX winch;
     TalonSRX scissor;
-    double climbspeed = 0.5;
+    double climbspeed = -0.75;
 
     public Climber(){
-        winch = new TalonSRX(CLIMBER_MOTOR_ID);
-        scissor = new TalonSRX(8);
+        winch = new TalonSRX(WINCH_MOTOR_ID);
+        scissor = new TalonSRX(SCISSOR_MOTOR_ID);
         setDefaultCommand(new StopClimb(this).perpetually());
     }
 
     public void ScissorUp(){
-        scissor.set(ControlMode.PercentOutput, -climbspeed);
-    }
-
-    public void WinchUp(){
-        winch.set(ControlMode.PercentOutput, climbspeed);
+        scissor.set(ControlMode.PercentOutput, -1);
     }
 
     public void ScissorDown(){
-        scissor.set(ControlMode.PercentOutput, climbspeed);
+        scissor.set(ControlMode.PercentOutput, -climbspeed);
     }
 
     public void WinchDown(){

@@ -14,7 +14,6 @@ public class ClimbUp extends CommandBase{
     @Override
     public void initialize() {
         climber.ScissorUp();
-        climber.WinchUp();
     }
 
     @Override

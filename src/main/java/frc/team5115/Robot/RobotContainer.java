@@ -48,21 +48,21 @@ public class RobotContainer {
         new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
         new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
         new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
-        new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new Shoot(shooter)).whenReleased(new InstantCommand(shooter::stopShoot));
-        new JoystickButton(joy, CLIMB_UP_BUTTON_ID).whenHeld(new InstantCommand(() -> {
-            climber.WinchUp();
-            climber.ScissorUp();
-        })).whenReleased(new InstantCommand(climber::StopClimb));
-        new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID).whenHeld(new InstantCommand(() -> {
-            new InstantCommand(climber::ScissorDown).withTimeout(2);
-            new ParallelCommandGroup(
-                    new InstantCommand(climber::ScissorDown),
-                    new InstantCommand(climber::WinchDown)
-            );
-        })).whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new InstantCommand(shooter::shoot)).whenReleased(new InstantCommand(shooter::stopShoot));
+        new JoystickButton(joy, CLIMB_UP_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorUp)).whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID).whenHeld(
+                new InstantCommand(climber::ScissorDown)
+                        .alongWith(new InstantCommand(climber::WinchDown)))
+                .whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, INTAKE_BUTTON_ID)
+                .whenHeld(
+                        new InstantCommand(intake::driverIntake)
+                                .alongWith(new InstantCommand(feeder::moveCells)))
+                .whenReleased(
+                        new InstantCommand(intake::inhale)
+                                .alongWith(new InstantCommand(feeder::stopCells)));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
-        intake.setDefaultCommand(new InstantCommand(intake::inhale));
     }
 
     static class driveDefaultCommand extends CommandBase {
@@ -79,7 +79,9 @@ public class RobotContainer {
         @Override
         public void execute() {
             if(USING_XBOX) {
-                drivetrain.XBoxDrive(joystick);
+                drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.5);
+
+                //drivetrain.XBoxDrive(joystick);
             } else {
                 drivetrain.drive(
                         joystick.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
