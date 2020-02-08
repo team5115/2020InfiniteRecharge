@@ -1,17 +1,21 @@
-package frc.team5115.Commands;
+package frc.team5115.Commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Robot.RobotContainer;
+import frc.team5115.Subsystems.Intake;
 
 public class DriverIntake extends CommandBase {
-    public DriverIntake() {
-        addRequirements(RobotContainer.intake);
+    Intake intake;
+
+    public DriverIntake(Intake intake) {
+        this.intake = intake;
+        addRequirements(intake);
 
     }
 
     @Override
     public void execute() {
-        RobotContainer.intake.driverIntake();
+        intake.driverIntake();
     }
 
     @Override

@@ -1,11 +1,9 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.team5115.Commands.IntakeBalls;
-import frc.team5115.Commands.StopClimb;
+import frc.team5115.Commands.Climber.StopClimb;
 
 import static frc.team5115.Constants.*;
 
@@ -20,19 +18,25 @@ public class Climber extends SubsystemBase {
         setDefaultCommand(new StopClimb(this).perpetually());
     }
 
-    public void ClimbUp(){
+    public void ScissorUp(){
         scissor.set(ControlMode.PercentOutput, -climbspeed);
+    }
+
+    public void WinchUp(){
         winch.set(ControlMode.PercentOutput, climbspeed);
     }
 
-    public void StopClimb(){
-        winch.set(ControlMode.PercentOutput, 0);
-        scissor.set(ControlMode.PercentOutput, 0);
+    public void ScissorDown(){
+        scissor.set(ControlMode.PercentOutput, climbspeed);
     }
 
-    public void ClimbDown(){
+    public void WinchDown(){
         winch.set(ControlMode.PercentOutput, -climbspeed);
-        scissor.set(ControlMode.PercentOutput, climbspeed);
+    }
+
+    public void StopClimb() {
+        scissor.set(ControlMode.PercentOutput, 0);
+        winch.set(ControlMode.PercentOutput, 0);
     }
 
 }

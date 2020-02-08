@@ -1,17 +1,20 @@
-package frc.team5115.Commands;
+package frc.team5115.Commands.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Robot.RobotContainer;
 import frc.team5115.Subsystems.Climber;
 
-public class StopClimb extends CommandBase{
-    public StopClimb(Climber climber) {
+import static frc.team5115.Robot.RobotContainer.*;
+
+public class ClimbDown extends CommandBase{
+    Climber climber;
+    public ClimbDown(Climber climber) {
         this.climber = climber;
         addRequirements(climber);
     }
 
     @Override
-    public void initialize() {climber.StopClimb();
+    public void initialize() {climber.ClimbDown();
     }
 
     @Override
