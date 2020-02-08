@@ -27,7 +27,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void ScissorDown(){
-        scissor.set(ControlMode.PercentOutput, climbspeed);
+        scissor.set(ControlMode.PercentOutput, climbspeed - 0.2);
     }
 
     public void WinchDown(){

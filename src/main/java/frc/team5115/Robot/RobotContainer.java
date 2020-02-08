@@ -27,8 +27,6 @@ public class RobotContainer {
 
     public final Joystick joy = new Joystick(0);
 
-    public JoystickButton intakeButton = new JoystickButton(joy, INTAKE_BUTTON_ID);
-    public JoystickButton shotButton = new JoystickButton(joy, SHOOTER_BUTTON_ID);
     public JoystickButton climbUpButton = new JoystickButton(joy,CLIMB_UP_BUTTON_ID);
     public JoystickButton climbDownButton = new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID);
     public JoystickButton shootButton  = new JoystickButton(joy, SHOOTER_BUTTON_ID);
