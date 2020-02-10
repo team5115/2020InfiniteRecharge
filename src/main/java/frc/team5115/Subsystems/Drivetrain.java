@@ -34,6 +34,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
 
+
         backRight.setInverted(true);
 
         frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
