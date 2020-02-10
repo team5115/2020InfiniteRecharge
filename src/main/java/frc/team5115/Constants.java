@@ -13,7 +13,7 @@ public class Constants{
     public static final StartingConfiguration startingConfiguration = StartingConfiguration.Right;
     public static final double startY = 0;
     public static final int startingAngle = 90; //90 is looking away from the driver stations.
-    public static final double MAX_AUTO_THROTTLE = 0.4;
+    public static final double MAX_AUTO_THROTTLE = 0.75;
     public static final double CAMERA_HEIGHT = 10; //units: inches.
     public static final double CAMERA_ANGLE = 15; //units: degrees.
     public static final double SHOOTIN_DISTANCE = 120; //units: inches. todome update
@@ -59,6 +59,7 @@ public class Constants{
     public static byte XBOX_X_AXIS_ID = 4;
     public static byte XBOX_THROTTLE_1_ID = 3;
     public static byte XBOX_THROTTLE_2_ID = 2;
+    public static double XBOX_X_DEADZONE = 0.075;
 
     //information on where we start
     public enum StartingConfiguration {
@@ -77,13 +78,13 @@ public class Constants{
     }
 
     public enum Pipeline {
-        DriveCamera, CustomGripPipeline, GreenLedMode;
+        DriveCamera, Balls, GreenLedMode;
         public int getPipelineNumber() {
             switch(this) {
                 case DriveCamera:
                     return 0;
-                case CustomGripPipeline:
-                    return 1;
+                case Balls:
+                    return 3;
                 case GreenLedMode:
                     return 2;
             }

@@ -5,12 +5,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.team5115.Robot.RobotContainer;
 
-import static frc.team5115.Constants.*;
-import static frc.team5115.Robot.RobotContainer.joy;
+import static frc.team5115.Constants.INTAKE_MOTOR_ID;
 
 public class Feeder extends SubsystemBase {
     TalonSRX feeder_m;

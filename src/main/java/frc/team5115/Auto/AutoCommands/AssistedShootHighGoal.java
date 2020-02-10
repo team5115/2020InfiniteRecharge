@@ -1,6 +1,5 @@
-package frc.team5115.Commands;
+package frc.team5115.Auto.AutoCommands;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Subsystems.Drivetrain;
@@ -31,14 +30,12 @@ public class AssistedShootHighGoal extends CommandBase {
         this.limelight = limelight;
         this.joystick = joystick;
         addRequirements(drivetrain, shooter);
-        limelight.setPipeline(Pipeline.GreenLedMode);
-        System.out.println("Starting goal assist but not throttle constructor");
-
     }
 
     @Override
     public void initialize() {
         System.out.println("Starting High Goal Aiming but not throttle");
+        limelight.setPipeline(Pipeline.GreenLedMode);
     }
 
     @Override
@@ -49,11 +46,9 @@ public class AssistedShootHighGoal extends CommandBase {
         } else {
             System.out.println("Error No Target Found"); //todome set to shuffleboard.
             drivetrain.XBoxDrive(joystick);
-            joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
             return;
         }
         //System.out.println("angle = " + (angle - locationator.getAngle()));
-        joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
         drivetrain.relativeAngleHold(angle, -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID));
     }
 

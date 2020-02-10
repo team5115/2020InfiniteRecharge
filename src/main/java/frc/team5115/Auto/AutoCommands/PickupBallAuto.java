@@ -1,6 +1,5 @@
 package frc.team5115.Auto.AutoCommands;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Constants;
@@ -40,7 +39,7 @@ public class PickupBallAuto extends CommandBase {
 
     @Override
     public void initialize() {
-        limelight.setPipeline(Constants.Pipeline.CustomGripPipeline);
+        limelight.setPipeline(Constants.Pipeline.Balls);
         drivetrain.stop();
     }
     /*on loop:
@@ -56,8 +55,6 @@ public class PickupBallAuto extends CommandBase {
             lastAngle = angle;
         } else {
             System.out.println("Can't find a ball.");
-            if(joystick!=null)
-            joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
 
             if(foundBall) //if we have found that shit before, go there.
                 drivetrain.angleHold(lastAngle, MAX_AUTO_THROTTLE);
@@ -65,8 +62,6 @@ public class PickupBallAuto extends CommandBase {
                 drivetrain.stop();
             return;
         }
-        if(joystick!=null)
-        joystick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
 
         boolean targetForDistance = false;
         //true means it rolls after it. It will stop if it stops. False means it just goes at a constant speed.

@@ -31,7 +31,6 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.shooter = shooter;
         this.limelight = limelight;
         addRequirements(drivetrain, shooter);
-        limelight.setPipeline(Pipeline.GreenLedMode);
 
         addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootTillEmpty(shooter)); todome when shooter is ready --> test.
     }
@@ -42,6 +41,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         @Override
         public void initialize() {
             System.out.println("Starting High Goal Aiming");
+            limelight.setPipeline(Pipeline.GreenLedMode);
         }
 
         @Override
@@ -71,6 +71,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         public void end(boolean interrupted) {
             if (interrupted) System.out.println("Error: Interrupted");
             drivetrain.stop();
+            limelight.setPipeline(Pipeline.DriveCamera);
         }
 
         @Override

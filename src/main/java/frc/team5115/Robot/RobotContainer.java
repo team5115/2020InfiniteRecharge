@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Commands.AssistedShootHighGoal;
-import frc.team5115.Commands.IntakeBalls;
+import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Subsystems.*;
 
 import static frc.team5115.Constants.*;
@@ -47,6 +46,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(() -> {
             locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
+            limelight.setPipeline(Pipeline.Balls);
 //            System.out.println("Button Pressed");
         }));
 
