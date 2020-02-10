@@ -21,27 +21,28 @@ public class Constants{
     public static final double BALL_TARGET_AREA = 5;
 
     //motor ids
-    public static final byte FRONT_LEFT_MOTOR_ID = 3;
-    public static final byte FRONT_RIGHT_MOTOR_ID = 4;
-    public static final byte BACK_LEFT_MOTOR_ID = 1;
-    public static final byte BACK_RIGHT_MOTOR_ID = 2;
+    public static final byte FRONT_LEFT_MOTOR_ID = 1;
+    public static final byte FRONT_RIGHT_MOTOR_ID = 2;
+    public static final byte BACK_LEFT_MOTOR_ID = 3;
+    public static final byte BACK_RIGHT_MOTOR_ID = 4;
 
     public static final int INTAKE_MOTOR_ID = 5;
-    public static final int SHOOTER_MOTOR_ID = 6;
-    public static final int CLIMBER_MOTOR_ID = 7;
-    public static final int FEEDER_MOTOR_ID = 8;
-    public static final int ACCERLERATOR_MOTOR_ID = 9;
+    public static final int SHOOTER_MOTOR_ID = 8;
+    public static final int SCISSOR_MOTOR_ID = 9;
+    public static final int WINCH_MOTOR_ID = 10;
+    public static final int FEEDER_MOTOR_ID = 6;
+    public static final int ACCELERATOR_MOTOR_ID = 7;
 
     //button ids
-    public static final int INTAKE_BUTTON_ID = 14;
-    public static final int SHOOTER_BUTTON_ID = 15;
-    public static final int CLIMB_UP_BUTTON_ID = 16;
-    public static final int ClIMB_DOWN_BUTTON_ID = 17;
+    public static final int INTAKE_BUTTON_ID = 1;
+    public static final int SHOOTER_BUTTON_ID = 2;
+    public static final int CLIMB_UP_BUTTON_ID = 3;
+    public static final int ClIMB_DOWN_BUTTON_ID = 4;
 
     public static final byte AUTO_LINEUP_BUTTON_ID = 5;
     public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 6;
     public static final byte AUTO_GET_BALL_BUTTON = 8;
-    public static final byte RESET_BUTTON = 3;
+    public static final byte RESET_BUTTON = 7;
 
     //k constans
     public static final int kPIDLoopIdx = 0;

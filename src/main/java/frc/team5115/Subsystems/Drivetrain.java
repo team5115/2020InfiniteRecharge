@@ -33,6 +33,9 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         frontRight = new VictorSPX(FRONT_RIGHT_MOTOR_ID);
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
+
+        backRight.setInverted(true);
+
         frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
         frontRight.set(ControlMode.Follower, backRight.getDeviceID());
 
@@ -63,7 +66,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
         backLeft.set(ControlMode.PercentOutput, leftSpd);
-        backRight.set(ControlMode.PercentOutput, rightSpd);
+        backRight.set(ControlMode.PercentOutput, -rightSpd);
     }
 
     public void XBoxDrive(Joystick joy) {
