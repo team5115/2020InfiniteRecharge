@@ -1,19 +1,19 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.team5115.Commands.IntakeBalls;
+import frc.team5115.Commands.Intake.IntakeBalls;
 
-import static frc.team5115.Constants.INTAKE_MOTOR_ID;
+import static frc.team5115.Constants.*;
 
 public class Intake extends SubsystemBase {
-    TalonSRX intake_m;
-    double intakeSpeed = 0.3;
+    VictorSPX intake_m;
+    double intakeSpeed = -0.3;
 
     public Intake() {
-        intake_m = new TalonSRX(INTAKE_MOTOR_ID);
-        setDefaultCommand(new IntakeBalls(this).perpetually());
+        intake_m = new VictorSPX(INTAKE_MOTOR_ID);
     }
 
     public void inhale() {
@@ -25,9 +25,12 @@ public class Intake extends SubsystemBase {
     }
 
     public void driverIntake(){
-        intake_m.set(ControlMode.PercentOutput, intakeSpeed + 0.2);
+        intake_m.set(ControlMode.PercentOutput, intakeSpeed - 0.2);
     }
 
+    public void stopIntake() {
+        intake_m.set(ControlMode.PercentOutput, 0);
+    }
 }
 
 

@@ -68,6 +68,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     public void XBoxDrive(Joystick joy) {
         double x = joy.getRawAxis(XBOX_X_AXIS_ID);
         double y = -joy.getRawAxis(XBOX_Y_AXIS_ID);
+        System.out.println("y = " + y);
         double throttle1 = joy.getRawAxis(XBOX_THROTTLE_1_ID);
         double throttle2 = joy.getRawAxis(XBOX_THROTTLE_2_ID);
 
@@ -77,6 +78,12 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //throttle is between 0 (dont move) and 1, (full move)
         throttle = ((1-MIN_XBOX_THROTTLE) * throttle) + MIN_XBOX_THROTTLE;
         //new Throttle is now max 1 and min 0.2
+        //System.out.println("throttle = " + throttle);
+        x*=0.5;
+        y*=0.4;
+        //drive(x,y,throttle);
+
+        System.out.println("Remove me if working!");
         driveByWire(x, y, throttle);
     }
 
