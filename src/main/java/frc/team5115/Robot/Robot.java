@@ -20,7 +20,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         Logger.configureLoggingAndConfig(this, false);
         robotContainer = new RobotContainer();
-
     }
 
     @Override

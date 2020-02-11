@@ -20,9 +20,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
 
-    private double rightSpd;
-    private double leftSpd;
-
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
@@ -55,8 +52,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
-            leftSpd = (x + y) * throttle;
-            rightSpd = (x - y) * throttle;
+        double leftSpd = (x + y) * throttle;
+        double rightSpd = (x - y) * throttle;
 
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
@@ -103,7 +100,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     double I = 0;
-    double lastAngle = 0;
+    double lastAngle;
 
     public void relativeAngleHold(double targetAngle, double y) {
         this.targetAngle = targetAngle;
