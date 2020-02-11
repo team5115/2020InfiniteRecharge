@@ -3,12 +3,7 @@ package frc.team5115.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.ColorSensorV3;
-import com.revrobotics.ColorSensorV3.*;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import io.github.oblarg.oblog.Loggable;
@@ -25,6 +20,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     int ballCount = 0;
     boolean ballDetected = false;
+    boolean increment = false;
 
     public void printDistanceValues() {
         double proximity = m_colorSensor.getProximity();
@@ -40,15 +36,34 @@ public class Feeder extends SubsystemBase implements Loggable {
     }
 
     public void moveCells() {
-        System.out.println("getProximityRange() = " + getProximityRange());
-        incrementBallCount();
         feeder_m.set(ControlMode.PercentOutput, feedspeed);
     }
 
-    public void stopCells(){
-        System.out.println("getProximityRange() = " + getProximityRange());
-        incrementBallCount();
+    public void moveCellsFancy(){
+        increment = false;
+
+        System.out.println("ballCount = " + ballCount);
+        if (getProximityRange()) {
+            feeder_m.set(ControlMode.PercentOutput, feedspeed);
+            ballDetected = true;
+            increment = true;
+        }
+        else {
+            feeder_m.set(ControlMode.PercentOutput, 0);
+            ballDetected = false;
+        }
+
+        if (increment) {
+            ballCount += ballDetected ? 1 : 0;
+        }
+    }
+
+    public void stopCells() {
         feeder_m.set(ControlMode.PercentOutput, 0);
+    }
+
+    public void spit() {
+        feeder_m.set(ControlMode.PercentOutput, -feedspeed);
     }
 
     @Log
@@ -59,8 +74,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     @Log
     public boolean getProximityRange () {
-        ballDetected = !ballDetected;
-        return getProximity() >= lowerIRBound && getProximity() <= higherIRBound;
+        return ((getProximity() >= lowerIRBound) && (getProximity() <= higherIRBound));
     }
 
     public void incrementBallCount() {
