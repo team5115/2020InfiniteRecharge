@@ -1,19 +1,25 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
+import frc.team5115.Robot.Robot;
 import frc.team5115.Robot.RobotContainer;
+;
 
 import static frc.team5115.Constants.*;
 
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private Locationator locationator;
     //instances of the speed controllers
+
+    private Drivetrain drivetrain;
     private VictorSPX frontLeft;
     private VictorSPX frontRight;
     private TalonSRX backLeft;
@@ -24,10 +30,18 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     private double rightSpd;
     private double leftSpd;
 
+    double ks = 0;
+    double kv = 0;
+    double ka = 0;
+
+    private SimpleMotorFeedforward left_feedfoward_drivetrain;
+    private SimpleMotorFeedforward right_feedforward_drivetrain;
+
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
         locationator = x.locationator;
+        drivetrain = x.drivetrain;
 
         frontLeft = new VictorSPX(FRONT_LEFT_MOTOR_ID);
         frontRight = new VictorSPX(FRONT_RIGHT_MOTOR_ID);
@@ -47,6 +61,9 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         lastAngle = locationator.getAngle();
+
+        left_feedfoward_drivetrain = new SimpleMotorFeedforward(ks, kv, ka);
+        right_feedforward_drivetrain = new SimpleMotorFeedforward(ks, kv, ka);
     }
 
     @Override
@@ -66,8 +83,19 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
-        backLeft.set(ControlMode.PercentOutput, leftSpd);
-        backRight.set(ControlMode.PercentOutput, -rightSpd);
+//velocity in m/s would be raw velocity(motor controller velocity) * 10 that will get you ticks per second so from ticks per second divide that by tivks per rotation with mag encoders 4096 (ticks per rotaion)
+// this will get you rotations per second multiply by your meters per rotation (circumfrance) thats all the math you'l need the feed forard is already in m/s
+
+        backLeft.set(ControlMode.Velocity, (150), DemandType.ArbitraryFeedForward, left_feedfoward_drivetrain.calculate(drivetrain.giveCorrectVelocity(1.33776))/12);
+        backRight.set(ControlMode.Velocity, (150), DemandType.ArbitraryFeedForward, right_feedforward_drivetrain.calculate(drivetrain.giveCorrectVelocity(1.33776))/12);
+    }
+
+    public double giveCorrectVelocity(double rawVelocity){
+        double ticksPerSecond = rawVelocity *10;
+        double rotationsPerSecond = ticksPerSecond / 4096; //magencoder
+        double correctVelocity = rotationsPerSecond * 0.6383716272089799; //cicrcumfrance
+        return correctVelocity;
+
     }
 
     public void XBoxDrive(Joystick joy) {
