@@ -9,8 +9,9 @@ public class Constants{
 
     //autonomous stuff
     public static final StartingConfiguration startingConfiguration = StartingConfiguration.Right;
-    public static final double startY = 0;
-    public static final int startingAngle = 90; //90 is looking away from the driver stations.
+    public static final double startY = 120;
+    public static final int startingAngle = -45; //90 is looking away from the driver stations.
+
     public static final double AUTO_MAX_THROTTLE = 0.75;
     public static final double AUTO_CAMERA_HEIGHT = 10; //units: inches.
     public static final double AUTO_CAMERA_ANGLE = 15; //units: degrees.
@@ -39,7 +40,6 @@ public class Constants{
     public static final byte AUTO_LINEUP_BUTTON_ID = 5;
     public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 8;
     public static final byte AUTO_GET_BALL_BUTTON = 6;
-    public static final byte RESET_BUTTON = 7;
 
     //Speed constants for subsystems.
     public static final int kPIDLoopIdx = 0;

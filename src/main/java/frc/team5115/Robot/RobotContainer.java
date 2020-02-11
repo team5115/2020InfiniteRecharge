@@ -42,10 +42,6 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(() -> {
-            locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
-//            System.out.println("Button Pressed");
-        }));
         //Simple lineup
         new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
         //just angle
