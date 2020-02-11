@@ -1,5 +1,6 @@
 package frc.team5115.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -11,6 +12,8 @@ import frc.team5115.Commands.Groups.ClimberDown;
 import frc.team5115.Commands.Shooter.AssistedShootHighGoal;
 import frc.team5115.Commands.Shooter.Shoot;
 import frc.team5115.Subsystems.*;
+
+import java.util.function.BooleanSupplier;
 
 import static frc.team5115.Constants.*;
 
@@ -60,7 +63,8 @@ public class RobotContainer {
                                 .alongWith(new InstantCommand(feeder::moveCells)))
                 .whenReleased(
                         new InstantCommand(intake::inhale)
-                                .alongWith(new InstantCommand(feeder::stopCells)));
+                                .alongWith(new InstantCommand(feeder::stopCells))
+                        );
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }
@@ -79,7 +83,7 @@ public class RobotContainer {
         @Override
         public void execute() {
             if(USING_XBOX) {
-                drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.5);
+                drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.35);
 
                 //drivetrain.XBoxDrive(joystick);
             } else {

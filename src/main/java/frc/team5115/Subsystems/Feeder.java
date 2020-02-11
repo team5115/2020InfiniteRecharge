@@ -18,12 +18,13 @@ import static frc.team5115.Constants.*;
 
 public class Feeder extends SubsystemBase implements Loggable {
     VictorSPX feeder_m;
-    double feedspeed = -0.6;
+    double feedspeed = -0.8;
     private final ColorSensorV3 m_colorSensor = new ColorSensorV3( I2C.Port.kOnboard );
     int lowerIRBound = 134;
     int higherIRBound = 150;
 
     int ballCount = 0;
+    boolean ballDetected = false;
 
     public void printDistanceValues() {
         double proximity = m_colorSensor.getProximity();
@@ -39,12 +40,14 @@ public class Feeder extends SubsystemBase implements Loggable {
     }
 
     public void moveCells() {
-
+        System.out.println("getProximityRange() = " + getProximityRange());
+        incrementBallCount();
         feeder_m.set(ControlMode.PercentOutput, feedspeed);
     }
 
     public void stopCells(){
-
+        System.out.println("getProximityRange() = " + getProximityRange());
+        incrementBallCount();
         feeder_m.set(ControlMode.PercentOutput, 0);
     }
 
@@ -56,18 +59,21 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     @Log
     public boolean getProximityRange () {
+        ballDetected = !ballDetected;
         return getProximity() >= lowerIRBound && getProximity() <= higherIRBound;
     }
 
     public void incrementBallCount() {
-        ballCount++;
+        if (getProximityRange() && ballDetected) {
+            ballCount++;
+        }
+        ballDetected = !ballDetected;
     }
 
-    public void decrementBallCount() {
-        ballCount--;
-    }
+    //public void decrementBallCount() { ballCount--; }
 
     public int getBallCount() {
+
         return ballCount;
     }
 
