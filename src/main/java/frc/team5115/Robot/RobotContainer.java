@@ -60,7 +60,7 @@ public class RobotContainer {
         new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID).whenHeld(
                 new RunCommand(climber::ScissorDown).alongWith(new RunCommand(climber::WinchDown)));
         //Spitting balls out of intake.
-        new JoystickButton(joy, INTAKE_DEJAM_BUTTON_ID)
+        new JoystickButton(joy, INTAKE_RUN_BUTTON_ID)
                 .whenHeld(
                         new InstantCommand(intake::spitout));
         //Spitting balls out of the feeder

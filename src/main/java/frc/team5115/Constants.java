@@ -31,15 +31,16 @@ public class Constants{
     public static final byte ACCELERATOR_MOTOR_ID = 7;
 
     //button ids
-    public static final byte INTAKE_DEJAM_BUTTON_ID = 1;
+    public static final byte INTAKE_RUN_BUTTON_ID = 1;
+    public static final byte INTAKE_REVERSE_BUTTON_ID = 2;
     public static final byte FEEDER_DEJAM_BUTTON_ID = 9;
-    public static final byte SHOOTER_BUTTON_ID = 2;
-    public static final byte CLIMB_UP_BUTTON_ID = 3;
-    public static final byte ClIMB_DOWN_BUTTON_ID = 4;
+    public static final byte SHOOTER_BUTTON_ID = 6;
+    public static final byte CLIMB_UP_BUTTON_ID = 4;
+    public static final byte ClIMB_DOWN_BUTTON_ID = 3;
 
     public static final byte AUTO_LINEUP_BUTTON_ID = 5;
     public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 8;
-    public static final byte AUTO_GET_BALL_BUTTON = 6;
+    public static final byte AUTO_GET_BALL_BUTTON = 7; //wrong
 
     //Speed constants for subsystems.
     public static final int kPIDLoopIdx = 0;
