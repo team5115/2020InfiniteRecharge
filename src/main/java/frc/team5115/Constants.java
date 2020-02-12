@@ -1,6 +1,7 @@
 package frc.team5115;
 
 public class Constants{
+
     //speed stuff
     public static final boolean KID_MODE = false;
     public static final double KID_MODE_MAX_SPEED = 0.4;
@@ -12,35 +13,48 @@ public class Constants{
     public static final double startY = 120;
     public static final int startingAngle = -45; //90 is looking away from the driver stations.
 
-    public static final double AUTO_MAX_THROTTLE = 0.75;
+    public static final double AUTO_MAX_THROTTLE = 0.5;
     public static final double AUTO_CAMERA_HEIGHT = 10; //units: inches.
     public static final double AUTO_CAMERA_ANGLE = 15; //units: degrees.
     public static final double AUTO_SHOOTIN_DISTANCE = 120; //units: inches. todome update
     public static final double AUTO_HIGH_GOAL_HEIGHT = 90; //units: inches.
-    //motor ids
-    public static final byte FRONT_LEFT_MOTOR_ID = 3;
-    public static final byte FRONT_RIGHT_MOTOR_ID = 4;
-    public static final byte BACK_LEFT_MOTOR_ID = 1;
-    public static final byte BACK_RIGHT_MOTOR_ID = 2;
 
-    public static final byte INTAKE_MOTOR_ID = 5;
-    public static final byte SHOOTER_MOTOR_ID = 8;
-    public static final byte SCISSOR_MOTOR_ID = 9;
-    public static final byte WINCH_MOTOR_ID = 10;
-    public static final byte FEEDER_MOTOR_ID = 6;
-    public static final byte ACCELERATOR_MOTOR_ID = 7;
+    //motor ids
+    public static final byte FRONT_LEFT_MOTOR_ID = 1;
+    public static final byte FRONT_RIGHT_MOTOR_ID = 2;
+    public static final byte BACK_LEFT_MOTOR_ID = 3;
+    public static final byte BACK_RIGHT_MOTOR_ID = 4;
+
+    public static final int INTAKE_MOTOR_ID = 5;
+    public static final int SHOOTER_MOTOR_ID = 8;
+    public static final int SCISSOR_MOTOR_ID = 9;
+    public static final int WINCH_MOTOR_ID = 10;
+    public static final int FEEDER_MOTOR_ID = 6;
+    public static final int ACCELERATOR_MOTOR_ID = 7;
 
     //button ids
-    public static final byte INTAKE_RUN_BUTTON_ID = 1;
-    public static final byte INTAKE_REVERSE_BUTTON_ID = 2;
-    public static final byte FEEDER_DEJAM_BUTTON_ID = 9;
-    public static final byte SHOOTER_BUTTON_ID = 6;
-    public static final byte CLIMB_UP_BUTTON_ID = 4;
-    public static final byte ClIMB_DOWN_BUTTON_ID = 3;
 
-    public static final byte AUTO_LINEUP_BUTTON_ID = 5;
-    public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 8;
-    public static final byte AUTO_GET_BALL_BUTTON = 7; //wrong
+    /*
+    public static final int INTAKE_BUTTON_ID = 1;
+    public static final int SHOOTER_BUTTON_ID = 6;
+    public static final int CLIMB_UP_BUTTON_ID = 3;
+    public static final int ClIMB_DOWN_BUTTON_ID = 4;
+
+    public static final byte AUTO_LINEUP_BUTTON_ID = 2;
+    public static final byte AUTO_TURN_ASSIST_BUTTON_ID = 5;
+    public static final byte AUTO_GET_BALL_BUTTON = 8;
+    public static final byte FEEDER_DE_JAM_BUTTON_ID = 7;
+    public static final byte INTAKE_DE_JAM_BUTTON_ID = 9;
+     */
+
+    public static final byte INTAKE_BUTTON_ID = 1;
+    public static final byte INTAKE_PURGE_BUTTON_ID = 2;
+    public static final byte CLIMBER_DOWN_BUTTON_ID = 3;
+    public static final byte CLIMBER_UP_BUTTON_ID = 4;
+    public static final byte AUTO_TURN_AND_MOVE_ON = 5;
+    public static final byte SHOOTER_BUTTON_ID = 6;
+    public static final byte RESET_BALL_COUNT = 7;
+    public static final byte AUTO_TURN_BUTTON_ID = 8;
 
     //Speed constants for subsystems.
     public static final int kPIDLoopIdx = 0;

@@ -10,6 +10,7 @@ import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
+import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Subsystems.*;
 
 import static frc.team5115.Constants.*;
@@ -28,7 +29,6 @@ public class RobotContainer {
 
     public final Joystick joy = new Joystick(0);
 
-    //commands
     private final AutoSeries autoSeries;
 
 
@@ -42,31 +42,35 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        //Simple lineup
-        new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
-        //just angle
-        new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
-        //ball lineup
-        new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, feeder));
+        //new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
 
-        //shooter button - shoot shooter and flush the feeder
+        new JoystickButton(joy, AUTO_TURN_AND_MOVE_ON)
+                .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
+
+        new JoystickButton(joy, AUTO_TURN_BUTTON_ID)
+                .whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
+
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
-                .whenHeld(
-                        new RunCommand(shooter::shoot).alongWith(new RunCommand(feeder::flush)));
-        //Climbing up
-        new JoystickButton(joy, CLIMB_UP_BUTTON_ID).whenHeld(
-                new RunCommand(climber::ScissorUp));
-        //winching and lowering stuff.
-        new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID).whenHeld(
-                new RunCommand(climber::ScissorDown).alongWith(new RunCommand(climber::WinchDown)));
-        //Spitting balls out of intake.
-        new JoystickButton(joy, INTAKE_RUN_BUTTON_ID)
-                .whenHeld(
-                        new InstantCommand(intake::spitout));
-        //Spitting balls out of the feeder
-        new JoystickButton(joy, FEEDER_DEJAM_BUTTON_ID).
-                whenHeld(
-                        new InstantCommand(feeder::spit));
+                .whenHeld(new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells)))
+                .whenReleased(new InstantCommand(shooter::stopShoot).alongWith(new InstantCommand(feeder::stopCells)));
+
+        new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::ScissorUp))
+                .whenReleased(new InstantCommand(climber::StopClimb));
+
+        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::ScissorDown)
+                        .alongWith(new InstantCommand(climber::WinchDown)))
+                .whenReleased(new InstantCommand(climber::StopClimb));
+
+        new JoystickButton(joy, INTAKE_BUTTON_ID)
+                .whenHeld(new InstantCommand(intake::driverIntake)
+                        .alongWith(new InstantCommand(feeder::moveCells)))
+                .whenReleased(new InstantCommand(feeder::stopCells));
+
+        new JoystickButton(joy, INTAKE_PURGE_BUTTON_ID)
+                .whenHeld(new InstantCommand(intake::spitout))
+                .whenReleased(new InstantCommand(intake::stopIntake));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }
@@ -85,8 +89,9 @@ public class RobotContainer {
         @Override
         public void execute() {
             if(USING_XBOX) {
-                drivetrain.XBoxDrive(joystick);
-            } else {
+                drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.35);
+            }
+            else {
                 drivetrain.drive(
                         joystick.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
                         -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.

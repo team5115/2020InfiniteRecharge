@@ -3,6 +3,7 @@ package frc.team5115.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
@@ -13,22 +14,29 @@ import static frc.team5115.Constants.*;
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private Locationator locationator;
     //instances of the speed controllers
-    private TalonSRX frontLeft;
-    private TalonSRX frontRight;
+    private VictorSPX frontLeft;
+    private VictorSPX frontRight;
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
+
+    private double rightSpd;
+    private double leftSpd;
 
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
         locationator = x.locationator;
 
-        frontLeft = new TalonSRX(FRONT_LEFT_MOTOR_ID);
-        frontRight = new TalonSRX(FRONT_RIGHT_MOTOR_ID);
+        frontLeft = new VictorSPX(FRONT_LEFT_MOTOR_ID);
+        frontRight = new VictorSPX(FRONT_RIGHT_MOTOR_ID);
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
+
+
+        backRight.setInverted(true);
+
         frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
         frontRight.set(ControlMode.Follower, backRight.getDeviceID());
 
@@ -52,14 +60,14 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
-        double leftSpd = (x + y) * throttle;
-        double rightSpd = (x - y) * throttle;
+            leftSpd = (x + y) * throttle;
+            rightSpd = (x - y) * throttle;
 
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
         backLeft.set(ControlMode.PercentOutput, leftSpd);
-        backRight.set(ControlMode.PercentOutput, rightSpd);
+        backRight.set(ControlMode.PercentOutput, -rightSpd);
     }
 
     public void XBoxDrive(Joystick joy) {
@@ -100,7 +108,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     double I = 0;
-    double lastAngle;
+    double lastAngle = 0;
 
     public void relativeAngleHold(double targetAngle, double y) {
         this.targetAngle = targetAngle;
@@ -155,15 +163,11 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     public void driveByWire(double x, double y, double throttle) { //rotate by wire
-        //System.out.println("throttle = " + throttle);
-        if(-XBOX_X_DEADZONE < x && x < XBOX_X_DEADZONE) x = 0;
         System.out.println("x = " + x);
-        System.out.println("y = " + y);
-
-        targetAngle += x * 3; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
-        if(Math.abs(targetAngle - locationator.getAngle()) > 30 && (-0.5 < x && x < 0.5)) {
+        System.out.println("throttle = " + throttle);
+        targetAngle += x * 2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
+        if(Math.abs(targetAngle - locationator.getAngle()) > 30) {
             targetAngle = locationator.getAngle();
-            System.out.println("Reset target angle.");
         }
         angleHold(targetAngle, y, throttle);
     }

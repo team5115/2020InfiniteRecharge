@@ -1,4 +1,3 @@
-
 package frc.team5115.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;

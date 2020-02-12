@@ -12,76 +12,83 @@ import io.github.oblarg.oblog.annotations.Log;
 import static frc.team5115.Constants.*;
 
 public class Feeder extends SubsystemBase implements Loggable {
-
     VictorSPX feeder_m;
-
-    @Log
-    int ballCount = 0;
-
-    private final ColorSensorV3 m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
-
+    double feedspeed = -0.8;
+    private final ColorSensorV3 m_colorSensor = new ColorSensorV3( I2C.Port.kOnboard );
     int lowerIRBound = 134;
     int higherIRBound = 150;
 
+    int ballCount = 0;
+    boolean ballDetected = false;
+    boolean increment = false;
+
+    public void printDistanceValues() {
+        double proximity = m_colorSensor.getProximity();
+        setDefaultCommand(new InstantCommand(this::stopCells));
+    }
+
+
+    // import rev robotics color sensor V3 package
+    // use getIR()?
+
     public Feeder() {
         feeder_m = new VictorSPX(FEEDER_MOTOR_ID);
-        setDefaultCommand(new InstantCommand(this::store));
-        ballLastTime = false;
     }
 
-    /**
-     * This method allows balls to enter and be stored, but only if the ball count allows them too.
-     */
-    public void store() {
-        countBalls();
-        if (isBallPresent() && ballCount <= 2) { //if a ball is present, move the feeder. If we have more than two balls, do not move the cells.
-            feeder_m.set(ControlMode.PercentOutput, FEEDER_STORE_SPEED);
+    public void moveCells() {
+        feeder_m.set(ControlMode.PercentOutput, feedspeed);
+    }
+
+    public void moveCellsFancy(){
+        increment = false;
+
+        System.out.println("ballCount = " + ballCount);
+        if (getProximityRange()) {
+            feeder_m.set(ControlMode.PercentOutput, feedspeed);
+            ballDetected = true;
+            increment = true;
+        }
+        else {
+            feeder_m.set(ControlMode.PercentOutput, 0);
+            ballDetected = false;
+        }
+
+        if (increment) {
+            ballCount += ballDetected ? 1 : 0;
         }
     }
 
-    /**
-     * This method allows balls to enter and be stored regardless of ball count.
-     */
-    public void storeRegardless() {
-        countBalls();
-        if (isBallPresent()) { //if a ball is present, move the feeder. If we have more than two balls, do not move the cells.
-            feeder_m.set(ControlMode.PercentOutput, FEEDER_STORE_SPEED);
-        }
+    public void stopCells() {
+        feeder_m.set(ControlMode.PercentOutput, 0);
     }
 
-
-    /**
-     * The flush method allows for balls to be removed into the shooter. This is most likely for shooting.
-     */
-    public void flush() {
-        feeder_m.set(ControlMode.PercentOutput, FEEDER_FLUSH_SPEED);
-    }
-
-    /**
-     * The spit method allows for balls to be removed out the way they came in. Literally spit at full speed.
-     */
     public void spit() {
-        feeder_m.set(ControlMode.PercentOutput, -FEEDER_FLUSH_SPEED);
-    }
-
-    boolean ballLastTime;
-
-    public void countBalls() {
-        boolean ballCurrentlyBlocking = isBallPresent();
-        if (!ballLastTime && ballCurrentlyBlocking) {
-            ballCount++;
-        }
-        ballLastTime = ballCurrentlyBlocking;
+        feeder_m.set(ControlMode.PercentOutput, -feedspeed);
     }
 
     @Log
-    public int getProximity() {
+    public int getProximity (){
+        System.out.println("m_colorSensor.getProximity() = " + m_colorSensor.getProximity());
         return m_colorSensor.getProximity();
     }
 
     @Log
-    public boolean isBallPresent() {
-        return getProximity() >= lowerIRBound && getProximity() <= higherIRBound;
+    public boolean getProximityRange () {
+        return ((getProximity() >= lowerIRBound) && (getProximity() <= higherIRBound));
+    }
+
+    public void incrementBallCount() {
+        if (getProximityRange() && ballDetected) {
+            ballCount++;
+        }
+        ballDetected = !ballDetected;
+    }
+
+    //public void decrementBallCount() { ballCount--; }
+
+    public int getBallCount() {
+
+        return ballCount;
     }
 
 }
