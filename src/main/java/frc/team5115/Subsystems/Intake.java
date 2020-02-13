@@ -14,7 +14,6 @@ public class Intake extends SubsystemBase {
 
     public Intake() {
         intake_m = new VictorSPX(INTAKE_MOTOR_ID);
-        setDefaultCommand(new InstantCommand(this::stopIntake));
     }
 
     public void inhale() {

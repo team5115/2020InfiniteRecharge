@@ -13,9 +13,9 @@ public class Constants{
     public static final double startY = 120;
     public static final int startingAngle = -45; //90 is looking away from the driver stations.
 
-    public static final double AUTO_MAX_THROTTLE = 0.5;
-    public static final double AUTO_CAMERA_HEIGHT = 10; //units: inches.
-    public static final double AUTO_CAMERA_ANGLE = 15; //units: degrees.
+    public static final double AUTO_MAX_THROTTLE = 0.20;
+    public static final double AUTO_CAMERA_HEIGHT = 14.5; //units: inches.
+    public static final double AUTO_CAMERA_ANGLE = 20; //units: degrees.
     public static final double AUTO_SHOOTIN_DISTANCE = 120; //units: inches. todome update
     public static final double AUTO_HIGH_GOAL_HEIGHT = 90; //units: inches.
 

@@ -1,5 +1,6 @@
 package frc.team5115.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -27,7 +28,6 @@ public class RobotContainer {
     public final Joystick joy = new Joystick(0);
 
     private final AutoSeries autoSeries;
-
 
     public RobotContainer() {
         // Configure the button bindings
@@ -86,9 +86,10 @@ public class RobotContainer {
         @Override
         public void execute() {
             if(USING_XBOX) {
-                drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.35);
-            }
-            else {
+                //drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.35);
+
+                drivetrain.XBoxDrive(joystick);
+            } else {
                 drivetrain.drive(
                         joystick.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
                         -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.

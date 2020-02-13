@@ -1,19 +1,25 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
+import frc.team5115.Robot.Robot;
 import frc.team5115.Robot.RobotContainer;
+;
 
 import static frc.team5115.Constants.*;
 
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private Locationator locationator;
     //instances of the speed controllers
+
+    private Drivetrain drivetrain;
     private VictorSPX frontLeft;
     private VictorSPX frontRight;
     private TalonSRX backLeft;
@@ -88,6 +94,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         y *= 0.4;
         //drive(x,y,throttle);
 
+        System.out.println("Remove me if working!");
         driveByWire(x, y, throttle);
     }
 
@@ -191,4 +198,5 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
 }
+
 
