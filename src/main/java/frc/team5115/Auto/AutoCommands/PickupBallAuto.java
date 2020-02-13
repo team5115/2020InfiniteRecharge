@@ -1,28 +1,30 @@
 package frc.team5115.Auto.AutoCommands;
 
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Constants;
-import frc.team5115.Subsystems.*;
+import frc.team5115.Subsystems.Drivetrain;
+import frc.team5115.Subsystems.Limelight;
+import frc.team5115.Subsystems.Locationator;
 
-import static frc.team5115.Constants.AUTO_MAX_THROTTLE;
+import static frc.team5115.Constants.MAX_AUTO_THROTTLE;
 
 public class PickupBallAuto extends CommandBase {
 
     Drivetrain drivetrain;
     Locationator locationator;
     Limelight limelight;
-    Feeder feeder;
     boolean foundBall;
 
 
-    public PickupBallAuto(Drivetrain drivetrain, Locationator locationator, Limelight limelight, Feeder feeder) {
+    public PickupBallAuto(Drivetrain drivetrain, Locationator locationator, Limelight limelight) {
         this.drivetrain = drivetrain;
         this.locationator = locationator;
         this.limelight = limelight;
-        this.feeder = feeder;
+        joystick = null;
         foundBall = false;
     }
-
     /*
     Init Steps:
     1. Switch pipeline
@@ -30,7 +32,7 @@ public class PickupBallAuto extends CommandBase {
 
     @Override
     public void initialize() {
-        limelight.setPipeline(Constants.Pipeline.Balls);
+        limelight.setPipeline(Constants.Pipeline.CustomGripPipeline);
         drivetrain.stop();
     }
     /*on loop:
@@ -40,15 +42,14 @@ public class PickupBallAuto extends CommandBase {
     @Override
     public void execute() {
         double angle;
-        if (limelight.hasTarget() && limelight.getYAngle() + Constants.AUTO_CAMERA_ANGLE < 0) { // if we have a target
+        if (limelight.hasTarget() && limelight.getYAngle() + Constants.CAMERA_ANGLE < 0) { // if we have a target
             angle = limelight.getXAngle() + locationator.getAngle();
             foundBall = true;
             lastAngle = angle;
         } else {
             System.out.println("Can't find a ball.");
-
             if(foundBall) //if we have found that shit before, go there.
-                drivetrain.angleHold(lastAngle, AUTO_MAX_THROTTLE);
+                drivetrain.angleHold(lastAngle, MAX_AUTO_THROTTLE);
             else
                 drivetrain.stop();
             return;

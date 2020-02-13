@@ -18,8 +18,6 @@ import static frc.team5115.Constants.*;
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private Locationator locationator;
     //instances of the speed controllers
-
-    private Drivetrain drivetrain;
     private VictorSPX frontLeft;
     private VictorSPX frontRight;
     private TalonSRX backLeft;
@@ -39,7 +37,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         frontRight = new VictorSPX(FRONT_RIGHT_MOTOR_ID);
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
-
 
         backRight.setInverted(true);
 

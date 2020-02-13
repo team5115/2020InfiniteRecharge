@@ -17,7 +17,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public void shoot(){
-        shooter_m.set(ControlMode.PercentOutput, -.8);
+        shooter_m.set(ControlMode.PercentOutput, -.4);
         accelerator_m.set(ControlMode.PercentOutput, -.8);
     }
 
