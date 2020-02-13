@@ -43,6 +43,7 @@ public class AssistedShootHighGoal extends CommandBase {
             angle = limelight.getXAngle();
         } else {
             System.out.println("Error No Target Found"); //todome set to shuffleboard.
+            System.out.println(limelight.getYAngle());
             drivetrain.XBoxDrive(joystick);
             return;
         }

@@ -68,6 +68,6 @@ public class PickupBallAuto extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return feeder.isBallPresent();
+        return feeder.getProximityRange();
     } //todome make this from the intake sensor math.
 }

@@ -1,7 +1,6 @@
 package frc.team5115.Subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -14,21 +13,13 @@ import static frc.team5115.Constants.startY;
 public class Locationator implements Subsystem {
 
     private AHRS navx; //turn baby.
-    private AnalogInput ultrasonic;
     private double angle; //angle is total accumulated.
-    private double yaw; //relative to start, from -180 to 180.
     RobotContainer x;
     private double startAngle;
     private Loc2D currentLocation;
 
-
-    public Locationator() {
-        startAngle = 0;
-    }
-
     public Locationator(RobotContainer x, Loc2D startingLocation, double startAngle) {
         navx = new AHRS(SPI.Port.kMXP);
-        ultrasonic = new AnalogInput(0);
         navx.reset(); //reset to the start orientation
         this.x = x;
         currentLocation = startingLocation.clone();
@@ -61,7 +52,7 @@ public class Locationator implements Subsystem {
     }
 
     public void runTick() {
-
+        System.out.println("getAngle() = " + getAngle());
         double forwardSpeed = x.drivetrain.getSpeedInchesPerSecond()/20;
         double deltaY = Math.sin(Math.toRadians(getAngle())) * forwardSpeed; //converts from M/s to inches/sec then * 0.02 seconds to get deltaInches.
         double deltaX = Math.cos(Math.toRadians(getAngle())) * forwardSpeed;
@@ -102,19 +93,4 @@ public class Locationator implements Subsystem {
         System.out.println("angle = " + angle);
         currentLocation = new Loc2D(x, y);
     }
-
-    public double getUltrasonicDistanceFeet() {
-        double voltage = ultrasonic.getVoltage();
-        return .95833 * (voltage * 2000.0/305.0) - .131;
-    }
-
-    public double getUltrasonicDistanceInches() {
-        return getUltrasonicDistanceFeet() * 12;
-    }
-
-    public void printValues() {
-        System.out.println("Limelight = " + x.limelight.calculateDistanceFromBase());
-        System.out.println("Ultusonic = " + this.getUltrasonicDistanceInches());
-    }
-
 }

@@ -4,12 +4,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Constants.FEEDER_MOTOR_ID;
 
 public class Feeder extends SubsystemBase implements Loggable {
     VictorSPX feeder_m;
@@ -24,7 +23,6 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     public void printDistanceValues() {
         double proximity = m_colorSensor.getProximity();
-        setDefaultCommand(new InstantCommand(this::stopCells));
     }
 
 

@@ -4,13 +4,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
-import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Subsystems.*;
 
 import static frc.team5115.Constants.*;
@@ -44,7 +41,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         //new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
 
-        new JoystickButton(joy, AUTO_TURN_AND_MOVE_ON)
+        new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 
         new JoystickButton(joy, AUTO_TURN_BUTTON_ID)

@@ -60,8 +60,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //Math.sqrt(3.4* Math.log(x + y + 1));
 
-            leftSpd = (x + y) * throttle;
-            rightSpd = (x - y) * throttle;
+        leftSpd = (x + y) * throttle;
+        rightSpd = (x - y) * throttle;
 
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
@@ -78,17 +78,16 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         double throttle2 = joy.getRawAxis(XBOX_THROTTLE_2_ID);
 
         //throttle is between 0.5 and 1
-        double throttle = (1-throttle1) + (1-throttle2);
+        double throttle = (1 - throttle1) + (1 - throttle2);
         throttle /= 2;
         //throttle is between 0 (dont move) and 1, (full move)
-        throttle = ((1-MIN_XBOX_THROTTLE) * throttle) + MIN_XBOX_THROTTLE;
+        throttle = ((1 - MIN_XBOX_THROTTLE) * throttle) + MIN_XBOX_THROTTLE;
         //new Throttle is now max 1 and min 0.2
         //System.out.println("throttle = " + throttle);
-        x*=0.5;
-        y*=0.4;
+        x *= 0.5;
+        y *= 0.4;
         //drive(x,y,throttle);
 
-        System.out.println("Remove me if working!");
         driveByWire(x, y, throttle);
     }
 
@@ -119,7 +118,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 //        System.out.println("currentAngle = " + currentAngle);
 //        System.out.println("lastAngle = " + lastAngle);
         double P = kP * (currentAngle - targetAngle);
-        if(P < 0.2 && P > -0.2) {
+        if (P < 0.2 && P > -0.2) {
             I = I + (P * kI);
         }
         double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
@@ -144,7 +143,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 //        System.out.println("currentAngle = " + currentAngle);
 //        System.out.println("lastAngle = " + lastAngle);
         double P = kP * (currentAngle - targetAngle);
-        if(P < 0.2 && P > -0.2) {
+        if (P < 0.2 && P > -0.2) {
             I = I + (P * kI);
         }
         double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
@@ -165,8 +164,9 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     public void driveByWire(double x, double y, double throttle) { //rotate by wire
         System.out.println("x = " + x);
         System.out.println("throttle = " + throttle);
+        if (Math.abs(x) < XBOX_X_DEADZONE) x = 0;
         targetAngle += x * 2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
-        if(Math.abs(targetAngle - locationator.getAngle()) > 30) {
+        if (Math.abs(targetAngle - locationator.getAngle()) > 30) {
             targetAngle = locationator.getAngle();
         }
         angleHold(targetAngle, y, throttle);

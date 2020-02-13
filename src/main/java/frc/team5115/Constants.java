@@ -51,9 +51,9 @@ public class Constants{
     public static final byte INTAKE_PURGE_BUTTON_ID = 2;
     public static final byte CLIMBER_DOWN_BUTTON_ID = 3;
     public static final byte CLIMBER_UP_BUTTON_ID = 4;
-    public static final byte AUTO_TURN_AND_MOVE_ON = 5;
+    public static final byte AUTO_TURN_AND_MOVE_BUTTON_ID = 5;
     public static final byte SHOOTER_BUTTON_ID = 6;
-    public static final byte RESET_BALL_COUNT = 7;
+    public static final byte RESET_BALL_COUNT = 10;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
 
     //Speed constants for subsystems.

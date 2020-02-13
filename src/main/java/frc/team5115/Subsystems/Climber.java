@@ -2,10 +2,11 @@ package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.team5115.Commands.Climber.StopClimb;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Constants.SCISSOR_MOTOR_ID;
+import static frc.team5115.Constants.WINCH_MOTOR_ID;
 
 public class Climber extends SubsystemBase {
     TalonSRX winch;
@@ -15,7 +16,7 @@ public class Climber extends SubsystemBase {
     public Climber(){
         winch = new TalonSRX(WINCH_MOTOR_ID);
         scissor = new TalonSRX(SCISSOR_MOTOR_ID);
-        setDefaultCommand(new StopClimb(this).perpetually());
+        setDefaultCommand(new RunCommand(this::StopClimb).perpetually());
     }
     //0.75 speed is pulling up for the winch
 
