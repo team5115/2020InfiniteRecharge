@@ -1,12 +1,19 @@
 package frc.team5115.Robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
+import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
+import frc.team5115.Commands.Climber.ClimbUp;
+import frc.team5115.Commands.Groups.ClimberDown;
+import frc.team5115.Commands.Shooter.Shoot;
 import frc.team5115.Subsystems.*;
+
+import java.util.function.BooleanSupplier;
 
 import static frc.team5115.Constants.*;
 
@@ -21,6 +28,7 @@ public class RobotContainer {
     public final Feeder feeder = new Feeder();
 
     public final Joystick joy = new Joystick(0);
+
 
     private final AutoSeries autoSeries;
 
@@ -80,8 +88,9 @@ public class RobotContainer {
         public void execute() {
             if(USING_XBOX) {
                 drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.35);
-            }
-            else {
+
+                //drivetrain.XBoxDrive(joystick);
+            } else {
                 drivetrain.drive(
                         joystick.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,
                         -joystick.getRawAxis(JOYSTICK_Y_AXIS_ID), //note: negative because pushing forward is a negative value on the joystick.

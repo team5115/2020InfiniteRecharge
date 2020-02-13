@@ -86,8 +86,11 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 //velocity in m/s would be raw velocity(motor controller velocity) * 10 that will get you ticks per second so from ticks per second divide that by tivks per rotation with mag encoders 4096 (ticks per rotaion)
 // this will get you rotations per second multiply by your meters per rotation (circumfrance) thats all the math you'l need the feed forard is already in m/s
 
-        backLeft.set(ControlMode.Velocity, (150), DemandType.ArbitraryFeedForward, left_feedfoward_drivetrain.calculate(drivetrain.giveCorrectVelocity(1.33776))/12);
-        backRight.set(ControlMode.Velocity, (150), DemandType.ArbitraryFeedForward, right_feedforward_drivetrain.calculate(drivetrain.giveCorrectVelocity(1.33776))/12);
+//        backLeft.set(ControlMode.Velocity, (150), DemandType.ArbitraryFeedForward, left_feedfoward_drivetrain.calculate(drivetrain.giveCorrectVelocity(1.33776))/12);
+//        backRight.set(ControlMode.Velocity, (150), DemandType.ArbitraryFeedForward, right_feedforward_drivetrain.calculate(drivetrain.giveCorrectVelocity(1.33776))/12);
+
+        backLeft.set(ControlMode.PercentOutput, 0.5);
+        backRight.set(ControlMode.PercentOutput, 0.5);
     }
 
     public double giveCorrectVelocity(double rawVelocity){
@@ -219,4 +222,5 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
 }
+
 
