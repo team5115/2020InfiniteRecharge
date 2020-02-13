@@ -1,18 +1,14 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.*;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Commands.Climber.ClimbUp;
-import frc.team5115.Commands.Groups.ClimberDown;
 import frc.team5115.Commands.Shooter.AssistedShootHighGoal;
-import frc.team5115.Commands.Shooter.Shoot;
 import frc.team5115.Subsystems.*;
-
-import java.util.function.BooleanSupplier;
 
 import static frc.team5115.Constants.*;
 
@@ -42,15 +38,13 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(joy, RESET_BUTTON).whenPressed(new InstantCommand(() -> {
-            locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
-        }));
-        new JoystickButton(joy, AUTO_LINEUP_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
-        new JoystickButton(joy, AUTO_TURN_ASSIST_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
-        new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
+
+        new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
+        new JoystickButton(joy, AUTO_TURN_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
+        //new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
         new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new InstantCommand(shooter::shoot)).whenReleased(new InstantCommand(shooter::stopShoot));
-        new JoystickButton(joy, CLIMB_UP_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorUp)).whenReleased(new InstantCommand(climber::StopClimb));
-        new JoystickButton(joy, ClIMB_DOWN_BUTTON_ID).whenHeld(
+        new JoystickButton(joy, CLIMBER_UP_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorUp)).whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID).whenHeld(
                 new InstantCommand(climber::ScissorDown)
                         .alongWith(new InstantCommand(climber::WinchDown)))
                 .whenReleased(new InstantCommand(climber::StopClimb));

@@ -1,8 +1,6 @@
 package frc.team5115.Auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.team5115.Auto.AutoCommands.DriveDistance;
-import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Constants;
 import frc.team5115.Subsystems.Drivetrain;
@@ -24,7 +22,6 @@ public class AutoSeries extends SequentialCommandGroup {
 
 
         //These commands do a basic auto series.
-        if(true) {
         addCommands(
                 new ShootHighGoal(drivetrain,
                         locationator,

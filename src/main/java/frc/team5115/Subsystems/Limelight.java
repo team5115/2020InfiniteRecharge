@@ -59,7 +59,7 @@ public class Limelight {
     public double calculateDistanceFromBase() {
         //System.out.println("Height difference: " + (HIGH_GOAL_HEIGHT - CAMERA_HEIGHT));
         //System.out.println("Total angle: " + (getYAngle() + CAMERA_ANGLE));
-        return (HIGH_GOAL_HEIGHT - CAMERA_HEIGHT) / tan(toRadians(getYAngle() + CAMERA_ANGLE));
+        return (AUTO_HIGH_GOAL_HEIGHT - AUTO_CAMERA_HEIGHT) / tan(toRadians(getYAngle() + AUTO_CAMERA_ANGLE));
     }
 
     public void debug() {
@@ -69,9 +69,9 @@ public class Limelight {
     }
 
     public double calculateDistanceFromBall() {
-        if(getYAngle() + CAMERA_ANGLE> 0) { return 0; //if it doesnt make any sense, get rid of it.
+        if(getYAngle() + AUTO_CAMERA_ANGLE> 0) { return 0; //if it doesnt make any sense, get rid of it.
         }
-        double distanceFromAngle = (CAMERA_HEIGHT) / -tan(toRadians(getYAngle() + CAMERA_ANGLE));
+        double distanceFromAngle = (AUTO_CAMERA_HEIGHT) / -tan(toRadians(getYAngle() + AUTO_CAMERA_ANGLE));
         if(getArea() > 10) { //if its greater than 10, we should probably just go with the area.
             System.out.println("You better do a DESMOS thing to determine how the area of the ball relates to distance.");
             return 10e10;
