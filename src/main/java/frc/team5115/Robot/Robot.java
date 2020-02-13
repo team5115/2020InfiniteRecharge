@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import io.github.oblarg.oblog.Logger;
 
+import static frc.team5115.Constants.startingConfiguration;
+
 
 public class Robot extends TimedRobot {
     private Command autoCommand;
@@ -18,7 +20,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         Logger.configureLoggingAndConfig(this, false);
         robotContainer = new RobotContainer();
-
     }
 
     @Override
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 
         // schedule the autonomous command (example)
         if (autoCommand != null) {
+            robotContainer.locationator.setAngleAndLocation(90, startingConfiguration.getX(), 30);
             autoCommand.schedule();
             System.out.println("Scheduling auto command");
         } else System.out.println("Boy you better fix this bitch-ass problem your auto code done broke you a little shit cuz you code sum dumb shit you dumbass it caint find no code.");

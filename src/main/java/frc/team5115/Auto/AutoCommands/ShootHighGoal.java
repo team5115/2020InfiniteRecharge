@@ -31,7 +31,6 @@ public class ShootHighGoal extends SequentialCommandGroup {
         this.shooter = shooter;
         this.limelight = limelight;
         addRequirements(drivetrain, shooter);
-        limelight.setPipeline(Pipeline.GreenLedMode);
 
         addCommands(new AimAndDistanceHighGoal());//, new Shooter.ShootTillEmpty(shooter)); todome when shooter is ready --> test.
     }
@@ -42,6 +41,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         @Override
         public void initialize() {
             System.out.println("Starting High Goal Aiming");
+            limelight.setPipeline(Pipeline.GreenLedMode);
         }
 
         @Override
@@ -53,9 +53,9 @@ public class ShootHighGoal extends SequentialCommandGroup {
 //                System.out.println("limelight = " + limelight.calculateDistanceFromBase());
 //                System.out.println("locationator = " + locationator.getUltrasonicDistanceInches());
 
-                throttle = -(SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
+                throttle = -(AUTO_SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
                         / 50;
-                throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
+                throttle = Drivetrain.clamp(throttle, AUTO_MAX_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
                 System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
             } else {
@@ -71,6 +71,7 @@ public class ShootHighGoal extends SequentialCommandGroup {
         public void end(boolean interrupted) {
             if (interrupted) System.out.println("Error: Interrupted");
             drivetrain.stop();
+            limelight.setPipeline(Pipeline.DriveCamera);
         }
 
         @Override
