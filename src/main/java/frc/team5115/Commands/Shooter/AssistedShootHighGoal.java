@@ -1,9 +1,11 @@
-package frc.team5115.Auto.AutoCommands;
+package frc.team5115.Commands.Shooter;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Limelight;
+import frc.team5115.Subsystems.Locationator;
 import frc.team5115.Subsystems.Shooter;
 
 import static frc.team5115.Constants.JOYSTICK_Y_AXIS_ID;
@@ -12,10 +14,11 @@ import static frc.team5115.Constants.Pipeline;
 
 public class AssistedShootHighGoal extends CommandBase {
 
-    final Drivetrain drivetrain;
-    final Shooter shooter;
-    final Limelight limelight;
-    final Joystick joystick;
+    Drivetrain drivetrain;
+    Locationator locationator;
+    Shooter shooter;
+    Limelight limelight;
+    Joystick joystick;
 
     /*
     1. Aim at the thing using the limelight
@@ -28,17 +31,19 @@ public class AssistedShootHighGoal extends CommandBase {
         this.limelight = limelight;
         this.joystick = joystick;
         addRequirements(drivetrain, shooter);
+        limelight.setPipeline(Pipeline.GreenLedMode);
+        System.out.println("Starting goal assist but not throttle constructor");
+
     }
 
     @Override
     public void initialize() {
         System.out.println("Starting High Goal Aiming but not throttle");
-        limelight.setPipeline(Pipeline.GreenLedMode);
     }
 
     @Override
     public void execute() {
-        double angle;
+        double angle = 127;
         if (limelight.hasTarget() && limelight.getYAngle() > 0) { // if we don't have a target
             angle = limelight.getXAngle();
         } else {

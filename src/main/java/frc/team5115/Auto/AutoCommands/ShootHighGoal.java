@@ -53,9 +53,9 @@ public class ShootHighGoal extends SequentialCommandGroup {
 //                System.out.println("limelight = " + limelight.calculateDistanceFromBase());
 //                System.out.println("locationator = " + locationator.getUltrasonicDistanceInches());
 
-                throttle = -(AUTO_SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
+                throttle = -(SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
                         / 50;
-                throttle = Drivetrain.clamp(throttle, AUTO_MAX_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
+                throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
                 System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
             } else {

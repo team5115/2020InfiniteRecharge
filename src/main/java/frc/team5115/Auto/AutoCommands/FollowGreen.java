@@ -48,7 +48,7 @@ public class FollowGreen extends SequentialCommandGroup {
 
         @Override
         public void execute() {
-            double angle;
+            double angle = 0;
             if (limelight.hasTarget()) { // if we don't have a target
                 angle = limelight.getXAngle() + locationator.getAngle();
                 //System.out.println("angle = " + (angle - locationator.getAngle()));
@@ -57,8 +57,8 @@ public class FollowGreen extends SequentialCommandGroup {
                 return;
             }
 
-            throttle = -(AUTO_SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())/100;
-            throttle = Drivetrain.clamp(throttle, AUTO_MAX_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
+            throttle = -(SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())/100;
+            throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
             //System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
             throttle = 0; //eliminate to return forward backward handling.
             drivetrain.angleHold(angle, throttle);

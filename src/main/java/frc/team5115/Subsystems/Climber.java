@@ -17,7 +17,6 @@ public class Climber extends SubsystemBase {
         scissor = new TalonSRX(SCISSOR_MOTOR_ID);
         setDefaultCommand(new StopClimb(this).perpetually());
     }
-    //0.75 speed is pulling up for the winch
 
     public void ScissorUp(){
         scissor.set(ControlMode.PercentOutput, -1);
@@ -28,7 +27,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void WinchDown(){
-        winch.set(ControlMode.PercentOutput, climbspeed);
+        winch.set(ControlMode.PercentOutput, -climbspeed);
     }
 
     public void StopClimb() {
