@@ -46,12 +46,12 @@ public class Limelight {
     }
 
     public void setPipeline(int newPipe) {
-        if (newPipe != currentPipeline) { //if the new value is different than the past values, change it up.
+
             pipeline.setNumber(newPipe);
             currentPipeline = newPipe;
             System.out.println("Changed Pipeline to " + newPipe);
         }
-    }
+
     public void setPipeline(Constants.Pipeline pipeline) {
         setPipeline(pipeline.getPipelineNumber());
     }

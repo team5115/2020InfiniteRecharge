@@ -14,9 +14,9 @@ public class Constants{
     public static final double startY = 120;
     public static final int startingAngle = -45; //90 is looking away from the driver stations.
 
-    public static final double AUTO_MAX_THROTTLE = 0.5;
+    public static final double AUTO_MAX_THROTTLE = 0.3;
     public static final double AUTO_CAMERA_HEIGHT = 14.5; //units: inches.
-    public static final double AUTO_CAMERA_ANGLE = 20; //units: degrees.
+    public static final double AUTO_CAMERA_ANGLE = 5; //units: degrees.
     public static final double AUTO_SHOOTIN_DISTANCE = 120; //units: inches. todome update
     public static final double AUTO_HIGH_GOAL_HEIGHT = 90; //units: inches.
 
@@ -27,11 +27,11 @@ public class Constants{
     public static final byte BACK_RIGHT_MOTOR_ID = 4;
 
     public static final int INTAKE_MOTOR_ID = 5;
-    public static final int SHOOTER_MOTOR_ID = 8;
+    public static final int SHOOTER_MOTOR_ID = 7;
     public static final int SCISSOR_MOTOR_ID = 9;
     public static final int WINCH_MOTOR_ID = 10;
     public static final int FEEDER_MOTOR_ID = 6;
-    public static final int ACCELERATOR_MOTOR_ID = 7;
+    public static final int ACCELERATOR_MOTOR_ID = 8;
 
 
     public static final byte INTAKE_BUTTON_ID = 1;
@@ -40,8 +40,9 @@ public class Constants{
     public static final byte CLIMBER_UP_BUTTON_ID = 4;
     public static final byte AUTO_TURN_AND_MOVE_BUTTON_ID = 5;
     public static final byte SHOOTER_BUTTON_ID = 6;
-    public static final byte RESET_BALL_COUNT = 10;
+    public static final byte AUTO_BALL_TARCKING = 7;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
+
 
     //Speed constants for subsystems.
     public static final int kPIDLoopIdx = 0;

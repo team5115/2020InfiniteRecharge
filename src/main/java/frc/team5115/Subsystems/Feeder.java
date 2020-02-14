@@ -14,8 +14,7 @@ public class Feeder extends SubsystemBase implements Loggable {
     VictorSPX feeder_m;
     double feedspeed = -0.8;
     private final ColorSensorV3 m_colorSensor = new ColorSensorV3( I2C.Port.kOnboard );
-    int lowerIRBound = 134;
-    int higherIRBound = 150;
+    int higherIRBound = 200;
 
     int ballCount = 0;
     boolean ballDetected = false;
@@ -41,7 +40,7 @@ public class Feeder extends SubsystemBase implements Loggable {
         increment = false;
 
         System.out.println("ballCount = " + ballCount);
-        if (getProximityRange()) {
+        if (isBall()) {
             feeder_m.set(ControlMode.PercentOutput, feedspeed);
             ballDetected = true;
             increment = true;
@@ -71,12 +70,12 @@ public class Feeder extends SubsystemBase implements Loggable {
     }
 
     @Log
-    public boolean getProximityRange () {
-        return ((getProximity() >= lowerIRBound) && (getProximity() <= higherIRBound));
+    public boolean isBall() {
+        return getProximity() > higherIRBound;
     }
 
     public void incrementBallCount() {
-        if (getProximityRange() && ballDetected) {
+        if (isBall() && ballDetected) {
             ballCount++;
         }
         ballDetected = !ballDetected;

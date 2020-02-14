@@ -65,7 +65,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
         leftSpd = (x + y) * throttle;
         rightSpd = (x - y) * throttle;
-
+        System.out.println("rightSpd = " + rightSpd);
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
@@ -76,7 +76,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     public void XBoxDrive(Joystick joy) {
         double x = joy.getRawAxis(XBOX_X_AXIS_ID);
         double y = -joy.getRawAxis(XBOX_Y_AXIS_ID);
-        System.out.println("y = " + y);
+
         double throttle1 = joy.getRawAxis(XBOX_THROTTLE_1_ID);
         double throttle2 = joy.getRawAxis(XBOX_THROTTLE_2_ID);
 
@@ -87,11 +87,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         throttle = ((1 - MIN_XBOX_THROTTLE) * throttle) + MIN_XBOX_THROTTLE;
         //new Throttle is now max 1 and min 0.2
         //System.out.println("throttle = " + throttle);
-        x *= 0.5;
-        y *= 0.4;
         //drive(x,y,throttle);
 
-        System.out.println("Remove me if working!");
         driveByWire(x, y, throttle);
     }
 
@@ -105,7 +102,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     @Override
-    public void resetTargetAngle() { //set the current target angle to where we currently are.
+    public void resetTargetAngle() { //set the current txarget angle to where we currently are.
         targetAngle = locationator.getAngle();
         System.out.println("RESET RBW: Target Angle: " + targetAngle + " Current Angle: " + locationator.getAngle());
     }
@@ -115,7 +112,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     public void relativeAngleHold(double targetAngle, double y) {
         this.targetAngle = targetAngle;
-        double kP = 0.025;
         double kI = 0.0;
         double kD = 0.1;
         double currentAngle = 0;
@@ -128,7 +124,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
         double output = P + I + D;
         output = clamp(output, 0.5);
-
 //        System.out.println("P = " + P);
 //        System.out.println("I = " + I);
 //        System.out.println("D = " + D);
@@ -136,13 +131,11 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         this.drive(-output, y, 1);
         lastAngle = currentAngle;
     }
-
-
+    double kP = 0.1;
     public void angleHold(double targetAngle, double y, double throttle) {
         this.targetAngle = targetAngle;
-        double kP = 0.025;
         double kI = 0.0;
-        double kD = 0.1;// Hey if you are implementing a d part, use the navx.getRate
+        double kD = .1;// Hey if you are implementing a d part, use the navx.getRate
         double currentAngle = locationator.getAngle();
 //        System.out.println("currentAngle = " + currentAngle);
 //        System.out.println("lastAngle = " + lastAngle);
@@ -150,9 +143,10 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         if (P < 0.2 && P > -0.2) {
             I = I + (P * kI);
         }
+        P *= (1.5-Math.abs(y));
+
         double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
         double output = P + I + D;
-        output = clamp(output, 0.5);
 //        System.out.println("P = " + P);
 //        System.out.println("I = " + I);
 //        System.out.println("D = " + D);
@@ -166,10 +160,9 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     public void driveByWire(double x, double y, double throttle) { //rotate by wire
-        System.out.println("x = " + x);
-        System.out.println("throttle = " + throttle);
         if (Math.abs(x) < XBOX_X_DEADZONE) x = 0;
-        targetAngle += x * 2.5; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
+        targetAngle += x; //at 50 ticks a second, this is 50 degrees a second because the max x is 1.
+
         if (Math.abs(targetAngle - locationator.getAngle()) > 30) {
             targetAngle = locationator.getAngle();
         }

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Commands.Shooter.AssistedShootHighGoal;
@@ -41,7 +42,7 @@ public class RobotContainer {
 
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
         new JoystickButton(joy, AUTO_TURN_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
-        //new JoystickButton(joy, AUTO_GET_BALL_BUTTON).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, joy));
+        new JoystickButton(joy, AUTO_BALL_TARCKING).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, feeder));
         new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new InstantCommand(shooter::shoot)).whenReleased(new InstantCommand(shooter::stopShoot));
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorUp)).whenReleased(new InstantCommand(climber::StopClimb));
         new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID).whenHeld(
@@ -54,7 +55,7 @@ public class RobotContainer {
                         new InstantCommand(intake::driverIntake)
                                 .alongWith(new InstantCommand(feeder::moveCells)))
                 .whenReleased(
-                        new InstantCommand(intake::inhale)
+                        new InstantCommand(intake::stopIntake)
                                 .alongWith(new InstantCommand(feeder::stopCells)));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
@@ -74,9 +75,9 @@ public class RobotContainer {
         @Override
         public void execute() {
             if(USING_XBOX) {
-                //drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 0.35);
+                drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), -joystick.getRawAxis(XBOX_Y_AXIS_ID), 1);
 
-                drivetrain.XBoxDrive(joystick);
+                //drivetrain.XBoxDrive(joystick);
             } else {
                 drivetrain.drive(
                         joystick.getRawAxis(JOYSTICK_X_AXIS_ID) / 2,

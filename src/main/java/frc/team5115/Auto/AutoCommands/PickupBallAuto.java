@@ -40,13 +40,16 @@ public class PickupBallAuto extends CommandBase {
     double lastAngle;
     @Override
     public void execute() {
+        limelight.setPipeline(Pipeline.Balls);
+        System.out.println("working");
         double angle;
-        if (limelight.hasTarget() && limelight.getYAngle() + AUTO_CAMERA_ANGLE < 0) { // if we have a target
+        if (limelight.hasTarget()) { // if we have a target
+            System.out.println("Have target");
             angle = limelight.getXAngle() + locationator.getAngle();
             foundBall = true;
             lastAngle = angle;
         } else {
-            System.out.println("Can't find a ball.");
+
             if(foundBall) //if we have found that shit before, go there.
                 drivetrain.angleHold(lastAngle, AUTO_MAX_THROTTLE);
             else
@@ -68,6 +71,6 @@ public class PickupBallAuto extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return feeder.getProximityRange();
+        return false;//feeder.isBall();
     } //todome make this from the intake sensor math.
 }
