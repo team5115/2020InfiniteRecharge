@@ -45,10 +45,12 @@ public class RobotContainer {
         new JoystickButton(joy, AUTO_BALL_TARCKING).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, feeder));
         new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new InstantCommand(shooter::shoot)).whenReleased(new InstantCommand(shooter::stopShoot));
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorUp)).whenReleased(new InstantCommand(climber::StopClimb));
-        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID).whenHeld(
-                new InstantCommand(climber::ScissorDown)
-                        .alongWith(new InstantCommand(climber::WinchDown)))
-                .whenReleased(new InstantCommand(climber::StopClimb));
+//        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID).whenHeld(
+//                new InstantCommand(climber::ScissorDown)
+//                        .alongWith(new InstantCommand(climber::WinchDown)))
+//                .whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorDown));
+        new JoystickButton(joy, INTAKE_PURGE_BUTTON_ID).whenHeld(new InstantCommand(climber::WinchDown));
 
         new JoystickButton(joy, INTAKE_BUTTON_ID)
                 .whenHeld(

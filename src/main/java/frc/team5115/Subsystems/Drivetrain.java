@@ -62,10 +62,11 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //called lots of times per seconds.
         //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //Math.sqrt(3.4* Math.log(x + y + 1));
-
+        //todome
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
         leftSpd = (x + y) * throttle;
         rightSpd = (x - y) * throttle;
-        System.out.println("rightSpd = " + rightSpd);
 //        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
 //        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
