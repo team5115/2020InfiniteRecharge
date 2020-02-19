@@ -1,36 +1,27 @@
 package frc.team5115.Auto.AutoCommands;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.team5115.Constants;
 import frc.team5115.Subsystems.Drivetrain;
+import frc.team5115.Subsystems.Feeder;
 import frc.team5115.Subsystems.Limelight;
 import frc.team5115.Subsystems.Locationator;
 
-import static frc.team5115.Constants.MAX_AUTO_THROTTLE;
+import static frc.team5115.Constants.*;
 
 public class PickupBallAuto extends CommandBase {
 
     Drivetrain drivetrain;
     Locationator locationator;
     Limelight limelight;
-    private final Joystick joystick;
+    Feeder feeder;
     boolean foundBall;
 
-    public PickupBallAuto(Drivetrain drivetrain, Locationator locationator, Limelight limelight, Joystick joystick) {
-        this.drivetrain = drivetrain;
-        this.locationator = locationator;
-        this.limelight = limelight;
-        this.joystick = joystick;
-        foundBall = false;
-    }
 
-    public PickupBallAuto(Drivetrain drivetrain, Locationator locationator, Limelight limelight) {
+    public PickupBallAuto(Drivetrain drivetrain, Locationator locationator, Limelight limelight, Feeder feeder) {
         this.drivetrain = drivetrain;
         this.locationator = locationator;
         this.limelight = limelight;
-        joystick = null;
+        this.feeder = feeder;
         foundBall = false;
     }
     /*
@@ -40,7 +31,7 @@ public class PickupBallAuto extends CommandBase {
 
     @Override
     public void initialize() {
-        limelight.setPipeline(Constants.Pipeline.CustomGripPipeline);
+        limelight.setPipeline(Pipeline.Balls);
         drivetrain.stop();
     }
     /*on loop:
@@ -49,44 +40,37 @@ public class PickupBallAuto extends CommandBase {
     double lastAngle;
     @Override
     public void execute() {
+        limelight.setPipeline(Pipeline.Balls);
+        System.out.println("working");
         double angle;
-        if (limelight.hasTarget() && limelight.getYAngle() + Constants.CAMERA_ANGLE < 0) { // if we have a target
+        if (limelight.hasTarget()) { // if we have a target
+            System.out.println("Have target");
             angle = limelight.getXAngle() + locationator.getAngle();
             foundBall = true;
             lastAngle = angle;
         } else {
-            System.out.println("Can't find a ball.");
+
             if(foundBall) //if we have found that shit before, go there.
-                drivetrain.angleHold(lastAngle, MAX_AUTO_THROTTLE);
+                drivetrain.angleHold(lastAngle, AUTO_MAX_THROTTLE);
             else
                 drivetrain.stop();
             return;
         }
-        boolean targetForDistance = false;
+
         //true means it rolls after it. It will stop if it stops. False means it just goes at a constant speed.
-        double throttle;
-        if(targetForDistance) {
-            double distanceFromBall = limelight.calculateDistanceFromBall();
-            throttle = -(30 - limelight.calculateDistanceFromBase())
-                    / 30;
-        }else {
-            throttle = MAX_AUTO_THROTTLE;
-        }
+        double throttle = AUTO_MAX_THROTTLE;
         System.out.println("throttle = " + throttle);
-        throttle = Drivetrain.clamp(throttle, MAX_AUTO_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
         //throttle = 0;
         drivetrain.angleHold(angle, throttle);
     }
 
     @Override
     public void end(boolean interrupted) {
-        if (interrupted) System.out.println("Error: Interrupted");
-        System.out.println("Done!");
         drivetrain.stop();
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return false;//feeder.isBall();
     } //todome make this from the intake sensor math.
 }
