@@ -34,14 +34,16 @@ public class Constants{
     public static final int ACCELERATOR_MOTOR_ID = 8;
 
 
+
     public static final byte INTAKE_BUTTON_ID = 1;
-    public static final byte INTAKE_PURGE_BUTTON_ID = 2;
-    public static final byte CLIMBER_DOWN_BUTTON_ID = 3;
+    public static final byte WINCH_DOWN_BUTTON_ID = 2;
+    public static final byte SCISSORS_DOWN_BUTTON_ID = 3;
     public static final byte CLIMBER_UP_BUTTON_ID = 4;
     public static final byte AUTO_TURN_AND_MOVE_BUTTON_ID = 5;
     public static final byte SHOOTER_BUTTON_ID = 6;
     public static final byte AUTO_BALL_TARCKING = 7;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
+    public static final byte WINCH_RELEASE_BUTTON_ID = 9;
 
 
     //Speed constants for subsystems.
