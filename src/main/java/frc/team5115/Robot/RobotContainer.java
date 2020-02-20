@@ -40,30 +40,48 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
 
-        new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID).whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
+        new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
+                .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 
-        new JoystickButton(joy, AUTO_TURN_BUTTON_ID).whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
+        new JoystickButton(joy, AUTO_TURN_BUTTON_ID)
+                .whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
 
         //new JoystickButton(joy, AUTO_BALL_TRACKING).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, feeder));
 
         //new JoystickButton(joy, GRANNY_MODE_BUTTON_ID).whenPressed(new InstantCommand(drivetrain::toggleSpeed));
 
-        new JoystickButton(joy, SHOOTER_BUTTON_ID).whenHeld(new InstantCommand(shooter::shoot));
-        //.whenReleased(new InstantCommand(shooter::stopShoot));
+        new JoystickButton(joy, SHOOTER_BUTTON_ID)
+                .whenHeld(new InstantCommand(shooter::shoot)
+                    .alongWith(new InstantCommand(feeder::moveCells)))
+                .whenReleased(new InstantCommand(shooter::stopShoot)
+                    .alongWith(new InstantCommand(feeder::stopCells)));
 
-        new JoystickButton(joy, CLIMBER_UP_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorUp));
-        //.whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::ScissorUp))
+                .whenReleased(new InstantCommand(climber::StopClimb));
 
-        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID).whenHeld(new InstantCommand(climber::ScissorDown).alongWith(new InstantCommand(climber::WinchDown)));
+        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::ScissorDown)
+                    .alongWith(new InstantCommand(climber::WinchDown)))
+                .whenReleased(new InstantCommand(climber::StopClimb));
 
-        new JoystickButton(joy, INTAKE_EXCRETE_BUTTON_ID).whenHeld(new InstantCommand(intake::spitout));
+        new JoystickButton(joy, INTAKE_EXCRETE_BUTTON_ID)
+                .whenHeld(new InstantCommand(intake::spitout))
+                .whenReleased(new InstantCommand(intake::stopIntake));
 
-        new JoystickButton(joy, INTAKE_BUTTON_ID).whenHeld(new InstantCommand(intake::driverIntake).alongWith(new InstantCommand(feeder::moveCells)));
-        //.whenReleased(new InstantCommand(intake::stopIntake).alongWith(new InstantCommand(feeder::stopCells)));
+        new JoystickButton(joy, INTAKE_BUTTON_ID)
+                .whenHeld(new InstantCommand(intake::driverIntake)
+                    .alongWith(new InstantCommand(feeder::moveCells)))
+                .whenReleased(new InstantCommand(intake::stopIntake)
+                    .alongWith(new InstantCommand(feeder::stopCells)));
 
-        new JoystickButton(joy, WINCH_DOWN_BUTTON_ID).whenHeld(new InstantCommand(climber::WinchDown)).whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, WINCH_DOWN_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::WinchDown))
+                .whenReleased(new InstantCommand(climber::StopClimb));
 
-        new JoystickButton(joy, WINCH_FORWARD_BUTTON_ID).whenHeld(new InstantCommand(climber::WinchForward)).whenReleased(new InstantCommand(climber::StopClimb));
+        new JoystickButton(joy, WINCH_FORWARD_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::WinchForward))
+                .whenReleased(new InstantCommand(climber::StopClimb));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }

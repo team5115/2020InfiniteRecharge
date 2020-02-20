@@ -9,10 +9,12 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
 import static frc.team5115.Constants.*;
 
-public class Drivetrain extends SubsystemBase implements DriveBase {
+public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private Locationator locationator;
 
     //instances of the speed controllers
@@ -20,6 +22,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     private VictorSPX frontRight;
     private TalonSRX backLeft;
     private TalonSRX backRight;
+
+    private Log.PDP pdp;
 
     Servo servo;
 
