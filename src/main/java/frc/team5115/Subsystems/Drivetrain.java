@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
@@ -20,6 +21,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
+    Servo servo;
+
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
 
     private double rightSpd;
@@ -28,6 +31,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
+        servo = new Servo(1);
         locationator = x.locationator;
 
         frontLeft = new VictorSPX(FRONT_LEFT_MOTOR_ID);
@@ -68,6 +72,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         frontRight.set(ControlMode.PercentOutput, rightSpd);
         backLeft.set(ControlMode.PercentOutput, leftSpd);
         backRight.set(ControlMode.PercentOutput, rightSpd);
+        servo.setAngle(85 - (15*getSpeedFeetPerSecond()));
     }
 
     public void XBoxDrive(Joystick joy) {
