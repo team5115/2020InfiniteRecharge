@@ -9,6 +9,7 @@ import frc.team5115.Auto.AutoCommands.PickupBallAuto;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
+import frc.team5115.Commands.Groups.ClimberUp;
 import frc.team5115.Subsystems.*;
 
 import static frc.team5115.Constants.*;
@@ -57,7 +58,7 @@ public class RobotContainer {
                     .alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::ScissorUp))
+                .whenHeld(new ClimberUp(climber, drivetrain))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID)

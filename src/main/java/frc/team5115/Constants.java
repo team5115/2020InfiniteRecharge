@@ -57,6 +57,8 @@ public class Constants{
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
 
+    public static final int POINTING_UP = 120;
+
     //controller stuff.
     public static boolean USING_XBOX = true;
     //Joystick

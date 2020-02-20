@@ -23,8 +23,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
-    private Log.PDP pdp;
-
     Servo servo;
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
@@ -76,7 +74,15 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         frontRight.set(ControlMode.PercentOutput, rightSpd);
         backLeft.set(ControlMode.PercentOutput, leftSpd);
         backRight.set(ControlMode.PercentOutput, rightSpd);
+        setAngle();
+    }
+
+    public void setAngle() {
         servo.setAngle(85 - (15*getSpeedFeetPerSecond()));
+    }
+
+    public void setAngleClimbing() {
+        servo.setAngle(POINTING_UP);
     }
 
     public void XBoxDrive(Joystick joy) {
