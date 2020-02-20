@@ -1,4 +1,4 @@
-package frc.team5115.Commands.Shooter;
+package frc.team5115.Auto.AutoCommands;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;

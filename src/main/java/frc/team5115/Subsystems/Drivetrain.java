@@ -1,22 +1,19 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
-import frc.team5115.Robot.Robot;
 import frc.team5115.Robot.RobotContainer;
-;
 
 import static frc.team5115.Constants.*;
 
 public class Drivetrain extends SubsystemBase implements DriveBase {
     private Locationator locationator;
+
     //instances of the speed controllers
     private VictorSPX frontLeft;
     private VictorSPX frontRight;
@@ -38,10 +35,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
 
-        backRight.setInverted(true);
-
-        frontLeft.set(ControlMode.Follower, backLeft.getDeviceID());
-        frontRight.set(ControlMode.Follower, backRight.getDeviceID());
+        //backRight.setInverted(true);
 
         //back motors are master
 
@@ -65,13 +59,15 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
         //todome
         //System.out.println("x = " + x);
         //System.out.println("y = " + y);
-        leftSpd = (x + y) * throttle;
-        rightSpd = (x - y) * throttle;
-//        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
-//        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
+        leftSpd = (x-y) * throttle;
+        rightSpd = (x+y) * throttle;
+        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
+        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
+        frontLeft.set(ControlMode.PercentOutput, leftSpd);
+        frontRight.set(ControlMode.PercentOutput, rightSpd);
         backLeft.set(ControlMode.PercentOutput, leftSpd);
-        backRight.set(ControlMode.PercentOutput, -rightSpd);
+        backRight.set(ControlMode.PercentOutput, rightSpd);
     }
 
     public void XBoxDrive(Joystick joy) {
@@ -109,7 +105,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase {
     }
 
     double I = 0;
-    double lastAngle = 0;
+    double lastAngle;
 
     public void relativeAngleHold(double targetAngle, double y) {
         this.targetAngle = targetAngle;
