@@ -116,6 +116,6 @@ public class RobotContainer {
 
     public void startTeleop() {
         //bind the wheels.
-        System.out.println("Starting teleop");
+        System.out.println("Starting teleop: " + VERSION);
     }
 }

@@ -2,6 +2,7 @@ package frc.team5115;
 
 public class Constants{
 
+    public static final String VERSION = "v1.2";
 
     //speed stuff
     public static final boolean KID_MODE = false;
