@@ -58,12 +58,11 @@ public class RobotContainer {
                     .alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
-                .whenHeld(new ClimberUp(climber, drivetrain))
+                .whenHeld(new InstantCommand(climber::ScissorUp))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::ScissorDown)
-                    .alongWith(new InstantCommand(climber::WinchDown)))
+                .whenHeld(new InstantCommand(climber::ScissorDown))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, INTAKE_EXCRETE_BUTTON_ID)

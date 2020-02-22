@@ -34,7 +34,8 @@ public class Constants{
     public static final int FEEDER_MOTOR_ID = 6;
     public static final int ACCELERATOR_MOTOR_ID = 8;
 
-
+    public static final int UPPER_LIMIT_ID = 1;
+    public static final int LOWER_LIMIT_ID = 2;
 
     public static final byte INTAKE_BUTTON_ID = 1;
     public static final byte INTAKE_EXCRETE_BUTTON_ID = 2;

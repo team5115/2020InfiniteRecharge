@@ -87,7 +87,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     public void XBoxDrive(Joystick joy) {
         double x = joy.getRawAxis(XBOX_X_AXIS_ID);
-        double y = -joy.getRawAxis(XBOX_Y_AXIS_ID);
+        double y = joy.getRawAxis(XBOX_Y_AXIS_ID);
 
         double throttle1 = joy.getRawAxis(XBOX_THROTTLE_1_ID);
         double throttle2 = joy.getRawAxis(XBOX_THROTTLE_2_ID);
@@ -143,7 +143,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         this.drive(-output, y, 1);
         lastAngle = currentAngle;
     }
-    double kP = 0.1;
+    double kP = 0.075;
     public void angleHold(double targetAngle, double y, double throttle) {
         this.targetAngle = targetAngle;
         double kI = 0.0;
@@ -155,7 +155,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         if (P < 0.2 && P > -0.2) {
             I = I + (P * kI);
         }
-        P *= (1.5-Math.abs(y));
+        //P *= (1.5-Math.abs(y));
 
         double D = -kD * (lastAngle - currentAngle); //finds the difference in the last tick.
         double output = P + I + D;
