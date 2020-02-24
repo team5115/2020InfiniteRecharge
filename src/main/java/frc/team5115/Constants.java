@@ -45,8 +45,6 @@ public class Constants{
     public static final byte CLIMBER_UP_BUTTON_ID = 4;
     public static final byte AUTO_TURN_AND_MOVE_BUTTON_ID = 5;
     public static final byte SHOOTER_BUTTON_ID = 6;
-    public static final byte AUTO_BALL_TRACKING = 7;
-    public static final byte GRANNY_MODE_BUTTON_ID = 7;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
     public static final byte WINCH_DOWN_BUTTON_ID = 9;
     public static final int WINCH_FORWARD_BUTTON_ID = 10;

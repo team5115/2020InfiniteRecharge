@@ -82,14 +82,6 @@ public class RobotContainer {
                 .whenReleased(new InstantCommand(intake::stopIntake)
                     .alongWith(new InstantCommand(feeder::stopCells)));
 
-        new JoystickButton(joy, WINCH_DOWN_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::WinchDown))
-                .whenReleased(new InstantCommand(climber::StopClimb));
-
-        new JoystickButton(joy, WINCH_FORWARD_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::WinchUp))
-                .whenReleased(new InstantCommand(climber::StopClimb));
-
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }
 
