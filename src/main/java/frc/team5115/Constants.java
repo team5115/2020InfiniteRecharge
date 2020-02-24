@@ -2,7 +2,7 @@ package frc.team5115;
 
 public class Constants{
 
-    public static final String VERSION = "v1.2";
+    public static final String VERSION = "v2.1";
 
     //speed stuff
     public static final boolean KID_MODE = false;
@@ -10,9 +10,11 @@ public class Constants{
     public static final double NORMAL_MODE_MAX_SPEED = 0.6;
     public static final double MIN_XBOX_THROTTLE = 0.25;
 
+    public static final double XBOX_DEADBAND = .16;
+
     //autonomous stuff
     public static final StartingConfiguration startingConfiguration = StartingConfiguration.Middle;
-    public static final double startY = 120;
+    public static final double startY = 100;
     public static final int startingAngle = -45; //90 is looking away from the driver stations.
 
     public static final double AUTO_MAX_THROTTLE = 0.3;
@@ -49,6 +51,8 @@ public class Constants{
     public static final byte WINCH_DOWN_BUTTON_ID = 9;
     public static final int WINCH_FORWARD_BUTTON_ID = 10;
 
+    public static final int WINCH_DOWN_BUTTON_ANGLE = 0;
+    public static final int WINCH_UP_BUTTON_ANGLE = 180;
 
     //Speed constants for subsystems.
     public static final int kPIDLoopIdx = 0;
@@ -58,7 +62,7 @@ public class Constants{
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
 
-    public static final int POINTING_UP = 120;
+    public static final int POINTING_UP = 90;
 
     //controller stuff.
     public static boolean USING_XBOX = true;

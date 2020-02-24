@@ -25,27 +25,33 @@ public class Climber extends SubsystemBase {
         lower = new DigitalInput(LOWER_LIMIT_ID);
 
         setDefaultCommand(new StopClimb(this).perpetually());
+        print();
     }
 
     public void ScissorUp(){
-        scissor.set(ControlMode.PercentOutput, 1);
+        scissor.set(ControlMode.PercentOutput, upper.get() ? 1 : 0);
     }
 
     public void ScissorDown(){
-        scissor.set(ControlMode.PercentOutput, -1);
+        scissor.set(ControlMode.PercentOutput, lower.get() ? -.25 : 0);
     }
 
     public void WinchDown(){
         winch.set(ControlMode.PercentOutput, -climbspeed);
     }
 
-    public void WinchForward() {
+    public void WinchUp() {
         winch.set(ControlMode.PercentOutput, climbspeed);
     }
 
     public void StopClimb() {
         scissor.set(ControlMode.PercentOutput, 0);
         winch.set(ControlMode.PercentOutput, 0);
+    }
+
+    public void print() {
+        System.out.println("upper.get() = " + upper.get());
+        System.out.println("lower.get() = " + lower.get());
     }
 
 }

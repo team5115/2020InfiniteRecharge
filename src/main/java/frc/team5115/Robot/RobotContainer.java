@@ -1,15 +1,12 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.team5115.Auto.AutoCommands.PickupBallAuto;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
-import frc.team5115.Commands.Groups.ClimberUp;
 import frc.team5115.Subsystems.*;
 
 import static frc.team5115.Constants.*;
@@ -51,6 +48,14 @@ public class RobotContainer {
 
         //new JoystickButton(joy, GRANNY_MODE_BUTTON_ID).whenPressed(new InstantCommand(drivetrain::toggleSpeed));
 
+        new POVButton(joy, WINCH_DOWN_BUTTON_ANGLE)
+                .whenHeld(new InstantCommand(climber::WinchDown))
+                .whenReleased(new InstantCommand(climber::StopClimb));
+
+        new POVButton(joy, WINCH_UP_BUTTON_ANGLE)
+                .whenHeld(new InstantCommand(climber::WinchUp))
+                .whenReleased(new InstantCommand(climber::StopClimb));
+
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
                 .whenHeld(new InstantCommand(shooter::shoot)
                     .alongWith(new InstantCommand(feeder::moveCells)))
@@ -58,11 +63,13 @@ public class RobotContainer {
                     .alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::ScissorUp))
+                .whenHeld(new InstantCommand(climber::ScissorUp)
+                    .alongWith(new InstantCommand(climber::print)))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::ScissorDown))
+                .whenHeld(new InstantCommand(climber::ScissorDown)
+                    .alongWith(new InstantCommand(climber::print)))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, INTAKE_EXCRETE_BUTTON_ID)
@@ -80,7 +87,7 @@ public class RobotContainer {
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, WINCH_FORWARD_BUTTON_ID)
-                .whenHeld(new InstantCommand(climber::WinchForward))
+                .whenHeld(new InstantCommand(climber::WinchUp))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
@@ -99,7 +106,7 @@ public class RobotContainer {
 
         @Override
         public void execute() {
-            drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), .7);
+            drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), 1);
             //drivetrain.XBoxDrive(joystick);
         }
     }

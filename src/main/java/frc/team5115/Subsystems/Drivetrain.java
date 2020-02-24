@@ -74,7 +74,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         frontRight.set(ControlMode.PercentOutput, rightSpd);
         backLeft.set(ControlMode.PercentOutput, leftSpd);
         backRight.set(ControlMode.PercentOutput, rightSpd);
-        setAngle();
+        //setAngle();
     }
 
     public void setAngle() {
@@ -168,7 +168,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     }
 
     public void angleHold(double targetAngle, double y) {
-        this.angleHold(targetAngle, y, 1);
+        this.angleHold(targetAngle, y, .7);
     }
 
     public void driveByWire(double x, double y, double throttle) { //rotate by wire
@@ -186,8 +186,9 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         System.out.println("frontRight: " + frontRight.getSelectedSensorPosition());
         System.out.println("backLeft: " + backLeft.getSelectedSensorPosition());
         System.out.println("backRight: " + backRight.getSelectedSensorPosition());
-
     }
+
+
 
     @Override
     public double getSpeedInchesPerSecond() {

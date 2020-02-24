@@ -1,6 +1,8 @@
 package frc.team5115.Auto;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.team5115.Auto.AutoCommands.DriveDistance;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Constants;
 import frc.team5115.Subsystems.Drivetrain;
@@ -16,17 +18,15 @@ public class AutoSeries extends SequentialCommandGroup {
 
         final Loc2D overLineLocation = new Loc2D(
                 locationator.getCurrentLocation().getX(),  //goes strait forward.
-                120);
+                90);
         final Loc2D afterShootLocation = locationator.getCurrentLocation();
         //addCommands((new RunCommand(limelight::debug).alongWith( //note this removes the other commands from ever being added. Make sure to format the 'along with' to make them run concurrently.
 
 
         //These commands do a basic auto series.
         addCommands(
-                new ShootHighGoal(drivetrain,
-                        locationator,
-                        shooter,
-                        limelight)
+                new DriveDistance(overLineLocation, drivetrain, locationator).alongWith(new InstantCommand(shooter::shoot))
+                //new ShootHighGoal(drivetrain, locationator, shooter, limelight)
                 //new PickupBallAuto(drivetrain,locationator,limelight)
         );
     }

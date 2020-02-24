@@ -29,9 +29,11 @@ public class Locationator implements Subsystem {
 
     public Locationator(RobotContainer x, StartingConfiguration startingConfiguration, double startAngle) {
 
-        this(x,
+        this(
+                x,
                 new Loc2D(startingConfiguration.getX(), startY),
-                startAngle);
+                startAngle
+        );
     }
 
     /**
