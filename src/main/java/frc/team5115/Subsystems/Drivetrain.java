@@ -67,14 +67,15 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         //System.out.println("y = " + y);
         leftSpd = (x-y) * throttle;
         rightSpd = (x+y) * throttle;
-        System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
-        System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
+        //System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
+        //System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
         frontLeft.set(ControlMode.PercentOutput, leftSpd);
         frontRight.set(ControlMode.PercentOutput, rightSpd);
         backLeft.set(ControlMode.PercentOutput, leftSpd);
         backRight.set(ControlMode.PercentOutput, rightSpd);
-        //setAngle();
+
+        //System.out.println("servo.get() = " + servo.get());
     }
 
     public void setAngle() {

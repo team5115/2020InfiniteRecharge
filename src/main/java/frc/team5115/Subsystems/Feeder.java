@@ -39,6 +39,9 @@ public class Feeder extends SubsystemBase implements Loggable {
     public void moveCellsFancy(){
         increment = false;
 
+        System.out.println("m_colorSensor.getProximity() = " + m_colorSensor.getProximity());
+        System.out.println("m_colorSensor.getColor() = " + m_colorSensor.getIR());
+
         System.out.println("ballCount = " + ballCount);
         if (isBall()) {
             feeder_m.set(ControlMode.PercentOutput, feedspeed);
@@ -66,6 +69,7 @@ public class Feeder extends SubsystemBase implements Loggable {
     @Log
     public int getProximity (){
         System.out.println("m_colorSensor.getProximity() = " + m_colorSensor.getProximity());
+        System.out.println("m_colorSensor.getColor() = " + m_colorSensor.getIR());
         return m_colorSensor.getProximity();
     }
 

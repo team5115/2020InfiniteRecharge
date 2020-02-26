@@ -18,12 +18,7 @@ public class FeedtheDemon extends CommandBase {
     public void execute() {
         //get sensor value
 
-        if(sensor){
-            feeder.moveCells();
-        }
-        else{
-            feeder.stopCells();
-        }
+
 
     }
 }

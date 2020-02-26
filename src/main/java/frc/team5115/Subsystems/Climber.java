@@ -2,6 +2,8 @@ package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Commands.Climber.StopClimb;
@@ -9,16 +11,18 @@ import frc.team5115.Commands.Climber.StopClimb;
 import static frc.team5115.Constants.*;
 
 public class Climber extends SubsystemBase {
-    TalonSRX winch;
+    CANSparkMax winch;
     TalonSRX scissor;
 
     DigitalInput upper;
     DigitalInput lower;
 
-    double climbspeed = -1;
+    double climbspeed = -.75;
 
     public Climber(){
-        winch = new TalonSRX(WINCH_MOTOR_ID);
+        winch = new CANSparkMax(WINCH_MOTOR_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
+        winch.restoreFactoryDefaults();
+
         scissor = new TalonSRX(SCISSOR_MOTOR_ID);
 
         upper = new DigitalInput(UPPER_LIMIT_ID);
@@ -37,16 +41,16 @@ public class Climber extends SubsystemBase {
     }
 
     public void WinchDown(){
-        winch.set(ControlMode.PercentOutput, -climbspeed);
+        winch.set(-climbspeed);
     }
 
     public void WinchUp() {
-        winch.set(ControlMode.PercentOutput, climbspeed);
+        winch.set(climbspeed);
     }
 
     public void StopClimb() {
         scissor.set(ControlMode.PercentOutput, 0);
-        winch.set(ControlMode.PercentOutput, 0);
+        winch.set(0);
     }
 
     public void print() {

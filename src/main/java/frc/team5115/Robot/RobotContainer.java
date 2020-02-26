@@ -34,10 +34,12 @@ public class RobotContainer {
         drivetrain = new Drivetrain(this);
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
         configureButtonBindings();
+        feeder.getProximity();
     }
 
     private void configureButtonBindings() {
-
+        new JoystickButton(joy, 15)
+                .toggleWhenPressed(new InstantCommand(feeder::getProximity));
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 

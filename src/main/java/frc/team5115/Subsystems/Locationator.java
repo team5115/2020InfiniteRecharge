@@ -54,14 +54,14 @@ public class Locationator implements Subsystem {
     }
 
     public void runTick() {
-        System.out.println("getAngle() = " + getAngle());
+        //System.out.println("getAngle() = " + getAngle());
         double forwardSpeed = x.drivetrain.getSpeedInchesPerSecond()/20;
         double deltaY = Math.sin(Math.toRadians(getAngle())) * forwardSpeed; //converts from M/s to inches/sec then * 0.02 seconds to get deltaInches.
         double deltaX = Math.cos(Math.toRadians(getAngle())) * forwardSpeed;
         currentLocation.deltaX(deltaX);
         currentLocation.deltaY(deltaY);
 
-        System.out.println("IMUCalC: CurrentAngle: " + (int) getAngle() + "|yLoc: " + (int) currentLocation.getY() + "|xLoc: " + (int) currentLocation.getX());
+        //System.out.println("IMUCalC: CurrentAngle: " + (int) getAngle() + "|yLoc: " + (int) currentLocation.getY() + "|xLoc: " + (int) currentLocation.getX());
         //System.out.println("Delta X: " + deltaX + "|Delta Y: " + deltaY);
         //System.out.println("YVelocity: " + forwardSpeed);
     }

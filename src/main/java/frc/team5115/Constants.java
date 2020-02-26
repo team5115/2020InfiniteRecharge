@@ -32,7 +32,7 @@ public class Constants{
     public static final int INTAKE_MOTOR_ID = 5;
     public static final int SHOOTER_MOTOR_ID = 7;
     public static final int SCISSOR_MOTOR_ID = 9;
-    public static final int WINCH_MOTOR_ID = 10;
+    public static final int WINCH_MOTOR_ID = 11;
     public static final int FEEDER_MOTOR_ID = 6;
     public static final int ACCELERATOR_MOTOR_ID = 8;
 
