@@ -62,6 +62,7 @@ public class Constants{
     public static final int FEEDER_PROXIMITY_BOUND = 200;
     public static final int SHOOTER_PROXIMITY_BOUND = 200;
     public static final int DRIVING_CAM_MAX_ANGLE = 95;
+    public static final int DRIVING_CAM_MIN_ANGLE = 55;
 
     //controller stuff.
     public static boolean USING_XBOX = true;

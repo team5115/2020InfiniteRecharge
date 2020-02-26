@@ -37,8 +37,6 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(joy, TEST_BUTTON_ID)
-                .whenHeld(new InstantCommand(drivetrain::isClimbing));
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 
@@ -54,7 +52,7 @@ public class RobotContainer {
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new POVButton(joy, WINCH_UP_BUTTON_ANGLE)
-                .whenHeld(new InstantCommand(climber::WinchUp))
+                .whenHeld(new InstantCommand(climber::WinchUp).alongWith(new InstantCommand(drivetrain::isClimbing)))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, SHOOTER_BUTTON_ID)

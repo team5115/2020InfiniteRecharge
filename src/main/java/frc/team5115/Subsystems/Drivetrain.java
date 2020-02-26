@@ -82,7 +82,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         if (!climbing) {
             double angleMath = 55 + (.4 * getSpeed());
             servo.setAngle(angleMath > DRIVING_CAM_MAX_ANGLE ? DRIVING_CAM_MAX_ANGLE :
-                           angleMath < 55 ? 55 : angleMath);
+                           angleMath < DRIVING_CAM_MIN_ANGLE ? DRIVING_CAM_MIN_ANGLE : angleMath);
         }
         else {
             setAngleClimbing();
