@@ -9,7 +9,7 @@ import frc.team5115.Subsystems.Limelight;
 import frc.team5115.Subsystems.Locationator;
 import frc.team5115.Subsystems.Shooter;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Configuration.Constants.*;
 
 
 public class FollowGreen extends SequentialCommandGroup {

@@ -9,7 +9,7 @@ import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Subsystems.*;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Configuration.Constants.*;
 
 public class RobotContainer {
 
@@ -34,12 +34,13 @@ public class RobotContainer {
         drivetrain = new Drivetrain(this);
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
         configureButtonBindings();
-        feeder.getProximity();
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(joy, 15)
-                .toggleWhenPressed(new InstantCommand(feeder::getProximity));
+        new JoystickButton(joy, TEST_BUTTON_ID)
+                .whenHeld(new InstantCommand(drivetrain::setAngleClimbing))
+                .whenReleased(new InstantCommand(drivetrain::setAngle));
+
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 
@@ -61,8 +62,7 @@ public class RobotContainer {
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
                 .whenHeld(new InstantCommand(shooter::shoot)
                     .alongWith(new InstantCommand(feeder::moveCells)))
-                .whenReleased(new InstantCommand(shooter::stopShoot)
-                    .alongWith(new InstantCommand(feeder::stopCells)));
+                .whenReleased(new InstantCommand(shooter::stopShoot));
 
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
                 .whenHeld(new InstantCommand(climber::ScissorUp)
@@ -79,10 +79,8 @@ public class RobotContainer {
                 .whenReleased(new InstantCommand(intake::stopIntake));
 
         new JoystickButton(joy, INTAKE_BUTTON_ID)
-                .whenHeld(new InstantCommand(intake::driverIntake)
-                    .alongWith(new InstantCommand(feeder::moveCells)))
-                .whenReleased(new InstantCommand(intake::stopIntake)
-                    .alongWith(new InstantCommand(feeder::stopCells)));
+                .whenHeld(new InstantCommand(intake::driverIntake))
+                .whenReleased(new InstantCommand(intake::stopIntake));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }

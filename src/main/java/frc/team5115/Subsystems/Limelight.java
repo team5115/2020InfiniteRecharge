@@ -3,15 +3,16 @@ package frc.team5115.Subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.team5115.Constants;
+import frc.team5115.Configuration.Constants;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Configuration.Constants.*;
 import static java.lang.Math.tan;
 import static java.lang.Math.toRadians;
 
 public class Limelight {
 
     NetworkTableEntry pipeline;
+    NetworkTableEntry stream;
     private NetworkTableEntry tx;
     private NetworkTableEntry ty;
     private NetworkTableEntry tv;
@@ -27,6 +28,9 @@ public class Limelight {
         pipeline = networkTableInstance.getEntry("pipeline");
         pipeline.setValue(2);
         setPipeline(Pipeline.GreenLedMode);
+
+        stream = networkTableInstance.getEntry("stream");
+        stream.setValue(1);
     }
 
     public double getXAngle() {

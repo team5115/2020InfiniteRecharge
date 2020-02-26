@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.team5115.Subsystems.Feeder;
 import io.github.oblarg.oblog.Logger;
 
-import static frc.team5115.Constants.startingConfiguration;
+import static frc.team5115.Configuration.Constants.startingConfiguration;
 
 
 public class Robot extends TimedRobot {

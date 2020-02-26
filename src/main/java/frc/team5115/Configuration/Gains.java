@@ -1,4 +1,4 @@
-package frc.team5115;
+package frc.team5115.Configuration;
 
 public class Gains {
     public final double kP;

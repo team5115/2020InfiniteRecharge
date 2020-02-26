@@ -5,8 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Commands.Shooter.NoShoot;
 
-import static frc.team5115.Constants.ACCELERATOR_MOTOR_ID;
-import static frc.team5115.Constants.SHOOTER_MOTOR_ID;
+import static frc.team5115.Configuration.Constants.ACCELERATOR_MOTOR_ID;
+import static frc.team5115.Configuration.Constants.SHOOTER_MOTOR_ID;
 
 public class Shooter extends SubsystemBase {
     TalonSRX shooter_m;

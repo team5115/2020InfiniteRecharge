@@ -1,8 +1,8 @@
-package frc.team5115;
+package frc.team5115.Configuration;
 
 public class Constants{
 
-    public static final String VERSION = "v2.1";
+    public static final String VERSION = "v3";
 
     //speed stuff
     public static final boolean KID_MODE = false;
@@ -36,9 +36,6 @@ public class Constants{
     public static final int FEEDER_MOTOR_ID = 6;
     public static final int ACCELERATOR_MOTOR_ID = 8;
 
-    public static final int UPPER_LIMIT_ID = 1;
-    public static final int LOWER_LIMIT_ID = 2;
-
     public static final byte INTAKE_BUTTON_ID = 1;
     public static final byte INTAKE_EXCRETE_BUTTON_ID = 2;
     public static final byte CLIMBER_DOWN_BUTTON_ID = 3;
@@ -46,8 +43,7 @@ public class Constants{
     public static final byte AUTO_TURN_AND_MOVE_BUTTON_ID = 5;
     public static final byte SHOOTER_BUTTON_ID = 6;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
-    public static final byte WINCH_DOWN_BUTTON_ID = 9;
-    public static final int WINCH_FORWARD_BUTTON_ID = 10;
+    public static final byte TEST_BUTTON_ID = 9;
 
     public static final int WINCH_DOWN_BUTTON_ANGLE = 0;
     public static final int WINCH_UP_BUTTON_ANGLE = 180;
@@ -59,8 +55,12 @@ public class Constants{
     public static final double FEEDER_STORE_SPEED = -0.4;
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
+    public static final double FEEDER_SPEED = -0.8;
 
-    public static final int POINTING_UP = 90;
+    public static final int POINTING_UP = 70;
+    public static final int FULL_CAPACITY = 5;
+    public static final int FEEDER_PROXIMITY_BOUND = 200;
+    public static final int SHOOTER_PROXIMITY_BOUND = 200;
 
     //controller stuff.
     public static boolean USING_XBOX = true;

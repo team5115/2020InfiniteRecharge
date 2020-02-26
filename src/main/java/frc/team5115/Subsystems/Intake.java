@@ -2,11 +2,9 @@ package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.team5115.Commands.Intake.IntakeBalls;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Configuration.Constants.*;
 
 public class Intake extends SubsystemBase {
     VictorSPX intake_m;

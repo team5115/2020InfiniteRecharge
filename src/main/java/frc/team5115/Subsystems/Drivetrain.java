@@ -10,9 +10,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Robot.RobotContainer;
 import io.github.oblarg.oblog.Loggable;
-import io.github.oblarg.oblog.annotations.Log;
 
-import static frc.team5115.Constants.*;
+import static frc.team5115.Configuration.Constants.*;
 
 public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private Locationator locationator;
@@ -50,6 +49,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         lastAngle = locationator.getAngle();
+        setAngle();
     }
 
     @Override
@@ -80,6 +80,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     public void setAngle() {
         servo.setAngle(85 - (15*getSpeedFeetPerSecond()));
+        System.out.println("servo.get() = " + servo.get());
     }
 
     public void setAngleClimbing() {

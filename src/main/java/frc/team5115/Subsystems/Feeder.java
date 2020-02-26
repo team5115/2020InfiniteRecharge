@@ -5,90 +5,66 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.team5115.Commands.Feeder.FeedtheDemon;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
-import static frc.team5115.Constants.FEEDER_MOTOR_ID;
+import static frc.team5115.Configuration.Constants.*;
 
 public class Feeder extends SubsystemBase implements Loggable {
-    VictorSPX feeder_m;
-    double feedspeed = -0.8;
-    private final ColorSensorV3 m_colorSensor = new ColorSensorV3( I2C.Port.kOnboard );
-    int higherIRBound = 200;
+    VictorSPX feeder;
+    ColorSensorV3 feederColorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+    ColorSensorV3 shooterColorSensor = new ColorSensorV3(I2C.Port.kMXP);
 
-    int ballCount = 0;
-    boolean ballDetected = false;
-    boolean increment = false;
+    int ballCount;
 
-    public void printDistanceValues() {
-        double proximity = m_colorSensor.getProximity();
-    }
-
-
-    // import rev robotics color sensor V3 package
-    // use getIR()?
+    boolean isBallFeeder;
+    boolean isBallShooter;
 
     public Feeder() {
-        feeder_m = new VictorSPX(FEEDER_MOTOR_ID);
+        feeder = new VictorSPX(FEEDER_MOTOR_ID);
+        setDefaultCommand(new FeedtheDemon(this).perpetually());
     }
 
     public void moveCells() {
-        feeder_m.set(ControlMode.PercentOutput, feedspeed);
-    }
-
-    public void moveCellsFancy(){
-        increment = false;
-
-        System.out.println("m_colorSensor.getProximity() = " + m_colorSensor.getProximity());
-        System.out.println("m_colorSensor.getColor() = " + m_colorSensor.getIR());
-
-        System.out.println("ballCount = " + ballCount);
-        if (isBall()) {
-            feeder_m.set(ControlMode.PercentOutput, feedspeed);
-            ballDetected = true;
-            increment = true;
-        }
-        else {
-            feeder_m.set(ControlMode.PercentOutput, 0);
-            ballDetected = false;
-        }
-
-        if (increment) {
-            ballCount += ballDetected ? 1 : 0;
-        }
+        feeder.set(ControlMode.PercentOutput, FEEDER_SPEED);
     }
 
     public void stopCells() {
-        feeder_m.set(ControlMode.PercentOutput, 0);
+        feeder.set(ControlMode.PercentOutput, 0);
     }
 
     public void spit() {
-        feeder_m.set(ControlMode.PercentOutput, -feedspeed);
+        feeder.set(ControlMode.PercentOutput, -FEEDER_SPEED);
     }
 
-    @Log
-    public int getProximity (){
-        System.out.println("m_colorSensor.getProximity() = " + m_colorSensor.getProximity());
-        System.out.println("m_colorSensor.getColor() = " + m_colorSensor.getIR());
-        return m_colorSensor.getProximity();
-    }
-
-    @Log
-    public boolean isBall() {
-        return getProximity() > higherIRBound;
+    public void updateBallCount() {
+        incrementBallCount();
+        decrementBallCount();
     }
 
     public void incrementBallCount() {
-        if (isBall() && ballDetected) {
+        if(!isBallFeeder && getBallPresentInFeeder()) {
             ballCount++;
+            isBallFeeder = true;
         }
-        ballDetected = !ballDetected;
+        else isBallFeeder = getBallPresentInFeeder();
     }
 
-    //public void decrementBallCount() { ballCount--; }
+    public void decrementBallCount() {
+        if (!isBallShooter && getBallPresentInShooter()) {
+            ballCount--;
+            isBallShooter = true;
+        }
+        else isBallShooter = getBallPresentInShooter();
+    }
+
+    @Log
+    public boolean getBallPresentInFeeder() { return feederColorSensor.getProximity() > FEEDER_PROXIMITY_BOUND; }
+
+    public boolean getBallPresentInShooter() { return shooterColorSensor.getProximity() > SHOOTER_PROXIMITY_BOUND; }
 
     public int getBallCount() {
-
         return ballCount;
     }
 

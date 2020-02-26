@@ -2,7 +2,7 @@ package frc.team5115.Auto.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team5115.Auto.Loc2D;
-import frc.team5115.Constants;
+import frc.team5115.Configuration.Constants;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Locationator;
 
