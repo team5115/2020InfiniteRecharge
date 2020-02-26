@@ -17,8 +17,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private Locationator locationator;
 
     //instances of the speed controllers
-    private VictorSPX frontLeft;
-    private VictorSPX frontRight;
+    private TalonSRX frontLeft;
+    private TalonSRX frontRight;
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
@@ -29,14 +29,15 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private double rightSpd;
     private double leftSpd;
 
+    boolean climbing;
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
         servo = new Servo(1);
         locationator = x.locationator;
 
-        frontLeft = new VictorSPX(FRONT_LEFT_MOTOR_ID);
-        frontRight = new VictorSPX(FRONT_RIGHT_MOTOR_ID);
+        frontLeft = new TalonSRX(FRONT_LEFT_MOTOR_ID);
+        frontRight = new TalonSRX(FRONT_RIGHT_MOTOR_ID);
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
 
@@ -49,7 +50,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         lastAngle = locationator.getAngle();
-        setAngle();
     }
 
     @Override
@@ -79,8 +79,14 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     }
 
     public void setAngle() {
-        servo.setAngle(85 - (15*getSpeedFeetPerSecond()));
-        System.out.println("servo.get() = " + servo.get());
+        if (!climbing) {
+            double angleMath = 55 + (.4 * getSpeed());
+            servo.setAngle(angleMath > DRIVING_CAM_MAX_ANGLE ? DRIVING_CAM_MAX_ANGLE :
+                           angleMath < 55 ? 55 : angleMath);
+        }
+        else {
+            setAngleClimbing();
+        }
     }
 
     public void setAngleClimbing() {
@@ -183,6 +189,11 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         angleHold(targetAngle, y, throttle);
     }
 
+    @Override
+    public double getSpeedInchesPerSecond() {
+        return 0;
+    }
+
     public void printAllEncoders() {
         System.out.println("frontLeft: " + frontLeft.getSelectedSensorPosition());
         System.out.println("frontRight: " + frontRight.getSelectedSensorPosition());
@@ -191,15 +202,21 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     }
 
 
-
-    @Override
-    public double getSpeedInchesPerSecond() {
+    public double getSpeed() {
         //easily debug sensors: System.out.println("fr:" + frontRight.getSelectedSensorVelocity() + "  fl:" + frontLeft.getSelectedSensorVelocity() + "  br:" + backLeft.getSelectedSensorVelocity() + "  bl:" + backLeft.getSelectedSensorVelocity());
         double rightSpd = frontRight.getSelectedSensorVelocity();
-        double leftSpd = -backLeft.getSelectedSensorVelocity();
+        double leftSpd = -frontLeft.getSelectedSensorVelocity();
 
         //System.out.println("Wheel Speeds = " + wheelSpd);
         return ((rightSpd + leftSpd) / 2) * 30.7692 * Math.PI / 4090;
+    }
+
+    public void isClimbing() {
+        climbing = true;
+    }
+
+    public void debug() {
+        System.out.println("getSpeed() = " + 15*getSpeed());
     }
 
 }

@@ -57,10 +57,11 @@ public class Constants{
     public static final double INTAKE_INHALE_SPEED = -0.3;
     public static final double FEEDER_SPEED = -0.8;
 
-    public static final int POINTING_UP = 70;
+    public static final int POINTING_UP = 250;
     public static final int FULL_CAPACITY = 5;
     public static final int FEEDER_PROXIMITY_BOUND = 200;
     public static final int SHOOTER_PROXIMITY_BOUND = 200;
+    public static final int DRIVING_CAM_MAX_ANGLE = 95;
 
     //controller stuff.
     public static boolean USING_XBOX = true;

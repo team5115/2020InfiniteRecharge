@@ -38,9 +38,7 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         new JoystickButton(joy, TEST_BUTTON_ID)
-                .whenHeld(new InstantCommand(drivetrain::setAngleClimbing))
-                .whenReleased(new InstantCommand(drivetrain::setAngle));
-
+                .whenHeld(new InstantCommand(drivetrain::isClimbing));
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 
@@ -99,7 +97,7 @@ public class RobotContainer {
         @Override
         public void execute() {
             drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), 1);
-            //drivetrain.XBoxDrive(joystick);
+            drivetrain.setAngle();
         }
     }
 
