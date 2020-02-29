@@ -85,12 +85,12 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
                            angleMath < DRIVING_CAM_MIN_ANGLE ? DRIVING_CAM_MIN_ANGLE : angleMath);
         }
         else {
-            setAngleClimbing();
+            setServoAngleClimbing();
         }
     }
 
-    public void setAngleClimbing() {
-        servo.setAngle(POINTING_UP);
+    public void setServoAngleClimbing() {
+        servo.setAngle(POINTING_SERVO_UP);
     }
 
     public void XBoxDrive(Joystick joy) {

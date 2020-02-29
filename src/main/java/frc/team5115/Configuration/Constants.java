@@ -30,11 +30,11 @@ public class Constants{
     public static final byte BACK_RIGHT_MOTOR_ID = 4;
 
     public static final int INTAKE_MOTOR_ID = 5;
-    public static final int SHOOTER_MOTOR_ID = 7;
+    public static final int SHOOTER_MOTOR_ID = 2;
     public static final int SCISSOR_MOTOR_ID = 9;
     public static final int WINCH_MOTOR_ID = 11;
-    public static final int FEEDER_MOTOR_ID = 6;
-    public static final int ACCELERATOR_MOTOR_ID = 8;
+    public static final int FEEDER_MOTOR_ID = 3;
+    public static final int ACCELERATOR_MOTOR_ID = 4;
 
     public static final byte INTAKE_BUTTON_ID = 1;
     public static final byte INTAKE_EXCRETE_BUTTON_ID = 2;
@@ -55,9 +55,12 @@ public class Constants{
     public static final double FEEDER_STORE_SPEED = -0.4;
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
-    public static final double FEEDER_SPEED = -0.8;
+    public static final double FEEDER_SPEED = -0.2;
+    public static final int FEEDER_TIME_OUT = 3;
 
-    public static final int POINTING_UP = 250;
+    public static final int POINTING_SERVO_UP = 250;
+    public static final int POINTING_SERVO_DOWN = 100;
+
     public static final int FULL_CAPACITY = 5;
     public static final int FEEDER_PROXIMITY_BOUND = 200;
     public static final int SHOOTER_PROXIMITY_BOUND = 200;

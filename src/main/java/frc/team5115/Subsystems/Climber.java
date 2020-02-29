@@ -4,8 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Commands.Climber.StopClimb;
@@ -13,21 +13,21 @@ import frc.team5115.Commands.Climber.StopClimb;
 import static frc.team5115.Configuration.Constants.*;
 
 public class Climber extends SubsystemBase {
-    CANSparkMax winch;
-
+    //CANSparkMax winch;
+    TalonSRX winch;
     TalonSRX scissor;
 
     double climbspeed = -.75;
 
     public Climber(){
-        winch = new CANSparkMax(WINCH_MOTOR_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
-        winch.restoreFactoryDefaults();
-
+        //winch = new CANSparkMax(WINCH_MOTOR_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
+        //winch.restoreFactoryDefaults();
+        winch = new TalonSRX(WINCH_MOTOR_ID);
         scissor = new TalonSRX(SCISSOR_MOTOR_ID);
 
-        scissor.overrideLimitSwitchesEnable(true);
-        scissor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-        scissor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+        //scissor.overrideLimitSwitchesEnable(true);
+        //scissor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+        //scissor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 
         setDefaultCommand(new StopClimb(this).perpetually());
         print();
@@ -50,16 +50,17 @@ public class Climber extends SubsystemBase {
     }
 
     public void WinchDown(){
-        winch.set(-climbspeed);
+        //winch.set(-climbspeed);
+
     }
 
     public void WinchUp() {
-        winch.set(climbspeed);
+        //winch.set(climbspeed);
     }
 
     public void StopClimb() {
         scissor.set(ControlMode.PercentOutput, 0);
-        winch.set(0);
+        //winch.set(0);
     }
 
     public void print() {

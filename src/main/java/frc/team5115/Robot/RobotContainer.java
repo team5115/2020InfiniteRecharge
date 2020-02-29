@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
+import frc.team5115.Commands.Groups.ShootGroups.ShootWithFeederDelay;
 import frc.team5115.Subsystems.*;
 
 import static frc.team5115.Configuration.Constants.*;
@@ -56,9 +57,8 @@ public class RobotContainer {
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
-                .whenHeld(new InstantCommand(shooter::shoot)
-                    .alongWith(new InstantCommand(feeder::moveCells)))
-                .whenReleased(new InstantCommand(shooter::stopShoot));
+                .whenHeld(new ShootWithFeederDelay(shooter, feeder))
+                .whenReleased(new InstantCommand(shooter::stopShoot).alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
                 .whenHeld(new InstantCommand(climber::ScissorUp)
@@ -71,14 +71,15 @@ public class RobotContainer {
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
         new JoystickButton(joy, INTAKE_EXCRETE_BUTTON_ID)
-                .whenHeld(new InstantCommand(intake::spitout))
+                .whenHeld(new InstantCommand(intake::spitout)
+                .alongWith(new InstantCommand(drivetrain::setAngle)))
                 .whenReleased(new InstantCommand(intake::stopIntake));
 
         new JoystickButton(joy, INTAKE_BUTTON_ID)
                 .whenHeld(new InstantCommand(intake::driverIntake))
                 .whenReleased(new InstantCommand(intake::stopIntake));
 
-        drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
+       // drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
     }
 
     static class driveDefaultCommand extends CommandBase {

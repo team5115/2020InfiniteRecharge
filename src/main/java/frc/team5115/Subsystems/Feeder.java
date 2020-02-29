@@ -1,20 +1,23 @@
 package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Commands.Feeder.FeedtheDemon;
+import frc.team5115.Robot.RobotContainer;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
 import static frc.team5115.Configuration.Constants.*;
 
 public class Feeder extends SubsystemBase implements Loggable {
-    VictorSPX feeder;
+    TalonSRX feeder;
     ColorSensorV3 feederColorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     ColorSensorV3 shooterColorSensor = new ColorSensorV3(I2C.Port.kMXP);
+    boolean isBallPresentInShooterColorSensor;
 
     int ballCount;
 
@@ -22,12 +25,12 @@ public class Feeder extends SubsystemBase implements Loggable {
     boolean isBallShooter;
 
     public Feeder() {
-        feeder = new VictorSPX(FEEDER_MOTOR_ID);
+        feeder = new TalonSRX(FEEDER_MOTOR_ID);
 
-        feederColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate50ms);
-        shooterColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate6ms);
+        //feederColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate50ms);
+        //shooterColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate6ms);
 
-        setDefaultCommand(new FeedtheDemon(this).perpetually());
+        //setDefaultCommand(new FeedtheDemon(this).perpetually());
     }
 
     public void moveCells() {
@@ -40,6 +43,17 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     public void spit() {
         feeder.set(ControlMode.PercentOutput, -FEEDER_SPEED);
+    }
+
+    public void moveCellsUntilThreshold(){
+        System.out.println("is ball present"+getBallPresentInShooter());
+        if(!(getBallPresentInShooter())){
+            feeder.set(ControlMode.PercentOutput, -0.2);
+            System.out.println("feeding until threshold");
+        }
+        else{
+            feeder.set(ControlMode.PercentOutput,0);
+        }
     }
 
     public void updateBallCount() {

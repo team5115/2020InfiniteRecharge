@@ -1,4 +1,4 @@
-package frc.team5115.Commands.Groups;
+package frc.team5115.Commands.Groups.ClimbGoups;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -17,7 +17,7 @@ public class ClimberUp extends ParallelCommandGroup {
 
         addCommands(
                 new InstantCommand(climber::ScissorUp),
-                new InstantCommand(drivetrain::setAngleClimbing)
+                new InstantCommand(drivetrain::setServoAngleClimbing)
         );
     }
 }
