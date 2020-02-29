@@ -27,6 +27,7 @@ public class ShootWithFeederDelay extends SequentialCommandGroup {
                 new InstantCommand(shooter::shoot),
                 new WaitCommand(3),
                 TheShootingSquad
+                new InstantCommand(shooter::shoot)
         );
         TheShootingSquad.setDeadline(dealineCommand);
 
