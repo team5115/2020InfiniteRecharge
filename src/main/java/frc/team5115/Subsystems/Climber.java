@@ -28,7 +28,7 @@ public class Climber extends SubsystemBase {
         scissor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
         scissor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 
-        setDefaultCommand(new StopClimb(this).perpetually());
+        //setDefaultCommand(new StopClimb(this).perpetually());
         debug();
     }
 

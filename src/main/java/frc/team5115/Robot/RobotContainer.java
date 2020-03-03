@@ -77,6 +77,7 @@ public class RobotContainer {
         new POVButton(joy, WINCH_DOWN_BUTTON_ANGLE)
                 .whenHeld(
                         new SequentialCommandGroup(
+                                new PrintCommand("Activated"),
                                 new RunCommand(climber::ScissorDown).withTimeout(2),
                                 new InstantCommand(climber::WinchUp).alongWith(new InstantCommand(climber::ScissorDown))
                         ))
@@ -98,8 +99,11 @@ public class RobotContainer {
          */
 
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
-                .whenHeld(new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells))
-                )
+                .whenHeld(
+                        new SequentialCommandGroup(
+                            new RunCommand(shooter::shoot).withTimeout(2),
+                            new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells))
+                        ))
                 .whenReleased(new InstantCommand(shooter::stopShoot)
                         .alongWith(new InstantCommand(feeder::stopCells)));
 
@@ -109,6 +113,10 @@ public class RobotContainer {
                     .alongWith(new InstantCommand(drivetrain::isClimbing)))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
+        new JoystickButton(joy, CLIMBER_DOWN_BUTTON_ID)
+                .whenHeld(new InstantCommand(climber::ScissorDown))
+                .whenReleased(new InstantCommand(climber::StopClimb));
+
         new JoystickButton(joy, INTAKE_EXCRETE_BUTTON_ID)
                 .whenHeld(new InstantCommand(intake::spitout)
                     .alongWith(new InstantCommand(feeder::spit)))
@@ -116,7 +124,7 @@ public class RobotContainer {
                     .alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, INTAKE_BUTTON_ID)
-                .whenHeld(new InstantCommand(intake::driverIntake))
+                .whenHeld(new InstantCommand(intake::driverIntake).alongWith(new InstantCommand(feeder::moveCells)))
                 .whenReleased(new InstantCommand(intake::stopIntake));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());

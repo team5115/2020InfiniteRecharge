@@ -27,7 +27,7 @@ public class Feeder extends SubsystemBase implements Loggable {
         feederColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate50ms);
         shooterColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate6ms);
 
-        setDefaultCommand(new FeedtheDemon(this).perpetually());
+        //setDefaultCommand(new FeedtheDemon(this).perpetually());
         //ballCount = 0;
     }
 
