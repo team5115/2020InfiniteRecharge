@@ -31,8 +31,6 @@ public class AssistedShootHighGoal extends CommandBase {
         this.joystick = joystick;
         addRequirements(drivetrain, shooter);
         limelight.setPipeline(Pipeline.GreenLedMode);
-        System.out.println("Starting goal assist but not throttle constructor");
-
     }
 
     @Override

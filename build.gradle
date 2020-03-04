@@ -39,6 +39,7 @@ repositories {
 
     maven { url 'https://jitpack.io' }
     maven { url 'http://www.revrobotics.com/content/sw/color-sensor-v3/sdk/maven/' }
+    maven { url 'http://www.revrobotics.com/content/sw/max/sdk/maven/'}
 }
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.

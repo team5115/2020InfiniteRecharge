@@ -7,18 +7,13 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
 import frc.team5115.Auto.Loc2D;
-import frc.team5115.Robot.Robot;
 import frc.team5115.Robot.RobotContainer;
 import io.github.oblarg.oblog.Loggable;
-import io.github.oblarg.oblog.annotations.Log;
 
 import static frc.team5115.Configuration.Constants.*;
 
@@ -95,6 +90,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     @Override
     public void drive(double x, double y, double throttle) { //Change the drive output
+        System.out.println("y------------- = " + y);
         //called lots of times per seconds.
         //System.out.println("Driving with X:" + x + " Y: " + y + " throttle: " + throttle);
         //Math.sqrt(3.4* Math.log(x + y + 1));
@@ -265,10 +261,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     public void debug() {
         System.out.println("getSpeed() = " + 15*getSpeed());
-    }
-
-    public void printThrottle() {
-        System.out.println("throttle = " + throttle);
     }
 
     public void resetCameraAngle() {

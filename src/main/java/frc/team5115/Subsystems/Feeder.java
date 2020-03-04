@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Commands.Feeder.FeedtheDemon;
 import io.github.oblarg.oblog.Loggable;
-import io.github.oblarg.oblog.annotations.Log;
 
 import static frc.team5115.Configuration.Constants.*;
 
@@ -78,7 +77,6 @@ public class Feeder extends SubsystemBase implements Loggable {
 //        System.out.println("shooterColorSensor.getProximity() = " + shooterColorSensor.getProximity());
 //        System.out.println("getBallPresentInFeeder() = " + getBallPresentInFeeder());
 //        System.out.println("getBallPresentInShooter() = " + getBallPresentInShooter());
-        System.out.println("ballCount = " + ballCount);
     }
 
     public void reset() {

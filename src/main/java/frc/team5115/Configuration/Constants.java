@@ -28,7 +28,7 @@ public class Constants implements Loggable {
     public static final double AUTO_MAX_THROTTLE = 0.3;
     public static final double AUTO_CAMERA_HEIGHT = 14.5; //units: inches.
     public static final double AUTO_CAMERA_ANGLE = 5; //units: degrees.
-    public static final double AUTO_SHOOTIN_DISTANCE = 120; //units: inches. todome update
+    public static final double AUTO_SHOOTIN_DISTANCE = 148; //units: inches. todome update
     public static final double AUTO_HIGH_GOAL_HEIGHT = 90; //units: inches.
 
     //motor ids

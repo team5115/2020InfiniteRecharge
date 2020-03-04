@@ -1,14 +1,12 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
-import frc.team5115.Auto.Loc2D;
 import frc.team5115.Configuration.Heartbeat;
 import frc.team5115.Subsystems.*;
 
@@ -151,7 +149,6 @@ public class RobotContainer {
         public void execute() {
             drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), drivetrain.throttle(XBOX_THROTTLE_1_ID, XBOX_THROTTLE_2_ID));
             drivetrain.setAngle();
-            drivetrain.printThrottle();
         }
     }
 
