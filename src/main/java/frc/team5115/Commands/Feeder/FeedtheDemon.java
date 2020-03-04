@@ -22,15 +22,13 @@ public class FeedtheDemon extends CommandBase {
         feeder.updateBallCount();
         //get sensor value
         if (feeder.getBallCount() < FULL_CAPACITY) {
-//            if (feeder.getBallPresentInFeeder()) {
-//                new FunctionalCommand(
-//                        feeder::debug,
-//                        () -> feeder.moveCells(),
-//                        () -> feeder.stopCells(),
-//                        () -> !feeder.getBallPresentInFeeder()
-//                        feeder
-//                ).deadlineWith(new WaitCommand(1)).schedule();
-//            }
+            if (feeder.getBallPresentInFeeder()) {
+                new StartEndCommand(
+                        () -> feeder.moveCells(),
+                        () -> feeder.stopCells(),
+                        feeder
+                ).withTimeout(.15).schedule();
+            }
         }
         else {
             feeder.stopCells();

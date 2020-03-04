@@ -5,8 +5,10 @@ import frc.team5115.Auto.Loc2D;
 import frc.team5115.Configuration.Constants;
 import frc.team5115.Subsystems.Drivetrain;
 import frc.team5115.Subsystems.Locationator;
+import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
-public class DriveDistance extends CommandBase {
+public class DriveDistance extends CommandBase implements Loggable {
 
     Loc2D targetLocation;
     Drivetrain drivetrain;
@@ -22,7 +24,9 @@ public class DriveDistance extends CommandBase {
         this.locationator = locationator;
     }
 
-    @Override
+    @Log
+    public double getDistance(){return locationator.getCurrentLocation().distanceFrom(targetLocation);}
+
     public void initialize() {
         System.out.println("Starting Drive Distance Command");
     }

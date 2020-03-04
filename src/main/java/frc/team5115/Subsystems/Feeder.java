@@ -25,9 +25,9 @@ public class Feeder extends SubsystemBase implements Loggable {
         feeder = new VictorSPX(FEEDER_MOTOR_ID);
 
         feederColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate50ms);
-        shooterColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate6ms);
+        shooterColorSensor.configureProximitySensor(ColorSensorV3.ProximitySensorResolution.kProxRes8bit, ColorSensorV3.ProximitySensorMeasurementRate.kProxRate50ms);
 
-        //setDefaultCommand(new FeedtheDemon(this).perpetually());
+        setDefaultCommand(new FeedtheDemon(this).perpetually());
         //ballCount = 0;
     }
 
@@ -74,10 +74,10 @@ public class Feeder extends SubsystemBase implements Loggable {
 
 
     public void debug() {
-        System.out.println("feederColorSensor.getProximity() = " + feederColorSensor.getProximity());
-        System.out.println("shooterColorSensor.getProximity() = " + shooterColorSensor.getProximity());
-        System.out.println("getBallPresentInFeeder() = " + getBallPresentInFeeder());
-        System.out.println("getBallPresentInShooter() = " + getBallPresentInShooter());
+//        System.out.println("feederColorSensor.getProximity() = " + feederColorSensor.getProximity());
+//        System.out.println("shooterColorSensor.getProximity() = " + shooterColorSensor.getProximity());
+//        System.out.println("getBallPresentInFeeder() = " + getBallPresentInFeeder());
+//        System.out.println("getBallPresentInShooter() = " + getBallPresentInShooter());
         System.out.println("ballCount = " + ballCount);
     }
 

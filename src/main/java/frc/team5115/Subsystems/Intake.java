@@ -8,7 +8,7 @@ import static frc.team5115.Configuration.Constants.*;
 
 public class Intake extends SubsystemBase {
     VictorSPX intake_m;
-    double intakeSpeed = -0.3;
+    double intakeSpeed = -0.5;
 
     public Intake() {
         intake_m = new VictorSPX(INTAKE_MOTOR_ID);

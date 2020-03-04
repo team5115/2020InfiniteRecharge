@@ -1,12 +1,14 @@
 package frc.team5115.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
 import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
+import frc.team5115.Auto.Loc2D;
 import frc.team5115.Configuration.Heartbeat;
 import frc.team5115.Subsystems.*;
 
@@ -30,6 +32,7 @@ public class RobotContainer {
 
     private Heartbeat heartbeat;
 
+
     public RobotContainer() {
         // Configure the button bindings
         //sets the navx to work.
@@ -37,12 +40,14 @@ public class RobotContainer {
         drivetrain = new Drivetrain(this);
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
         heartbeat = new Heartbeat();
+
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
         new JoystickButton(joy, TEST_BUTTON_ID)
-                .whenHeld(new InstantCommand(feeder::debug).alongWith(new InstantCommand(climber::debug)));
+                .whenHeld(new InstantCommand(feeder::moveCells).alongWith(new InstantCommand(climber::debug)))
+        .whenReleased(new InstantCommand(feeder::stopCells));
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
 
@@ -101,7 +106,7 @@ public class RobotContainer {
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
                 .whenHeld(
                         new SequentialCommandGroup(
-                            new RunCommand(shooter::shoot).withTimeout(2),
+                            new RunCommand(shooter::shoot).withTimeout(1),
                             new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells))
                         ))
                 .whenReleased(new InstantCommand(shooter::stopShoot)
@@ -124,7 +129,7 @@ public class RobotContainer {
                     .alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, INTAKE_BUTTON_ID)
-                .whenHeld(new InstantCommand(intake::driverIntake).alongWith(new InstantCommand(feeder::moveCells)))
+                .whenHeld(new InstantCommand(intake::inhale))
                 .whenReleased(new InstantCommand(intake::stopIntake));
 
         drivetrain.setDefaultCommand(new driveDefaultCommand(drivetrain, joy).perpetually());
@@ -146,6 +151,7 @@ public class RobotContainer {
         public void execute() {
             drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), drivetrain.throttle(XBOX_THROTTLE_1_ID, XBOX_THROTTLE_2_ID));
             drivetrain.setAngle();
+            drivetrain.printThrottle();
         }
     }
 
@@ -164,12 +170,17 @@ public class RobotContainer {
         System.out.println("Starting teleop: " + VERSION);
         feeder.reset();
         heartbeat.start();
+        drivetrain.resetCameraAngle();
     }
 
     public void periodic() {
         //feeder.debug();
-        climber.debug();
         heartbeat.check();
+        feeder.debug();
+    }
+
+    public void p() {
+        drivetrain.update();
     }
 
     public double timerDifference() {

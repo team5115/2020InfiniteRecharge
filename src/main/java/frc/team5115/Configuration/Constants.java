@@ -2,9 +2,10 @@ package frc.team5115.Configuration;
 
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Config;
+import io.github.oblarg.oblog.annotations.Log;
 
 public class Constants implements Loggable {
-
+    @Log
     public static final String VERSION = "v3.3";
     //Best disatnce for semi-auto high goal is 148 inches
 
@@ -51,7 +52,7 @@ public class Constants implements Loggable {
     public static final byte SHOOTER_BUTTON_ID = 6;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
     public static final byte TEST_BUTTON_ID = 9;
-
+    @Log
     public static final int WINCH_DOWN_BUTTON_ANGLE = 180;
     public static final int WINCH_UP_BUTTON_ANGLE = 0;
 
@@ -62,12 +63,12 @@ public class Constants implements Loggable {
     public static final double FEEDER_STORE_SPEED = -0.4;
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
-    public static final double FEEDER_SPEED = -0.8;
+    public static final double FEEDER_SPEED = -1;
 
     public static final int POINTING_UP = 250;
-    public static final int FULL_CAPACITY = 5;
-    public static final int FEEDER_PROXIMITY_BOUND = 35;
-    public static final int SHOOTER_PROXIMITY_BOUND = 200;
+    public static final int FULL_CAPACITY = 10;  //used to be 5
+    public static final int FEEDER_PROXIMITY_BOUND = 30;
+    public static final int SHOOTER_PROXIMITY_BOUND = 50;
     public static final int DRIVING_CAM_MAX_ANGLE = 95;
     public static final int DRIVING_CAM_MIN_ANGLE = 55;
     public static final double DRIVING_CAM_ANGLE_GAIN = .4;

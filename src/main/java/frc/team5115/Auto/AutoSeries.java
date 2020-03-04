@@ -24,7 +24,7 @@ public class AutoSeries extends SequentialCommandGroup {
 
         //These commands do a basic auto series.
         addCommands(
-                new DriveDistance(overLineLocation, drivetrain, locationator),
+                new DriveDistance(overLineLocation, drivetrain, locationator).withTimeout(2),
                 new InstantCommand(shooter::shoot)
                 //new ShootHighGoal(drivetrain, locationator, shooter, limelight)
                 //new PickupBallAuto(drivetrain,locationator,limelight)

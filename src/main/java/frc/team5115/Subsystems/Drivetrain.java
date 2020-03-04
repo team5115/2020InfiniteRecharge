@@ -4,21 +4,26 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team5115.Auto.DriveBase;
+import frc.team5115.Auto.Loc2D;
 import frc.team5115.Robot.Robot;
 import frc.team5115.Robot.RobotContainer;
 import io.github.oblarg.oblog.Loggable;
+import io.github.oblarg.oblog.annotations.Log;
 
 import static frc.team5115.Configuration.Constants.*;
 
 public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private Locationator locationator;
-
-    private DriverStation driverStation = DriverStation.getInstance();
 
     //instances of the speed controllers
     private VictorSPX frontLeft;
@@ -26,7 +31,13 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
+
+    NetworkTable networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
+    NetworkTableEntry t;
+    NetworkTableEntry l;
+
     Servo servo;
+
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
 
@@ -37,10 +48,13 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     double throttle = .7;
 
+    Loc2D targetLocation;
+
     private RobotContainer robotContainer;
 
     public Drivetrain(RobotContainer x) {
         //this.locationator = x.locationator;
+
         robotContainer = x;
 
         servo = new Servo(1);
@@ -51,6 +65,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         backLeft = new TalonSRX(BACK_LEFT_MOTOR_ID);
         backRight = new TalonSRX(BACK_RIGHT_MOTOR_ID);
 
+
         //backRight.setInverted(true);
 
         //back motors are master
@@ -60,6 +75,17 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         lastAngle = locationator.getAngle();
+
+        targetLocation = new Loc2D(
+                locationator.getCurrentLocation().getX(),  //goes strait forward.
+                90);
+
+
+        t = networkTable.getEntry("Throttle");
+        l = networkTable.getEntry("Target Location");
+
+        t.setDouble(throttle);
+        l.setDouble(locationator.getCurrentLocation().distanceFrom(targetLocation));
     }
 
     @Override
@@ -86,6 +112,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         backRight.set(ControlMode.PercentOutput, rightSpd);
 
         //System.out.println("servo.get() = " + servo.get());
+
     }
 
     public double throttle(double increase, double decrease) {
@@ -238,6 +265,19 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     public void debug() {
         System.out.println("getSpeed() = " + 15*getSpeed());
+    }
+
+    public void printThrottle() {
+        System.out.println("throttle = " + throttle);
+    }
+
+    public void resetCameraAngle() {
+        servo.setAngle(DRIVING_CAM_MIN_ANGLE);
+    }
+
+    public void update() {
+        t.setValue(throttle);
+        l.setDouble(locationator.getCurrentLocation().distanceFrom(targetLocation));
     }
 
 }
