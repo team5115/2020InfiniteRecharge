@@ -14,6 +14,8 @@ public class DriveDistance extends CommandBase implements Loggable {
     Drivetrain drivetrain;
     Locationator locationator;
 
+    double throttle;
+
     public DriveDistance(Loc2D targetLocation, Drivetrain drivetrain, Locationator locationator) {
         if (targetLocation == null) {
             System.out.println("Error: target location is null.");
@@ -29,14 +31,16 @@ public class DriveDistance extends CommandBase implements Loggable {
 
     public void initialize() {
         System.out.println("Starting Drive Distance Command");
+        drivetrain.resetEncoders();
     }
 
     @Override
     public void execute() {
         System.out.println("targetLocation = " + targetLocation);
+        System.out.println("locationator.getCurrentLocation().getY() = " + locationator.getCurrentLocation().getY());
         double angle = locationator.getCurrentLocation().angleFrom(targetLocation);
-        double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/50 * Drivetrain.clamp(Math.abs((25/(angle - locationator.getAngle()))),1),
-                Constants.AUTO_MAX_THROTTLE);
+        //double throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/50 * Drivetrain.clamp(Math.abs((25/(angle - locationator.getAngle()))),1),Constants.AUTO_MAX_THROTTLE);
+        throttle = -((drivetrain.getEncoder() - 5000) / 5000) * Constants.AUTO_MAX_THROTTLE;
         System.out.println("Angle hold: " + angle + "  Throttle: " + throttle);
         drivetrain.angleHold(angle,throttle);
     }

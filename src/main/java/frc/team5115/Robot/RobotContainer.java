@@ -38,7 +38,7 @@ public class RobotContainer {
         //sets the navx to work.
         locationator = new Locationator(this, startingConfiguration, startingAngle);
         drivetrain = new Drivetrain(this);
-        autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight);
+        autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight, feeder);
         heartbeat = new Heartbeat();
 
         configureButtonBindings();
@@ -152,6 +152,7 @@ public class RobotContainer {
             drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), drivetrain.throttle(XBOX_THROTTLE_1_ID, XBOX_THROTTLE_2_ID));
             drivetrain.setAngle();
             drivetrain.printThrottle();
+            drivetrain.printAllEncoders();
         }
     }
 
@@ -165,12 +166,23 @@ public class RobotContainer {
         return autoSeries;
     }
 
+    public void refreshRobot() {
+        new InstantCommand(feeder::stopCells).schedule();
+        new InstantCommand(drivetrain::stop).schedule();
+        new InstantCommand(climber::StopClimb).schedule();
+        new InstantCommand(intake::stopIntake).schedule();
+        new InstantCommand(shooter::stopShoot).schedule();
+    }
+
     public void startTeleop() {
         //bind the wheels.
         System.out.println("Starting teleop: " + VERSION);
         feeder.reset();
         heartbeat.start();
         drivetrain.resetCameraAngle();
+        drivetrain.resetEncoders();
+
+        refreshRobot();
     }
 
     public void periodic() {

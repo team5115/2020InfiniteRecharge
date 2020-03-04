@@ -249,6 +249,16 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         System.out.println("backRight: " + backRight.getSelectedSensorPosition());
     }
 
+    public void resetEncoders() {
+        frontLeft.setSelectedSensorPosition(0);
+        frontRight.setSelectedSensorPosition(0);
+        backLeft.setSelectedSensorPosition(0);
+        backRight.setSelectedSensorPosition(0);
+    }
+
+    public double getEncoder() {
+        return backLeft.getSelectedSensorPosition();
+    }
 
     public double getSpeed() {
         //easily debug sensors: System.out.println("fr:" + frontRight.getSelectedSensorVelocity() + "  fl:" + frontLeft.getSelectedSensorVelocity() + "  br:" + backLeft.getSelectedSensorVelocity() + "  bl:" + backLeft.getSelectedSensorVelocity());

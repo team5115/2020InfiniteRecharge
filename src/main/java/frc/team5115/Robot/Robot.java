@@ -33,6 +33,9 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledInit() {
+        autoCommand = robotContainer.getAutonomousCommand();
+        autoCommand.cancel();
+        robotContainer.refreshRobot();
     }
 
     @Override
@@ -41,6 +44,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        robotContainer.refreshRobot();
         autoCommand = robotContainer.getAutonomousCommand();
 
         // schedule the autonomous command (example)
