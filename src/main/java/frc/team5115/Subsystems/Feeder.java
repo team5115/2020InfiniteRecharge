@@ -21,6 +21,8 @@ public class Feeder extends SubsystemBase implements Loggable {
     boolean isBallFeeder;
     boolean isBallShooter;
 
+    int prevBallCount;
+
     public Feeder() {
         feeder = new VictorSPX(FEEDER_MOTOR_ID);
 
@@ -72,6 +74,20 @@ public class Feeder extends SubsystemBase implements Loggable {
         return ballCount;
     }
 
+
+    public boolean ballCountDecremented() {
+        if (prevBallCount > ballCount) {
+            prevBallCount = ballCount;
+            return true;
+        }
+        else if (prevBallCount < ballCount) {
+            prevBallCount = ballCount;
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
 
     public void debug() {
 //        System.out.println("feederColorSensor.getProximity() = " + feederColorSensor.getProximity());

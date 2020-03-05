@@ -32,6 +32,7 @@ public class RobotContainer {
 
     private Heartbeat heartbeat;
 
+    Loc2D overLineLocation;
 
     public RobotContainer() {
         // Configure the button bindings
@@ -41,12 +42,17 @@ public class RobotContainer {
         autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight, feeder);
         heartbeat = new Heartbeat();
 
+        overLineLocation = new Loc2D(
+                locationator.getCurrentLocation().getX(),  //goes straight forward.
+                100);
+
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
         new JoystickButton(joy, TEST_BUTTON_ID)
-                .whenHeld(new InstantCommand(feeder::moveCells).alongWith(new InstantCommand(climber::debug)))
+                .whenHeld(new InstantCommand(feeder::moveCells)
+                        .alongWith(new InstantCommand(climber::debug)))
         .whenReleased(new InstantCommand(feeder::stopCells));
         new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
                 .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
@@ -82,7 +88,6 @@ public class RobotContainer {
         new POVButton(joy, WINCH_DOWN_BUTTON_ANGLE)
                 .whenHeld(
                         new SequentialCommandGroup(
-                                new PrintCommand("Activated"),
                                 new RunCommand(climber::ScissorDown).withTimeout(2),
                                 new InstantCommand(climber::WinchUp).alongWith(new InstantCommand(climber::ScissorDown))
                         ))
@@ -97,10 +102,11 @@ public class RobotContainer {
 
         /*
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
-                .whenHeld(new InstantCommand(shooter::shoot)
-                    .alongWith(new InstantCommand(feeder::moveCells)))
-                .whenReleased(new InstantCommand(shooter::stopShoot)
-                        .alongWith(new InstantCommand(feeder::stopCells)));
+                new SequentialCommandGroup(
+                new RunCommand(shooter::shoot).withTimeout(1),
+                new RunCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells)).withInterrupt(feeder::ballCountDecremented),
+                new InstantCommand(shooter::stopShoot).alongWith(new InstantCommand(feeder::stopCells))
+        );
          */
 
         new JoystickButton(joy, SHOOTER_BUTTON_ID)
@@ -188,7 +194,8 @@ public class RobotContainer {
     public void periodic() {
         //feeder.debug();
         heartbeat.check();
-        feeder.debug();
+        System.out.println("In Range" + (locationator.getCurrentLocation().distanceFrom(overLineLocation) <= 25));
+        SmartDashboard.putBoolean("In Range", (locationator.getCurrentLocation().distanceFrom(overLineLocation) <= 25));
     }
 
     public void p() {

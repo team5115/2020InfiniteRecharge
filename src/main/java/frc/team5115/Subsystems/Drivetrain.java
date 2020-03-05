@@ -285,6 +285,10 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         servo.setAngle(DRIVING_CAM_MIN_ANGLE);
     }
 
+    public void rotate180() {
+        drive((locationator.getAngle() - 180) / 180, 0, .3);
+    }
+
     public void update() {
         t.setValue(throttle);
         l.setDouble(locationator.getCurrentLocation().distanceFrom(targetLocation));
