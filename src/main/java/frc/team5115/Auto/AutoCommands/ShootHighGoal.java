@@ -50,21 +50,17 @@ public class ShootHighGoal extends SequentialCommandGroup {
             if (limelight.hasTarget() && limelight.getYAngle() > 0) { // if we don't have a target
                 angle = limelight.getXAngle() + locationator.getAngle();
 
-//                System.out.println("limelight = " + limelight.calculateDistanceFromBase());
-//                System.out.println("locationator = " + locationator.getUltrasonicDistanceInches());
-
                 throttle = -(AUTO_SHOOTIN_DISTANCE - limelight.calculateDistanceFromBase())
                         / 50;
                 throttle = Drivetrain.clamp(throttle, AUTO_MAX_THROTTLE); //max speed 0.5. Also add a minimum speed of 0.1.
                 System.out.println("Distance from the base: " + limelight.calculateDistanceFromBase() + " throttle: " + throttle);
-                //System.out.println("angle = " + (angle - locationator.getAngle()));
+                System.out.println("angle = " + (angle - locationator.getAngle()));
             } else {
-                angle = locationator.
-                        getCurrentLocation().
-                        angleFrom(goalLocation);
-                throttle = 0;
+                drivetrain.stop();
+                return;
             }
-            drivetrain.angleHold(angle, throttle);
+            drivetrain.angleHold(angle, /*OLIVIA! PUT NEGATIVE HERE*/throttle);
+            if(throttle < 0.2f) shooter.shoot();
         }
 
         @Override
