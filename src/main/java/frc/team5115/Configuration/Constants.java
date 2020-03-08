@@ -28,7 +28,7 @@ public class Constants implements Loggable {
     public static final double AUTO_MAX_THROTTLE = 1;
     public static final double AUTO_CAMERA_HEIGHT = 14.5; //units: inches.
     public static final double AUTO_CAMERA_ANGLE = 5; //units: degrees.
-    public static final double AUTO_SHOOTIN_DISTANCE = 170; //units: inches. todome update
+    public static final double AUTO_SHOOTIN_DISTANCE = 90; //units: inches. todome update
     public static final double AUTO_HIGH_GOAL_HEIGHT = 90; //units: inches.
 
     //motor ids
@@ -63,7 +63,7 @@ public class Constants implements Loggable {
     public static final double FEEDER_STORE_SPEED = -0.4;
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
-    public static final double FEEDER_SPEED = -1;
+    public static final double FEEDER_SPEED = -.8;
 
     public static final int POINTING_UP = 250;
     public static final int FULL_CAPACITY = 10;  //used to be 5

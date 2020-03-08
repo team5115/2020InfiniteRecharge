@@ -10,6 +10,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,6 +20,8 @@ import frc.team5115.Robot.Robot;
 import frc.team5115.Robot.RobotContainer;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
+
+import java.sql.Driver;
 
 import static frc.team5115.Configuration.Constants.*;
 
@@ -31,13 +34,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
-
-    NetworkTable networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
-    NetworkTableEntry t;
-    NetworkTableEntry l;
-
     Servo servo;
-
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
 
@@ -46,7 +43,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     boolean climbing;
 
-    double throttle = .7;
+    double throttle = 1;
 
     Loc2D targetLocation;
 
@@ -79,13 +76,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         targetLocation = new Loc2D(
                 locationator.getCurrentLocation().getX(),  //goes strait forward.
                 90);
-
-
-        t = networkTable.getEntry("Throttle");
-        l = networkTable.getEntry("Target Location");
-
-        t.setDouble(throttle);
-        l.setDouble(locationator.getCurrentLocation().distanceFrom(targetLocation));
     }
 
     @Override
@@ -101,8 +91,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         //todome
         //System.out.println("x = " + x);
         //System.out.println("y = " + y);
-        leftSpd = (x-y) * throttle * (climbing ? GRANNY_MODE_SPEED : 1);
-        rightSpd = (x+y) * throttle * (climbing ? GRANNY_MODE_SPEED : 1);
+        leftSpd = (x-y) * throttle;
+        rightSpd = (x+y) * throttle;
         //System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
         //System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
@@ -242,13 +232,6 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         return 0;
     }
 
-    public void printAllEncoders() {
-        System.out.println("frontLeft: " + frontLeft.getSelectedSensorPosition());
-        System.out.println("frontRight: " + frontRight.getSelectedSensorPosition());
-        System.out.println("backLeft: " + backLeft.getSelectedSensorPosition());
-        System.out.println("backRight: " + backRight.getSelectedSensorPosition());
-    }
-
     public void resetEncoders() {
         frontLeft.setSelectedSensorPosition(0);
         frontRight.setSelectedSensorPosition(0);
@@ -289,11 +272,9 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         drive((locationator.getAngle() - 180) / 180, 0, .3);
     }
 
-    public void update() {
-        t.setValue(throttle);
-        l.setDouble(locationator.getCurrentLocation().distanceFrom(targetLocation));
+    public void driveStraight() {
+        drive(0, -1, 1);
     }
-
 }
 
 

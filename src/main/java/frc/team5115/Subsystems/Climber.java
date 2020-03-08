@@ -16,7 +16,7 @@ public class Climber extends SubsystemBase {
 
     TalonSRX scissor;
 
-    double climbspeed = -.5;
+    double climbspeed = -.8;
 
     public Climber(){
         winch = new CANSparkMax(WINCH_MOTOR_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -41,7 +41,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void ScissorUp(){
-        scissor.set(ControlMode.PercentOutput, getUpper() ? 1 : 0);
+        scissor.set(ControlMode.PercentOutput, getUpper() ? .6 : 0);
     }
 
     public void ScissorDown(){

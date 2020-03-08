@@ -39,7 +39,7 @@ public class RobotContainer {
         //sets the navx to work.
         locationator = new Locationator(this, startingConfiguration, startingAngle);
         drivetrain = new Drivetrain(this);
-        autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight, feeder);
+        autoSeries = new AutoSeries(drivetrain, locationator, shooter, limelight, feeder, joy);
         heartbeat = new Heartbeat();
 
         overLineLocation = new Loc2D(
@@ -157,8 +157,6 @@ public class RobotContainer {
         public void execute() {
             drivetrain.drive(joystick.getRawAxis(XBOX_X_AXIS_ID), joystick.getRawAxis(XBOX_Y_AXIS_ID), drivetrain.throttle(XBOX_THROTTLE_1_ID, XBOX_THROTTLE_2_ID));
             drivetrain.setAngle();
-            drivetrain.printThrottle();
-            drivetrain.printAllEncoders();
         }
     }
 
@@ -196,10 +194,6 @@ public class RobotContainer {
         heartbeat.check();
         System.out.println("In Range" + (locationator.getCurrentLocation().distanceFrom(overLineLocation) <= 25));
         SmartDashboard.putBoolean("In Range", (locationator.getCurrentLocation().distanceFrom(overLineLocation) <= 25));
-    }
-
-    public void p() {
-        drivetrain.update();
     }
 
     public double timerDifference() {

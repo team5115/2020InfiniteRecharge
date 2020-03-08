@@ -60,6 +60,10 @@ public class Limelight {
         setPipeline(pipeline.getPipelineNumber());
     }
 
+    public void driverPipline() {
+        this.setPipeline(Pipeline.DriveCamera);
+    }
+
     public double calculateDistanceFromBase() {
         //System.out.println("Height difference: " + (HIGH_GOAL_HEIGHT - CAMERA_HEIGHT));
         //System.out.println("Total angle: " + (getYAngle() + CAMERA_ANGLE));

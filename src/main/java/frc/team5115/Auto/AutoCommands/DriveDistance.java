@@ -8,6 +8,8 @@ import frc.team5115.Subsystems.Locationator;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
+import static frc.team5115.Configuration.Constants.startingConfiguration;
+
 public class DriveDistance extends CommandBase implements Loggable {
 
     Loc2D targetLocation;
@@ -56,6 +58,6 @@ public class DriveDistance extends CommandBase implements Loggable {
 
     @Override
     public boolean isFinished() {
-        return locationator.getCurrentLocation().distanceFrom(targetLocation) < 25;
+        return Math.abs(drivetrain.getEncoder()) > 5000;
     }
 }

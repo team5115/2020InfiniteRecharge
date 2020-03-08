@@ -35,6 +35,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     public void moveCells() {
         feeder.set(ControlMode.PercentOutput, FEEDER_SPEED);
+        System.out.println("\"In Use\" = " + "In Use");
     }
 
     public void stopCells() {
