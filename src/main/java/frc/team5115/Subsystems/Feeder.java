@@ -101,4 +101,8 @@ public class Feeder extends SubsystemBase implements Loggable {
     public void reset() {
         ballCount = 0;
     }
+
+    public void moveCellsNotInAuto(){
+        feeder.set(ControlMode.PercentOutput, FEEDER_SPEED -.2);
+    }
 }

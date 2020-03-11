@@ -26,10 +26,8 @@ public class AutoSeries extends SequentialCommandGroup {
         addCommands(
                 new DriveDistance(overLineLocation, drivetrain, locationator).withTimeout(2),
                 //new RunCommand(drivetrain::driveStraight).withTimeout(2),
-                new SequentialCommandGroup(
-                        new RunCommand(shooter::shoot).withTimeout(2),
-                        new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells)).alongWith(new InstantCommand(limelight::driverPipline))
-                ).withTimeout(2)
+                new RunCommand(shooter::shoot).withTimeout(2),
+                new RunCommand(shooter::shoot).alongWith(new RunCommand(feeder::moveCells)).alongWith(new RunCommand(limelight::driverPipline)).withTimeout(2)
                 //new ShootHighGoal(drivetrain, locationator, shooter, limelight)
                 //new PickupBallAuto(drivetrain,locationator,limelight)
         );

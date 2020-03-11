@@ -34,6 +34,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
+    boolean SAFEMODE = false;
+
     Servo servo;
 
     private double targetAngle; //during regular operation, the drive train keeps control of the drive. This is the angle that it targets.
@@ -43,7 +45,7 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     boolean climbing;
 
-    double throttle = 1;
+    double throttle = .7;
 
     Loc2D targetLocation;
 
@@ -91,8 +93,8 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
         //todome
         //System.out.println("x = " + x);
         //System.out.println("y = " + y);
-        leftSpd = (x-y) * throttle;
-        rightSpd = (x+y) * throttle;
+        leftSpd = (((x * .8))-y) * throttle;
+        rightSpd = (((x * .8))+y) * throttle;
         //System.out.println("Setting Right Pair to :" + (int) rightSpd * 100);
         //System.out.println("Setting Left Pair to :" + (int) leftSpd * 100);
 
@@ -129,6 +131,10 @@ public class Drivetrain extends SubsystemBase implements DriveBase, Loggable {
 
     public void setAngleClimbing() {
         servo.setAngle(POINTING_UP);
+    }
+
+    public void flipSafeMode() {
+        SAFEMODE = !SAFEMODE;
     }
 
     public void XBoxDrive(Joystick joy) {

@@ -27,7 +27,7 @@ public class FeedtheDemon extends CommandBase {
                         () -> feeder.moveCells(),
                         () -> feeder.stopCells(),
                         feeder
-                ).withTimeout(.15).schedule();
+                ).withTimeout(.3).schedule();
             }
         }
         else {

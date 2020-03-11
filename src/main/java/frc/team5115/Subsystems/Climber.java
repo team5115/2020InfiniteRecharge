@@ -41,6 +41,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void ScissorUp(){
+
         scissor.set(ControlMode.PercentOutput, getUpper() ? .6 : 0);
     }
 

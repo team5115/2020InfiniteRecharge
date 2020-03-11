@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.team5115.Auto.AutoCommands.ShootHighGoal;
 import frc.team5115.Auto.AutoSeries;
-import frc.team5115.Auto.AutoCommands.AssistedShootHighGoal;
 import frc.team5115.Auto.Loc2D;
 import frc.team5115.Configuration.Heartbeat;
 import frc.team5115.Subsystems.*;
@@ -50,15 +49,9 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(joy, TEST_BUTTON_ID)
-                .whenHeld(new InstantCommand(feeder::moveCells)
-                        .alongWith(new InstantCommand(climber::debug)))
-        .whenReleased(new InstantCommand(feeder::stopCells));
-        new JoystickButton(joy, AUTO_TURN_AND_MOVE_BUTTON_ID)
-                .whenHeld(new ShootHighGoal(drivetrain, locationator, shooter, limelight));
+        new JoystickButton(joy, TURNLIMIT)
+                .whenHeld(new InstantCommand(drivetrain::flipSafeMode));
 
-        new JoystickButton(joy, AUTO_TURN_BUTTON_ID)
-                .whenHeld(new AssistedShootHighGoal(drivetrain, shooter, limelight, joy));
 
         //new JoystickButton(joy, AUTO_BALL_TRACKING).whenHeld(new PickupBallAuto(drivetrain, locationator, limelight, feeder));
 
@@ -113,14 +106,16 @@ public class RobotContainer {
                 .whenHeld(
                         new SequentialCommandGroup(
                             new RunCommand(shooter::shoot).withTimeout(1),
-                            new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCells))
+                            new InstantCommand(shooter::shoot).alongWith(new InstantCommand(feeder::moveCellsNotInAuto))
                         ))
                 .whenReleased(new InstantCommand(shooter::stopShoot)
                         .alongWith(new InstantCommand(feeder::stopCells)));
 
         new JoystickButton(joy, CLIMBER_UP_BUTTON_ID)
                 .whenHeld(new InstantCommand(climber::ScissorUp)
-                    .alongWith(new InstantCommand(climber::debug))
+                    .alongWith(new InstantCommand(shooter::stopShoot))
+                    .alongWith(new InstantCommand(feeder::stopCells))
+                    .alongWith(new InstantCommand(intake::stopIntake))
                     .alongWith(new InstantCommand(drivetrain::isClimbing)))
                 .whenReleased(new InstantCommand(climber::StopClimb));
 
@@ -192,8 +187,6 @@ public class RobotContainer {
     public void periodic() {
         //feeder.debug();
         heartbeat.check();
-        System.out.println("In Range" + (locationator.getCurrentLocation().distanceFrom(overLineLocation) <= 25));
-        SmartDashboard.putBoolean("In Range", (locationator.getCurrentLocation().distanceFrom(overLineLocation) <= 25));
     }
 
     public double timerDifference() {

@@ -43,9 +43,9 @@ public class DriveDistance extends CommandBase implements Loggable {
         System.out.println("locationator.getCurrentLocation().getY() = " + locationator.getCurrentLocation().getY());
         double angle = locationator.getCurrentLocation().angleFrom(targetLocation);
         //  throttle = Drivetrain.clamp(locationator.getCurrentLocation().distanceFrom(targetLocation)/50 * Drivetrain.clamp(Math.abs((25/(angle - locationator.getAngle()))),1),Constants.AUTO_MAX_THROTTLE);
-        throttle = (((Math.max(drivetrain.getEncoder(), prevValue)) - 5000) / 5000) * Constants.AUTO_MAX_THROTTLE;
+        throttle = (((Math.max(drivetrain.getEncoder(), prevValue)) - 5000) / 5000);
         System.out.println("Angle hold: " + angle + "  Throttle: " + throttle);
-        drivetrain.angleHold(angle,throttle);
+        drivetrain.angleHold(angle,throttle, Constants.AUTO_MAX_THROTTLE);
         prevValue = drivetrain.getEncoder();
     }
 

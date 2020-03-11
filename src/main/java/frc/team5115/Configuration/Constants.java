@@ -25,7 +25,7 @@ public class Constants implements Loggable {
     public static final double startY = 100;
     public static final int startingAngle = -45; //90 is looking away from the driver stations.
 
-    public static final double AUTO_MAX_THROTTLE = 1;
+    public static final double AUTO_MAX_THROTTLE = .7;
     public static final double AUTO_CAMERA_HEIGHT = 14.5; //units: inches.
     public static final double AUTO_CAMERA_ANGLE = 5; //units: degrees.
     public static final double AUTO_SHOOTIN_DISTANCE = 90; //units: inches. todome update
@@ -48,7 +48,7 @@ public class Constants implements Loggable {
     public static final byte INTAKE_EXCRETE_BUTTON_ID = 2;
     public static final byte CLIMBER_DOWN_BUTTON_ID = 3;
     public static final byte CLIMBER_UP_BUTTON_ID = 4;
-    public static final byte AUTO_TURN_AND_MOVE_BUTTON_ID = 5;
+    public static final byte TURNLIMIT = 5;
     public static final byte SHOOTER_BUTTON_ID = 6;
     public static final byte AUTO_TURN_BUTTON_ID = 8;
     public static final byte TEST_BUTTON_ID = 9;
@@ -63,7 +63,7 @@ public class Constants implements Loggable {
     public static final double FEEDER_STORE_SPEED = -0.4;
     public static final double FEEDER_FLUSH_SPEED = -0.8;
     public static final double INTAKE_INHALE_SPEED = -0.3;
-    public static final double FEEDER_SPEED = -.8;
+    public static final double FEEDER_SPEED = -.5;
 
     public static final int POINTING_UP = 250;
     public static final int FULL_CAPACITY = 10;  //used to be 5
